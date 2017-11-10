@@ -140,17 +140,12 @@
  
 <script src="../layui.js"></script>
 <script>
-layui.use('flow', function(){
-  var flow = layui.flow;
- 
-  //按屏加载图片
-  flow.lazyimg({
-    elem: '#LAY_demo3 img'
-    ,scrollElem: '' //一般不用设置，此处只是演示需要。
-  });
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+  var element = layui.element;
   
+  //…
 });
 </script>
-
 </body>
 </html>
