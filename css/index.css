@@ -30,7 +30,11 @@ body{background:#f2f2f2;}
 #web-instruction .icon-fabu{color:#11c3b8;}
 #web-instruction .icon-zixun{color:#0196ed;}
 #web-instruction .icon-women{color:#ff9222;}
-
+#web-instruction .tool-bar-item{width: 60%;
+    margin: 6px auto;
+    padding: 2px 10px;
+    box-sizing: border-box;
+    text-overflow: clip;}
 /*result-re*/
 #result-re{margin:30px auto;}
 #result-re h2{font-size:23px;}
@@ -139,6 +143,8 @@ box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
   transform:translateX(0);
   opacity:1;
 }
+.tile a{color:#fff!important;}
+.tile a:hover{color:#fff!important;}
 
 
 

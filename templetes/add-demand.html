@@ -44,66 +44,77 @@
   
   <div class="layui-main">
     <!-- 内容主体区域 -->
-	<form class="layui-form layui-form-pane" action="">
-		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-		  <legend>需求发布</legend>
-		</fieldset>
-		 
-		<div id="passage-edit" class="layui-cent">
-			<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input input-title">
-			 <div class="layui-form-item">
-			   <div class="layui-inline">
-				  <label class="layui-form-label">联系方式</label>
-				  <div class="layui-input-block">
-				    <input type="text" name="title" required  lay-verify="required" placeholder="请输入您的联系方式" autocomplete="off" class="layui-input">
-				  </div>
-			    </div>
-				<div class="layui-inline">
-				  <label class="layui-form-label">领域</label>
-				<div class="layui-input-block">
-				  <select name="field" lay-verify="required">
-					<option value=""></option>
-					<option value="0">土壤</option>
-					<option value="1">空气</option>
-					<option value="2">水</option>
-				  </select>
-				</div>
-			    </div>
-				<div class="layui-inline">
-				  <label class="layui-form-label">地区</label>
-				<div class="layui-input-block">
-				  <select name="field" lay-verify="required">
-					<option value=""></option>
-					<option value="0">长沙</option>
-					<option value="1">北京</option>
-					<option value="2">上海</option>
-				  </select>
-				</div>
-			    </div>
-				<div class="layui-inline">
-					<label class="layui-form-label">赏金范围</label>
-					<div class="layui-input-inline" style="width: 100px;">
-					  <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
-					</div>
-					<div class="layui-form-mid">-</div>
-					<div class="layui-input-inline" style="width: 100px;">
-					  <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
-				</div>
-			  </div>
-			  </div>
-		
-			  
-			<textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
-		    
-			<div class="layui-form-item" id="submit-wrap">
-				<div class="layui-input-block">
-				  <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-				  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-				</div>
-			</div>
-		</div>
-	  
-	</form>
+	<form class="layui-form" action="" style="margin-top:20px">
+  
+  
+   <div class="layui-form-item">
+   <div class="layui-inline">
+    <label class="layui-form-label">发表用户</label>
+    <div class="layui-input-block">
+      <input name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
+    </div>
+    </div>
+    
+       <div class="layui-inline">
+         <label class="layui-form-label">赏金</label>
+    <div class="layui-input-block">
+      <input name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
+    </div>
+       </div>
+    
+  </div> 
+  
+  <div class="layui-form-item">
+  <div class="layui-inline">
+    <label class="layui-form-label">领域</label>
+    <div class="layui-input-block">
+      <input name="username" lay-verify="required" placeholder="（土壤，空气，水）" autocomplete="off" class="layui-input" type="text">
+    </div>
+  </div>
+  
+  <div class="layui-inline">
+   <label class="layui-form-label">请选择区域(市级别)</label>
+     <div class="layui-input-inline">
+      <select name="quiz2">
+       
+        <option value="西湖区">西湖区</option>
+        <option value="余杭区">余杭区</option>
+        <option value="拱墅区">临安市</option>
+      </select>
+    </div>
+  </div>
+  
+   <div class="layui-inline">
+    <label class="layui-form-label">联系方式</label>
+    <div class="layui-input-block">
+      <input name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
+    </div>
+  </div>
+  </div>
+
+
+  
+  <div class="layui-block">
+    <label class="layui-form-label">文章标题</label>
+    <div class="layui-input-block">
+      <input name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text">
+    </div>
+  </div>
+  
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">文章内容</label>
+    <div class="layui-input-block">
+      <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+ 
+</form>
   </div>
   
   
