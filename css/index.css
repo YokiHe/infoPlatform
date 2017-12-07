@@ -11,6 +11,10 @@ body{background:#f2f2f2;}
 /*carousel*/
 .layui-carousel img{height:100%; width:100%;}
 
+/* ws-notify */
+#ws-notify-wrap{background:hsla(225, 12%, 25%, 0.87);color: #fff;border-radius: 2px;height: 24px; padding:3px 0px; position:relative; overflow:hidden;}
+#ws-notify-wrap .layui-btn{position:absolute; top:-4px; left:0; z-index:4;opacity:1 !important;}
+#ws-notify{ margin:0 auto; z-index:3;}
 
 /*web instruction*/
 #web-instruction{margin:20px auto; text-align:center;border-radius: 5px; padding: 10px 0; background: #fff;}
@@ -35,12 +39,32 @@ body{background:#f2f2f2;}
     padding: 2px 10px;
     box-sizing: border-box;
     text-overflow: clip;}
+	
+/* result-result	 */
+#result-result{margin:20px auto 30px auto;}
+#result-result h2{font-size:23px;}
+#result-result h2+a{float:right;color:#009688; line-height:23px; margin-top:-20px;}
+#result-result>h2,a,hr{padding:0 !important;}
+#result-result>hr{margin-bottom:6px;}
+#result-result .moudle-card{position:relative; margin:10px auto; width:260px; border-radius:2px; transition:all linear 0.1s;}
+#result-result .moudle-card:hover{box-shadow: 1px 1px 5px rgba(0,0,0,.34)}
+#result-result .anchor-img{width:100%; border-radius:2px 2px 0px 0px; overflow:hidden;}
+#result-result .anchor-con{padding:20px; background:#fff;}
+#result-result .name{position:relative; color:#1d1d1d; font-size:16px; line-height:21px; text-align:left; font-weight:400;}
+#result-result .name .line{bottom:-5px; left:0px; position:absolute; width:34px; height:1px; background:#009688;}
+#result-result .info{margin-top:25px; font-size:12px; min-height:36px; color:#a7a7a7; line-height:18px; text-align:left;
+overflow:hidden; 
+text-overflow:ellipsis;
+display:-webkit-box; 
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2; }
+	
 /*result-re*/
 #result-re{margin:30px auto;}
 #result-re h2{font-size:23px;}
 #result-re h2+a{float:right;color:#009688; line-height:23px; margin-top:-20px;}
 #result-re>h2,a,hr{padding:0 !important;}
-#result-re .figurefx{height:283px; margin-top:10px !important; overflow:hidden; position:relative;		     	
+#result-re .figurefx{height:210px; margin-top:10px !important; overflow:hidden; position:relative;		     	
 	-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
     -webkit-margin-start: 0px;
