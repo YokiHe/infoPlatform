@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>专家简介</title>
+  <link rel="stylesheet" href="../css/layui.css">
+  <link rel="stylesheet" href="../css/templates_css.css">
+  <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+</head>
+<body id="expertlib-info-page" class="publictmp">
+	<div id="all-content">
+		<script type="text/javascript" src="./../common/header.js"></script> 
+		<section id="body-content" class="layui-fluid">
+			<div class="layui-main">
+			    <span class="layui-breadcrumb">
+				  <a href="">首页</a>
+				  <a href="">专家库</a>
+				  <a><cite>专家简介</cite></a>
+				</span>
+				<article id="expertInfo" class="layui-row">
+				  
+				</article>
+			</div>
+		</section>
+
+		<script id="expertTpl" type="text/html">
+			<figure id="pic-warp" class="layui-col-md4">
+			{{# if(d.data.headPic){ }}
+			  <img src="{{ d.data.headPic }}"/>
+			{{#  }else{ }}
+			  <img src="./../images/globe/defaultHeadPic.jpg"/>
+			{{# } }}
+				
+			</figure>
+			<div class="layui-col-md8" id="expert-textinfo">
+				<div class="layui-row">
+				   <p><strong id="expert-name">{{ d.data.name }}</strong></p>
+				   <p id="expert-des">
+						<span class="layui-badge layui-bg-blue">邮箱</span>
+						<span class="">{{ d.data.email }}</span>
+						<span class="layui-badge layui-bg-green">领域</span>
+						<span class="">{{ d.data.field }}</span>
+				   </p>
+				   <blockquote class="site-text layui-elem-quote" id="expert-intro">
+						{{ d.data.description }}
+				   </blockquote>
+				</div>
+			</div>
+		</script>
+		<script type="text/javascript" src="./../common/footer.js"></script>
+	</div>
+<!-- 你的HTML代码 -->
+ 
+<script src="../js/layui.js"></script>
+<script>
+layui.use(['element','jquery','laytpl','layer'], function(){
+  var $ = layui.jquery
+  ,element = layui.element
+  ,layer = layui.layer
+  ,laytpl = layui.laytpl;
+
+/*用户登录渲染*/
+var userName = "";
+var userId = "";
+hasLogin();
+function hasLogin(){
+  if(window.localStorage.length != 0 ){
+    userName = window.localStorage.userName;
+    userId = window.localStorage.userId;
+    userPic = window.localStorage.userPic;
+    $("#userCenter img").attr("src",userPic);
+    $("#userCenter img").after(userName);
+    $("#userLogin").addClass("hide");
+    $("#userCenter").addClass("show");
+    }else if(window.localStorage == "undefined"){
+      //当前页面未登录用户权限
+    }
+   //退出登录事件
+  $("#logOutBtn").click(function() {
+    localStorage.clear();
+    layer.alert("退出登录！");
+    location.reload();
+  });
+  //登录事件
+  $("#userLogin").click(function(){
+    var index =layer.open({
+      type: 2,
+      title: '用户登录',
+      shadeClose: true,
+      shade: 0.8,
+      area: ['380px', '520px'],
+      content: ['/templetes/login.html','no'],
+      end: function () {
+        location.reload();
+      }
+    }); 
+  });
+
+
+}
+/*用户登录渲染*/
+  
+  
+  function getUrlParam(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		if (r!=null) return unescape(r[2]); return null; //返回参数值
+	} 
+
+  $.ajax({
+    url:'http://101.200.43.10:8080/expert/'+getUrlParam('id'),
+    dataType:'json',
+    beforeSend: function (XMLHttpRequest) {
+    	layer.load(3,{offset: ['320px','660px']});
+    },
+    success: function (data) {
+        count = data.count;
+        layer.closeAll('loading');
+        var getTpl = expertTpl.innerHTML
+        ,view = document.getElementById('expertInfo');
+        laytpl(getTpl).render(data, function(html){
+          view.innerHTML = html;
+        });
+      
+    }
+});
+
+  //…
+});
+</script>
+</body>
+</html>

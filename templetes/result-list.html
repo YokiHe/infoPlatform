@@ -13,30 +13,7 @@
 <body id="result-list-page" class="publictmp list-page">
 	
 	<div id="all-content">
-		<section id="nav-bar" class="layui-header header header-doc">
-			<div class="layui-main">
-				<a class="logo" href="/">
-					<img src="../images/globe/logo_head.png" />
-				</a>
-				<ul class="layui-nav" id="navlist-right" lay-filter="">
-				  <li class="layui-nav-item"><a href="../index.html">首页</a></li>
-				  <li class="layui-nav-item layui-this"><a href="result-list.html">成果</a></li>
-				  <li class="layui-nav-item"><a href="demand-list.html">需求</a></li>
-				  <li class="layui-nav-item"><a href="expert-lib-list.html">专家库</a></li>
-				  <li class="layui-nav-item">
-					<a href="info-list.html">行业资讯</a>
-					<dl class="layui-nav-child"> <!-- 二级菜单 -->
-					  <dd><a href="article-list.html">转化流程</a></dd>
-					  <dd><a href="article-list.html">金融服务</a></dd>
-					  <dd><a href="article-list.html">潜力评估</a></dd>
-					</dl>
-				  </li>
-				  <li class="layui-nav-item"><a href="login.html">注册/登陆</a></li>
-				  
-				  
-				</ul>
-			</div>
-		</section>
+		<script type="text/javascript" src="./../common/header.js"></script> 
 		<section id="body-content" class="layui-main"> 
 			<a class="layui-btn" id="add-passage" href="add-result.html">
 			  <i class="layui-icon">&#xe608;</i> 我也要发布成果
@@ -56,95 +33,34 @@
 			  <div id="pagelist-bar"></div>
 			</div>
 		</section>
-		<section id="footer">
-		  <div id="footer-info" class="layui-main">
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<a class="nav-item footer-qrpic">
-					<img src="../images/footericon/qr.png" />
-				</a>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<a class="nav-item footer-qrpic">
-					<img src="../images/footericon/qr.png" />
-				</a>
-			</ul>
-		  </div>
-		  <div class="layui-main" id="footer-flink-content">
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/wxlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/aqlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/bcplogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/360logo.gif" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/cxlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/rzlogo.png" /></a>
-		  </div>
-		  <div id="footer-content">
-			<p>© 2017 <a href="/">环保科技成果.com</a> 展示平台</p>
-			<p>
-			  <a href="javascript:layer.msg('暂无此页');">关于我们</a>
-			  <a href="mailto:729239213@qq.com">联系</a>
-			</p>
-		  </div>
-		</section>
+		<script type="text/javascript" src="./../common/footer.js"></script>
 	</div>
 
 	
 
 	
-<!-- 你的HTML代码 -->
+<!-- 列表 -->
  <script id="demo" type="text/html">
 	  {{#  layui.each(d.data, function(index, item){ }}
 		<div class="item">
 		  <div class="item-content">
-			<h3 class="pull-left">{{ item.id }}<a href="demand-details.html?id={{ item.id }}">{{ item.title }}</a></h3>
+			<h3 class="pull-left">{{ item.id }}<a href="result-details.html?id={{ item.id }}">{{ item.title }}</a></h3>
 			<div class="pull-right">
-				<span class="text-muted">2013-11-11 16:14:37</span>
+				<span class="text-muted">{{ item.time }}</span>
 			</div>
 			<div class="pull-right badge-set">
 				
 				{{# if(item.field === "kk"){ }}
-			     <span class="layui-badge layui-bg-black">土壤</span>
+			     <span class="layui-badge layui-bg-blue">土壤</span>
 			    {{#  } }} 
 			    {{# if(item.field !== "kk"){ }}
 			     <span class="layui-badge layui-bg-orange">其它</span>
 			    {{#  } }} 
 				{{# if(item.type === "论文"){ }}
 				<span class="layui-badge layui-bg-gray">论文</span>
+				{{#  } }} 
+				{{# if(item.type !== "论文"){ }}
+				<span class="layui-badge layui-bg-cyan">成果</span>
 				{{#  } }} 
 
 			</div>		  
@@ -160,59 +76,103 @@
 	</script>
 
 <script>
-//注意：导航 依赖 element 模块，否则无法进行功能性操作
-layui.use(['element','laypage','util','laytpl'], function(){
-  var element = layui.element
+layui.use(['element','laypage','util','laytpl','layer','jquery'], function(){
+  var $ = layui.jquery
+  ,element = layui.element
+  ,layer = layui.layer
   ,laypage = layui.laypage
   ,util = layui.util
   ,laytpl = layui.laytpl;
-
   var count;
-  var page = 1;
- /* $.ajax({
+  var limitNum = 10;
+  var index;
+
+/*用户登录渲染*/
+var userName = "";
+var userId = "";
+hasLogin();
+function hasLogin(){
+  if(window.localStorage.length != 0 ){
+    userName = window.localStorage.userName;
+    userId = window.localStorage.userId;
+    userPic = window.localStorage.userPic;
+    $("#userCenter img").attr("src",userPic);
+    $("#userCenter img").after(userName);
+    $("#userLogin").addClass("hide");
+    $("#userCenter").addClass("show");
+    }else if(window.localStorage == "undefined"){
+      //当前页面未登录用户权限
+    }
+   //退出登录事件
+  $("#logOutBtn").click(function() {
+    localStorage.clear();
+    layer.alert("退出登录！");
+    location.reload();
+  });
+  //登录事件
+  $("#userLogin").click(function(){
+    var index =layer.open({
+      type: 2,
+      title: '用户登录',
+      shadeClose: true,
+      shade: 0.8,
+      area: ['380px', '520px'],
+      content: ['/templetes/login.html','no'],
+      end: function () {
+        location.reload();
+      }
+    }); 
+  });
+
+
+}
+/*用户登录渲染*/
+
+
+
+  //首次进入初始化页面
+  flushPage(1,10);
+  //包装获取数据方法
+  function flushPage(curPage,limitNum){
+  	$.ajax({
         type: "get",
-        url: "http://101.200.43.10:8080/achievement?page="+page+"&limit=10",
+        url: "http://101.200.43.10:8080/achievement?status=1&page="+curPage+"&limit="+limitNum,
         contentType: 'application/json',
         async: false,
+        beforeSend: function (XMLHttpRequest) {
+        	layer.load(3,{offset: ['320px','660px']});
+        },
         success: function (data) {
-            layuitpl
             count = data.count;
+            layer.closeAll('loading');
+            console.log(data);
             var getTpl = demo.innerHTML
 			,view = document.getElementById('artlist');
 			laytpl(getTpl).render(data, function(html){
 			  artlist.innerHTML = html;
 			});
         }
-    });*/
-  	//执行一个laypage实例
+    });
+  }
+  //执行分页
   laypage.render({
-    elem: 'pagelist-bar' //注意，这里的 test1 是 ID，不用加 # 号
-    ,count: count //数据总数，从服务端得到
+    elem: 'pagelist-bar'
+    ,count: count 
     ,limit:10
     ,jump: function(obj, first){
-	      $.ajax({
-	        type: "get",
-	        url: "http://101.200.43.10:8080/achievement?page="+obj.curr+"&limit=10",
-	        contentType: 'application/json',
-	        success: function (data) {
-	            /*layuitpl*/
-	            count = data.count;
-	            var getTpl = demo.innerHTML
-				,view = document.getElementById('artlist');
-				laytpl(getTpl).render(data, function(html){
-				  artlist.innerHTML = html;
-				});
-	        }
-	    });
-
+    	//每次执行
 	    //首次不执行
 	    if(!first){
 	      //do something
+	      //获取对应页码数据
+	      flushPage(obj.curr,limitNum);
 	    }
 	  }
+	
+
   });
 
-   //执行
+  //右下角小工具
   util.fixbar({
     bar1:'&#xe642;'
 	,bgcolor:'#5fb878'
@@ -225,7 +185,7 @@ layui.use(['element','laypage','util','laytpl'], function(){
   });
 
   
-  //…
+//结尾
 });
 </script>
 

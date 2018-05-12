@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>成果详情</title>
+  <title>需求详情</title>
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
@@ -18,36 +18,13 @@
 </head>
 <body id="article-page" class="publictmp">
 	<div id="all-content">
-		<section id="nav-bar" class="layui-header header header-doc">
-			<div class="layui-main">
-				<a class="logo" href="/">
-					<img src="../images/globe/logo_head.png" />
-				</a>
-				<ul class="layui-nav" id="navlist-right" lay-filter="">
-				  <li class="layui-nav-item"><a href="../index.html">首页</a></li>
-				  <li class="layui-nav-item layui-this"><a href="result-list.html">成果</a></li>
-				  <li class="layui-nav-item"><a href="demand-list.html">需求</a></li>
-				  <li class="layui-nav-item"><a href="expert-lib-list.html">专家库</a></li>
-				  <li class="layui-nav-item">
-					<a href="info-list.html">行业资讯</a>
-					<dl class="layui-nav-child"> <!-- 二级菜单 -->
-					  <dd><a href="article-list.html">转化流程</a></dd>
-					  <dd><a href="article-list.html">金融服务</a></dd>
-					  <dd><a href="article-list.html">潜力评估</a></dd>
-					</dl>
-				  </li>
-				  <li class="layui-nav-item"><a href="login.html">注册/登陆</a></li>
-				  
-				  
-				</ul>
-			</div>
-		</section>
+		<script type="text/javascript" src="./../common/header.js"></script> 
 
 		<section id="body-content" class="layui-main">
 			<span class="layui-breadcrumb">
 			  <a href="">首页</a>
-			  <a href="">成果展示</a>
-			  <a><cite>成果详情</cite></a>
+			  <a href="">需求展示</a>
+			  <a><cite>需求详情</cite></a>
 			</span>
 			<article id="view">
 			
@@ -62,19 +39,25 @@
 					<!--文章属性列表-->
 					<dl class="dl-inline">
 						<dt>发表用户：</dt>
-						<dd>{{ d.user }}</dd>
+						<dd>{{ d.data.userName }}</dd>
 						<dt>发布时间：</dt>
-						<dd>{{ d.created }}</dd>
+						<dd>{{ d.data.time }}</dd>
 						<dd class="article-abb pull-right">
-							<span class="layui-badge">热门</span>
-							<span class="layui-badge layui-bg-orange">推荐</span>
-							<span class="layui-badge layui-bg-green">置顶</span>
-							<span class="layui-badge layui-bg-cyan">精品贴</span>
-							<span class="layui-badge layui-bg-blue">{{ d.visit_count }}次浏览</span>
+							{{# if(d.data.reward > 100){ }}
+							<span class="layui-badge">高赏金需求</span>
+							{{#  } }} 
+							{{# if(d.data.stick){ }}
+							<span class="layui-badge layui-bg-cyan">置顶</span>
+							{{#  } }} 
+							<span class="layui-badge layui-bg-blue">{{ d.data.visitCount }}次浏览</span>
 						</dd>
 					</dl>
 					<div class="abstract">
-						<!-- <p><span>摘要信息:</span>ddddddddddddddddddddddddddddddddddd</p> -->
+						<!-- <p><span>摘要信息:</span>ddddddddddddddddddddddddddddddddddd</p> 
+							<span class="layui-badge layui-bg-orange">推荐</span>
+							<span class="layui-badge layui-bg-green">置顶</span>
+							<span class="layui-badge layui-bg-cyan">精品贴</span>
+						-->
 					</div>
 				</header>
 				<!--文章正文部分-->
@@ -88,37 +71,27 @@
 				      </colgroup>
 				      <thead>
 				        <tr>
-				          <th colspan="1">成果名称</th>
-				          <td colspan="3">{{ d.title }}</td>
+				          <th colspan="1">需求名称</th>
+				          <td colspan="3">{{ d.data.title }}</td>
 				        </tr> 
 				      </thead>
 				      <tbody>
 				        <tr>
-				          <th colspan="1">专利所有人</th>
-				          <td colspan="3">{{ d.patentee }}</td>
-				        </tr>
-				        <tr>
 				          <th>领域</th>
-				          <td>{{ d.field }}</td>
-				          <th>成果类型</th>
-				          <td>{{ d.type }}</td>
+				          <td>{{ d.data.field }}</td>
+				          <th>赏金</th>
+				          <td>{{ d.data.reward }}</td>
 				        </tr>
 				        <tr>
-				          <th>收益区间</th>
-				          <td>{{ d.benefit_start }}-{{ d.benefit_end }}</td>
-				          <th>专利价格</th>
-				          <td>{{ d.price }}</td>
-				        </tr>
-				        <tr>
+				          <th>发布用户</th>
+				          <td>{{ d.data.username }}</td>
 				          <th>联系方式</th>
-				          <td>{{ d.tel }}</td>
-				          <th>区域</th>
-				          <td>{{ d.region }}</td>
+				          <td>{{ d.data.tel }}</td>
 				        </tr>
 				      </tbody>
 				    </table>
 				    <blockquote class="layui-elem-quote layui-quote-nm">
-				      {{ d.content }}
+				      {{ d.data.content }}
 				    </blockquote>
 				  </section>
 				  <!--文章底部-->
@@ -184,7 +157,7 @@
 			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/rzlogo.png" /></a>
 		  </div>
 		  <div id="footer-content">
-			<p>© 2017 <a href="/">环保科技成果.com</a> 展示平台</p>
+			<p>© 2017 <a href="/">环保科技需求.com</a> 展示平台</p>
 			<p>
 			  <a href="javascript:layer.msg('暂无此页');">关于我们</a>
 			  <a href="mailto:729239213@qq.com">联系</a>
@@ -196,39 +169,72 @@
  
 <script src="./../js/layui.js"></script>
 <script>
-layui.use(['laytpl','element'],function(){
-	var element = layui.element
+layui.use(['jquery','laytpl','element','layer'],function(){
+	var $ = layui.jquery
+	,element = layui.element
+	,layer = layui.layer
 	,laytpl = layui.laytpl;
 
-	Mock.mock('http://101.200.43.10:8080/requirement/',{
-            "title" : '@name',     //模拟名称
-            "user": "@cname",
-            "tel": '@email',
-            "field|1-100":100,  
-            "region":"@region()", 
-            "type|1-100":100,      
-            "benefit_start|1-100":100,
-            "patentee": "@cname",        
-            "benefit_end|1-100":100,  
-            "visit_count|1-1000":100,     
-            "price|1-100":100,     
-            "created"     : "@date('yyyy-MM-dd')",  //模拟时间
-            "content"  : "@cparagraph()" //模拟文本
-        })
+	/*用户登录渲染*/
+	var userName = "";
+	var userId = "";
+	hasLogin();
+	function hasLogin(){
+	  if(window.localStorage.length != 0 ){
+	    userName = window.localStorage.userName;
+	    userId = window.localStorage.userId;
+	    userPic = window.localStorage.userPic;
+	    $("#userCenter img").attr("src",userPic);
+	    $("#userCenter img").after(userName);
+	    $("#userLogin").addClass("hide");
+	    $("#userCenter").addClass("show");
+	    }else if(window.localStorage == "undefined"){
+	      //当前页面未登录用户权限
+	    }
+	   //退出登录事件
+	  $("#logOutBtn").click(function() {
+	    localStorage.clear();
+	    layer.alert("退出登录！");
+	    location.reload();
+	  });
+	  //登录事件
+	  $("#userLogin").click(function(){
+	    var index =layer.open({
+	      type: 2,
+	      title: '用户登录',
+	      shadeClose: true,
+	      shade: 0.8,
+	      area: ['380px', '520px'],
+	      content: ['/templetes/login.html','no'],
+	      end: function () {
+	        location.reload();
+	      }
+	    }); 
+	  });
 
 
-        $.ajax({
-            url:'http://101.200.43.10:8080/requirement/',
-            dataType:'json',
-            success:function(data){
-                var getTpl = demo.innerHTML
-                ,view = document.getElementById('view');
-                laytpl(getTpl).render(data, function(html){
-                  view.innerHTML = html;
-                });
-              
-            }
-        });
+	}
+	/*用户登录渲染*/
+
+
+	function getUrlParam(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		if (r!=null) return unescape(r[2]); return null; //返回参数值
+	} 
+	$.ajax({
+	    url:'http://101.200.43.10:8080/requirement/'+getUrlParam('id'),
+	    dataType:'json',
+	    success:function(data){
+	    	console.log(data);
+	        var getTpl = demo.innerHTML
+	        ,view = document.getElementById('view');
+	        laytpl(getTpl).render(data, function(html){
+	          view.innerHTML = html;
+	        });
+	      
+	    }
+	});
 
 
 });

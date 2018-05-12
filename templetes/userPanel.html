@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>个人中心</title>
+	<link rel="stylesheet" href="../css/layui.css">
+	<link rel="stylesheet" href="../css/userPanel.css">
+	
+	
+</head>
+<body>
+	<!-- <script type="text/javascript" src="./../common/header.js"></script> -->
+	<div class="layui-fluid">
+		<div id="sider" class="layui-col-md4 layui-col-sm0">
+			<div id="sider-container">
+				<div id="logoPic">
+					<!-- <img src="./../images/globe/logo_head.png"> -->
+				</div>
+				<div id="userInfo-Wrap">
+					<div class="layui-form-item">
+					    <div class="layui-input-block">
+					      <div id="upload" class="layui-upload">
+							  <div class="layui-upload-list">
+							  	
+						   	  <img name="headPic"  lay-verify="headPic" class="layui-upload-img" id="headPic" src="./../images/globe/defaultHeadPic.jpg">
+						  
+							  </div>
+							  <button type="button" class="layui-btn" id="cgPicBtn">更换头像</button>
+							</div>   
+					    </div>
+					</div>
+
+					<div id="userInfo-Detail">
+					  <div class="layui-card">
+					  	<i class="layui-icon layui-icon-face-smile"></i>
+					  	<i class="layui-icon layui-icon-password"></i>
+					  	<i class="layui-icon layui-icon-cellphone"></i>
+					  	<i class="layui-icon layui-icon-notice"></i>
+						<ul>
+							<li>
+								<i class="layui-icon layui-icon-username"></i><span id="userInfoName">用户名</span>
+							</li>
+							<li>
+								<span id="userInfoEmail">邮箱</span>
+							</li>
+							<li>
+								<span id="userInfoTel">手机</span>
+							</li>
+						</ul>
+					  </div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="main-container">
+			<div id="right-container" class="layui-col-md8">
+				<nav>
+					<span class="layui-breadcrumb" lay-separator="|">
+					  <a href="/">网站首页</a>
+					  <a href="">成果</a>
+					  <a href="">需求</a>
+					  <a href="">行业资讯</a>
+					  <a id="logOutBtn">注销</a>
+					</span>
+				</nav>
+				<div  class="layui-tab layui-tab-brief">
+  <ul class="layui-tab-title">
+    <li class="layui-this">更改个人信息</li>
+    <li>修改密码</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">
+		<form lay-filter="formTest" class="layui-form layui-form-pane" action="">
+			<div class="layui-col-md8">
+		  	  <div class="layui-form-item">
+			    <label class="layui-form-label">邮箱</label>
+			    <div class="layui-input-inline">
+			      <input type="text" name="email" required lay-verify="required|email" placeholder="将作为日后找回密码依据" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">手机</label>
+			    <div class="layui-input-inline">
+			      <input type="text" name="tel" required lay-verify="required|phone" placeholder="请输入真实有效手机号码" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      <button class="layui-btn" lay-submit lay-filter="cgInfoBtn">更改信息</button>
+		      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		  </div>
+		 </div>
+		</form>
+    </div>
+    <div class="layui-tab-item">
+		<form lay-filter="formTest" class="layui-form layui-form-pane" action="">	<div class="layui-col-md7">
+		  	  <div class="layui-form-item">
+			    <label class="layui-form-label">新密码</label>
+			    <div class="layui-input-inline">
+			      <input type="password" name="password" required lay-verify="required|password" placeholder="密码长度为8-16个字符" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">确认密码</label>
+			    <div class="layui-input-inline">
+			      <input type="password" name="rePassword" required lay-verify="required|rePassword" placeholder="请再次输入确认" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      <button class="layui-btn" lay-submit lay-filter="cgPwdBtn">修改密码</button>
+		      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		  </div>
+		 </div>
+		</form>
+    </div>
+  </div>
+</div>
+		     
+				
+
+	<p class="copyright">Copyright © 2018 XXXXXX</p>
+	</div>
+</div>
+</div>
+
+
+<script src="../js/layui.js"></script>
+
+<script>
+layui.use(['upload','element','form'], function(){
+  var $ = layui.jquery
+  ,element = layui.element
+  ,form = layui.form
+  ,upload = layui.upload;
+
+/*页面加载时动作*/
+var userName = "",
+userId = "",
+userPic = "",
+isLogin = false;
+$(document).ready(function() { 
+	hasLogin(); //判断是否登录
+	getUserInfo();
+
+}); 
+
+
+//用户登录判断
+function hasLogin(){
+	if(window.localStorage.length != 0 ){
+	    userName = window.localStorage.userName;
+	    userId = window.localStorage.userId;
+	    userPic = window.localStorage.userPic;
+	    console.log("用户已登录"+userName+userId);
+	    isLogin = true;
+	    $("#headPic").attr("src",userPic);
+   		$("#userInfoName").text(userName);
+    }else if(window.localStorage == "undefined"){
+      isLogin = false;
+      console.log("请登录");
+      layer.msg(2,'请先登录');
+    }
+
+}
+//渲染用户信息
+function getUserInfo() {
+	$.get("http://101.200.43.10:8080/user/"+userId, function(result){
+	  console.log(result.data);
+  	  $("#userInfoEmail").text(result.data.email);
+  	  $("#userInfoTel").text(result.data.tel);
+  });
+}
+
+/*页面加载时动作*/
+
+
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#headPic'
+    ,url: 'http://101.200.43.10:8080/file'
+   // ,auto: false //选择文件后不自动上传
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $("#headPic").attr('src', result); //图片链接（base64）
+        $("#headPic").attr('alt', file.name); //图片说明
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }if(res.code==0){
+	        var str=JSON.stringify(res.data.src);
+	        var len=str.length;
+	        str= str.substring(1,len-1);
+	        $("#headPic").val(str);
+	        flushHeadPic();
+	    }
+	    //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+    ,size: 1000
+    
+  });
+
+
+//更新用户头像
+function flushHeadPic() {
+	var userInfo ={"id": "", "headPic": ""}
+	var userId = localStorage.userId;
+	userInfo.headPic=$("[id='headPic']").val();
+	userInfo.id = userId;
+	$.ajax({
+	   url: 'http://101.200.43.10:8080/user/',
+	   type: 'PUT',
+	   contentType: "application/json;charset=utf-8",
+	   data:JSON.stringify(userInfo),
+	   success: function(res) {
+	        layer.msg('头像上传成功');
+	        localStorage.userPic = userInfo.headPic;
+	        window.location.reload(); //刷新当前页面
+	   }
+	});
+
+}
+
+
+
+  //表单验证
+  form.verify({
+  name: function(value, item){ //value：表单的值、item：表单的DOM对象
+    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+      return '用户名不能有特殊字符';
+    }
+    if(/(^\_)|(\__)|(\_+$)/.test(value)){
+      return '用户名首尾不能出现下划线\'_\'';
+    }
+    if(/^\d+\d+\d$/.test(value)){
+      return '用户名不能全为数字';
+    }
+  },
+  password: function(value) {
+    if (value === "") 
+      return "密码不能为空！";
+    var regExpDigital = /\d/; //如果有数字
+    var regExpLetters = /[a-zA-Z]/; //如果有字母
+    if (!(regExpDigital.test(value) && regExpLetters.test(value) && value.length >= 8 && value.length <= 16)) {
+        return '密码必须包含英文和数字！';
+	    }
+	},
+	rePassword: function(value) {
+	    if (value === "") 
+	      return "请输入二次密码！";
+	    var pwd = $('input[name=password').val();
+	    if (pwd !== value) 
+	      return "二次输入的密码不一致！";
+	}
+});   
+
+
+
+
+  //监听更改信息提交
+  form.on('submit(cgInfoBtn)', function(data){
+    var jsonString ={"email": "", "tel": "" , "id": ""}
+      var userId = localStorage.userId;
+		jsonString.id = userId;
+      jsonString.email=$("[name='email']").val();
+      jsonString.tel=$("[name='tel']").val();
+          $.ajax({
+            type:"put",
+            url:"http://101.200.43.10:8080/user",
+            processData: false,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data:JSON.stringify(jsonString),
+            beforeSend: function (XMLHttpRequest) {
+              layer.load();
+            },
+            success:function(msg){
+                if(msg.code==0){
+                  layer.closeAll('loading');
+                  
+                  layer.open({
+					  content: '个人信息修改成功',
+					  icon: '1',
+					  yes: function(index, layero){
+					    window.location.reload();
+					  }
+					});  
+                }else{
+                  layer.closeAll('loading');
+                  layer.alert('请稍后再试', {icon: 2});
+                }
+                   
+            }
+        });
+
+    return false;
+  });
+
+//监听更改密码提交
+  form.on('submit(cgPwdBtn)', function(data){
+    var jsonString ={"password": "", "id": ""}
+      var userId = localStorage.userId;
+		jsonString.id = userId;
+      jsonString.password=$("[name='password']").val();
+          $.ajax({
+            type:"put",
+            url:"http://101.200.43.10:8080/user",
+            processData: false,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data:JSON.stringify(jsonString),
+            beforeSend: function (XMLHttpRequest) {
+              layer.load();
+            },
+            success:function(msg){
+                if(msg.code==0){
+                  layer.closeAll('loading');
+                  //layer.alert('密码修改成功,请重新登录', {icon: 1});
+                  
+                  layer.open({
+					  content: '密码修改成功,请重新登录',
+					  icon: '1',
+					  yes: function(index, layero){
+					    localStorage.clear();
+                  window.location.href="/index.html";
+					    layer.close(index); //如果设定了yes回调，需进行手工关闭
+					  }
+					});        
+                }else{
+                  layer.closeAll('loading');
+                  layer.alert('请稍后再试', {icon: 2});
+                }
+                   
+            }
+        });
+
+    return false;
+  });
+
+
+  $("#logOutBtn").click(function() {
+    localStorage.clear();
+    alert("退出登录！");
+  });
+
+
+});
+</script>
+</body>
+</html>

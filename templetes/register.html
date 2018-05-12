@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>用户注册</title>
+	<link rel="stylesheet" href="../css/layui.css">
+	<link rel="stylesheet" href="../css/register.css">
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+	
+</head>
+<body>
+	<!-- <script type="text/javascript" src="./../common/header.js"></script> -->
+	<div class="layui-fluid">
+		<div id="sider" class="layui-col-md4 layui-col-sm0">
+			<div id="sider-container">
+				<div id="logoPic">
+					<!-- <img src="./../images/globe/logo_head.png"> -->
+				</div>
+					<img src="./../images/carousel/sider1.jpg">
+			</div>
+		</div>
+
+		<div id="main-container">
+			<div id="right-container" class="layui-col-md8">
+				<nav>
+					<span class="layui-breadcrumb" lay-separator="|">
+					  <a href="">网站首页</a>
+					  <a href="">成果</a>
+					  <a href="">需求</a>
+					  <a href="">行业资讯</a>
+					  <a id="userLogin">登陆</a>
+					</span>
+				</nav>
+
+				<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+				  <legend>新用户注册</legend>
+				</fieldset>
+				<form lay-filter="formTest" class="layui-form layui-form-pane" action="">
+				  <div class="layui-col-md5 layui-col-sm12">
+				  	  <div class="layui-form-item">
+					    <div class="layui-input-block">
+					      <div id="upload" class="layui-upload">
+							  <div class="layui-upload-list">
+							  	
+						   	  <img name="headPic"  lay-verify="headPic" class="layui-upload-img" id="headPic" src="./../images/globe/defaultHeadPic.jpg">
+						  
+							  </div>
+							  <button type="button" class="layui-btn" id="uploadBtn">上传图片</button>
+							</div>   
+					    </div>
+					  </div>
+				  </div>
+				  
+				  <div class="layui-col-md7">
+				  	<div class="layui-form-item">
+				  		<label class="layui-form-label">用户名</label>
+					    <div class="layui-input-inline">
+					      <input type="text" name="name" required  lay-verify="required|name" placeholder="不能包含特殊字符" autocomplete="off" class="layui-input">
+					    </div>
+					  </div>
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">密码</label>
+					    <div class="layui-input-inline">
+					      <input type="password" name="password" required lay-verify="required|password" placeholder="密码长度为8-16个字符" autocomplete="off" class="layui-input">
+					    </div>
+					  </div>
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">确认密码</label>
+					    <div class="layui-input-inline">
+					      <input type="password" name="rePassword" required lay-verify="required|rePassword" placeholder="请再次输入确认" autocomplete="off" class="layui-input">
+					    </div>
+					  </div>
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">邮箱</label>
+					    <div class="layui-input-inline">
+					      <input type="text" name="email" required lay-verify="required|email" placeholder="将作为日后找回密码依据" autocomplete="off" class="layui-input">
+					    </div>
+					  </div>
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">手机</label>
+					    <div class="layui-input-inline">
+					      <input type="text" name="tel" required lay-verify="required|phone" placeholder="请输入真实有效手机号码" autocomplete="off" class="layui-input">
+					    </div>
+					  </div>
+					  <div class="layui-form-item">
+				    <div class="layui-input-block">
+				      <button class="layui-btn" lay-submit lay-filter="formBtn">立即提交</button>
+				      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				    </div>
+				  </div>
+				 </div>
+				</form>
+
+				<p class="copyright">Copyright © 2018 XXXXXX</p>
+			</div>
+		</div>
+	</div>
+
+
+<script src="../js/layui.js"></script>
+
+<script>
+layui.use(['upload','element','form'], function(){
+  var $ = layui.jquery
+  ,element = layui.element
+  ,form = layui.form
+  ,upload = layui.upload;
+
+  //清除登录状态
+  localStorage.clear();
+  //头像上传
+  var uploadInst = upload.render({
+    elem: '#uploadBtn'
+    ,url: 'http://101.200.43.10:8080/file'
+   // ,auto: false //选择文件后不自动上传
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $("#headPic").attr('src', result); //图片链接（base64）
+        $("#headPic").attr('alt', file.name); //图片说明
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }if(res.code==0){
+	        var str=JSON.stringify(res.data.src);
+	        var len=str.length;
+	        str= str.substring(1,len-1);
+	        layer.msg('头像上传成功');
+	        $("#headPic").val(str);
+	    }
+	    //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+    ,size: 1000
+    
+  });
+
+  //注册表单验证
+  form.verify({
+  name: function(value, item){ //value：表单的值、item：表单的DOM对象
+    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+      return '用户名不能有特殊字符';
+    }
+    if(/(^\_)|(\__)|(\_+$)/.test(value)){
+      return '用户名首尾不能出现下划线\'_\'';
+    }
+    if(/^\d+\d+\d$/.test(value)){
+      return '用户名不能全为数字';
+    }
+    var message = "";
+    $.ajax({
+	    async: false, //改为同步请求
+	    url: 'http://101.200.43.10:8080/user/exist',
+	    data: {
+	        name: value
+	    },
+	    dataType: 'json',
+	    type: 'get',
+	    success: function(result) {
+	    	console.log(result);
+	        //result的数据结构 ：   {"success":true,"message":"用户名已存在！"}
+	        if (result.data) {
+	          	message = result.msg;
+	        }
+	    }
+	});
+	if (message !== '') {
+	    return message;	
+	}
+
+  },
+  password: function(value) {
+    if (value === "") 
+      return "密码不能为空！";
+    var regExpDigital = /\d/; //如果有数字
+    var regExpLetters = /[a-zA-Z]/; //如果有字母
+    if (!(regExpDigital.test(value) && regExpLetters.test(value) && value.length >= 8 && value.length <= 16)) {
+        return '密码必须包含英文和数字！';
+	    }
+	},
+	rePassword: function(value) {
+	    if (value === "") 
+	      return "请输入二次密码！";
+	    var pwd = $('input[name=password').val();
+	    if (pwd !== value) 
+	      return "二次输入的密码不一致！";
+	},
+	headPic: function(value) {
+	    if (value === "") 
+	      return "请上传头像！";
+	    
+	}
+});   
+
+
+
+
+  //监听注册提交
+  form.on('submit(formBtn)', function(data){
+    var jsonString ={"email": "", "headPic": "", "name": "", "password": "", "role": 0, "status": 0, "tel": ""}
+
+      jsonString.name=$("[name='name']").val();
+      jsonString.email=$("[name='email']").val();
+      jsonString.headPic=$("[id='headPic']").val();
+      jsonString.password=$("[name='password']").val();
+      jsonString.tel=$("[name='tel']").val();
+
+          $.ajax({
+            type:"post",
+            url:"http://101.200.43.10:8080/user",
+            processData: false,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data:JSON.stringify(jsonString),
+            beforeSend: function (XMLHttpRequest) {
+              layer.load();
+            },
+            success:function(msg){
+                if(msg.code==0){
+                  layer.closeAll('loading');
+                  layer.open({
+                  	content: '注册成功，请登录~', //iframe的url
+                  	icon: '1',
+				    end: function(layero, index) {
+				      window.location.href="/index.html";
+				    },
+                  });
+                }else{
+                  layer.closeAll('loading');
+                  layer.alert('注册失败', {icon: 2});
+                }
+                   
+            }
+        });
+
+    return false;
+  });
+
+   
+//用户登录窗口
+$("#userLogin").click(function(){
+    loginEvent();
+  });
+
+  //loginEvent
+  function loginEvent() {
+    var index =layer.open({
+      type: 2,
+      title: '用户登录',
+      shadeClose: true,
+      shade: 0.8,
+      area: ['380px', '520px'],
+      content: './login.html', //iframe的url
+      end: function () {
+        location.href="/index.html";
+      }
+    }); 
+  }
+
+//结尾
+});
+</script>
+</body>
+</html>

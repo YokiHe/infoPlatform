@@ -11,108 +11,65 @@
 </head>
 <body class="layui-layout-body" id="publish-page">
 <div class="layui-layout layui-layout-admin">
-  <div class="layui-header">
-    <!-- 头部区域 -->
-    <ul class="layui-nav">
-	  <a class="logo" href="/">	<img src="../images/globe/logo_head.png" /></a>
-	  <li class="layui-nav-item"><a href="../index.html">首页</a></li>
-	  <li class="layui-nav-item"><a href="result-list.html">成果</a></li>
-	  <li class="layui-nav-item layui-this"><a href="demand-list.html">需求</a></li>
-	  <li class="layui-nav-item"><a href="expert-lib-list.html">专家库</a></li>
-	  <li class="layui-nav-item">
-		<a href="info-list.html">行业资讯</a>
-		<dl class="layui-nav-child"> <!-- 二级菜单 -->
-		  <dd><a href="article-list.html">行业规章</a></dd>
-		  <dd><a href="article-list.html">成果转化介绍</a></dd>
-		  <dd><a href="article-list.html">金融服务</a></dd>
-		</dl>
-	  </li>
-    </ul>
-    <ul class="layui-nav layui-layout-right">
-      <li class="layui-nav-item">
-        <a href="javascript:;">
-          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-          Admin
-        </a>
-        <dl class="layui-nav-child">
-          <dd><a href="javascript:layer.msg('功能完善中');">基本资料</a></dd>
-          <dd><a href="javascript:layer.msg('功能完善中');">安全设置</a></dd>
-        </dl>
-      </li>
-      <li class="layui-nav-item"><a href="/">退了</a></li>
-    </ul>
-  </div>
+  <script type="text/javascript" src="./../common/header.js"></script> 
   
   <div class="layui-main">
     <!-- 内容主体区域 -->
 	<form class="layui-form" id="demandInfo" style="margin-top:20px">
   
-  <!-- 本地测试用 -->
-  <input name="userId" style="display: none;" value="456" type="text">
 
-   <div class="layui-form-item">
-   <div class="layui-inline">
-    <label class="layui-form-label">发表用户</label>
-    <div class="layui-input-block">
-      <input name="userId" value="111111111" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
-    </div>
-    </div>
-    
-       <div class="layui-inline">
-         <label class="layui-form-label">赏金</label>
-    <div class="layui-input-block">
-      <input name="price"  value="111111111" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
-    </div>
-       </div>
-    
-  </div> 
-  
+
   <div class="layui-form-item">
     <label class="layui-form-label">所属领域</label>
     <div class="layui-input-inline">
-      <select name="fieldId">
-        <option  disabled="">请选择领域</option>
-        <option value="0">土壤</option>
-        <option value="1">空气</option>
-        <option value="2">水</option>
+      <select name="fieldId" id="fieldWrap" lay-verify="required" lay-search>
+        <option disabled="">请选择领域</option>
       </select>
     </div>
     <label class="layui-form-label">所在区域</label>
-    <div class="layui-input-inline">
-      <select name="regionId">
-        <option  disabled="">请选择区域(市级别)</option>
-        <option value="0">西湖区</option>
-        <option value="1">余杭区</option>
-        <option value="2">临安市</option>
+     <div class="layui-input-inline">
+      <select name="regionId" id="regionWrap" lay-verify="required" lay-search>
+        <option disabled="">请选择区域(市级别)</option>
       </select>
     </div>
-    <div class="layui-inline">
-     <label class="layui-form-label">联系方式</label>
-     <div class="layui-input-block">
-      <input name="tel" value="13036738488" required lay-verify="required|phone" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
-     </div>
-    </div>   
   </div>
+
+   <div class="layui-form-item">
+    <div class="layui-inline">
+       <label class="layui-form-label">联系方式</label>
+       <div class="layui-input-block">
+        <input name="tel" lay-verify="required|phone|isLogin" placeholder="请输入手机号码" autocomplete="off" class="layui-input" type="text">
+       </div>
+    </div> 
+    <div class="layui-inline">
+      <label class="layui-form-label">赏金</label>
+      <div class="layui-input-block">
+    <input name="reward" lay-verify="required|number" placeholder="请输入赏金" autocomplete="off" class="layui-input" type="text">
+      </div>
+    </div>
+  </div> 
+  
+
 
 
   
   <div class="layui-form-item">
-    <label class="layui-form-label">文章标题</label>
+    <label class="layui-form-label">需求标题</label>
     <div class="layui-input-block">
-      <input name="title" value="这是标题是谁" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text">
+      <input name="title" lay-verify="required|title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text">
     </div>
   </div>
   
   <div class="layui-form-item layui-form-text">
-    <label class="layui-form-label">文章内容</label>
+    <label class="layui-form-label">需求内容</label>
     <div class="layui-input-block">
       <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
     </div>
   </div>
   <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
-      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+      <button class="layui-btn" lay-submit lay-filter="demo1">发布需求</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重填</button>
     </div>
   </div>
  
@@ -126,13 +83,101 @@
 <script src="./../js/layui.js"></script>
 
 <script>
-layui.use(['element','form', 'layedit', 'laydate'], function(){
+layui.use(['element','form', 'layedit', 'layer','laytpl'], function(){
   var $ = layui.jquery
   ,form = layui.form
   ,layer = layui.layer
   ,layedit = layui.layedit
+  ,laytpl = layui.laytpl
   ,element = layui.element;
   
+/*用户登录渲染*/
+var userName = "";
+var userId = "";
+hasLogin();
+function hasLogin(){
+  if(window.localStorage.length != 0 ){
+    userName = window.localStorage.userName;
+    userId = window.localStorage.userId;
+    userPic = window.localStorage.userPic;
+    console.log("用户已登录"+userName+userId);
+    $("#userCenter img").attr("src",userPic);
+    $("#userCenter img").after(userName);
+    $("#userLogin").addClass("hide");
+    $("#userCenter").addClass("show");
+    }else{
+      //限制当前页面未登录动作
+      layer.open({
+        content: '必须登陆后才可发表成果！',
+        icon: '2',
+        end:function() {
+          loginEvent();
+        }
+      });
+    }
+
+  $("#logOutBtn").click(function() {
+    localStorage.clear();
+    alert("退出登录！");
+  });
+
+  $("#userLogin").click(function(){
+    loginEvent();
+  });
+
+  //loginEvent
+  function loginEvent() {
+    var index =layer.open({
+      type: 2,
+      title: '用户登录',
+      shadeClose: true,
+      shade: 0.8,
+      area: ['380px', '520px'],
+      content: './login.html', //iframe的url
+      end: function () {
+        location.reload();
+      }
+    }); 
+  }
+
+}
+
+ /*表单数据动态获取*/
+  var html = "",
+  html1 = "",
+  listNode = "",
+  listApi = "";
+  $.get("http://101.200.43.10:8080/field", function(data){
+        list = data.data;
+        console.log(list);
+        $.each(list, function(i, item){
+        html += '<option value="'+item.id+'">'+item.field+'</option>';
+      });
+      $("#fieldWrap").append(html);
+      form.render('select');
+    });
+
+   $.get("http://101.200.43.10:8080/region", function(data){
+        list = data.data;
+        console.log(list);
+        $.each(list, function(i, item){
+        html1 += '<option value="'+item.id+'">'+item.region+'</option>';
+      });
+      $("#regionWrap").append(html1);
+      form.render('select');
+    });
+  /*表单数据动态获取*/
+
+
+   layedit.set({  
+      uploadImage: {  
+          url: 'http://101.200.43.10:8080/file' //接口url  
+        , type: 'post' //默认post  
+        ,function (info) {
+          
+        }
+      }  
+  });  
   //创建一个编辑器
   var editIndex = layedit.build('LAY_demo_editor');
  
@@ -142,27 +187,46 @@ layui.use(['element','form', 'layedit', 'laydate'], function(){
       if(value.length < 5){
         return '标题至少得5个字符啊';
       }
-    }
-    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-    ,content: function(value){
-      layedit.sync(editIndex);
+      if(value.length >50){
+        return '标题控制在50个字符内啊';
+      }
+    },
+    isLogin: function(value){
+      if(!userId){
+        return '请先登录后再发布需求！'
+      }
     }
   });
-  
-  //监听指定开关
-  form.on('switch(switchTest)', function(data){
-    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-      offset: '6px'
+
+  $('.layedit-tool-image').on('mouseover', function(){
+    layer.tips('上传的图片大小仅限2MB', '.layedit-tool-image',{
+      tips: [1, '#7fce95'],
+      time: 3000
     });
-    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
   });
   
   //监听提交
   form.on('submit(demo1)', function(data){
-    console.log(data.field);
-    layer.alert(JSON.stringify(data.field), {
-      title: '最终的提交信息'
-    });
+    var jsonString = {
+            "content": "string",
+            "fieldId": 0,
+            "regionId": 0,
+            "reward": 0,
+            "sortOrder": 0,
+            "tel": "string",
+            "title": "string",
+            "userId": 0,
+            "visitCount": 0
+          };
+
+      jsonString.title=$("[name='title']").val();
+      jsonString.content=$("[name='content']").val();
+      jsonString.fieldId=$("[name='fieldId']").val();
+      jsonString.regionId=$("[name='regionId']").val();
+      jsonString.reward=$("[name='reward']").val();
+      jsonString.tel=$("[name='tel']").val();
+      jsonString.userId=userId;
+
 
     $.ajax({
             type:"post",
@@ -170,12 +234,17 @@ layui.use(['element','form', 'layedit', 'laydate'], function(){
             processData: false,
             contentType: "application/json;charset=utf-8",
             dataType: "json",
-            data:JSON.stringify(data.field),
+            data:JSON.stringify(jsonString),
+            beforeSend: function (XMLHttpRequest) {
+              layer.load();
+            },
             success:function(msg){
                 if(msg.code==0){
-                  layer.alert('添加需求成功', {icon: 1});
+                  layer.closeAll('loading');
+                  layer.alert('需求发布成功', {icon: 1});
                 }else{
-                  layer.msg("添加需求失败");
+                  layer.closeAll('loading');
+                  layer.alert('需求发布失败', {icon: 2});
                 }
                    
             }

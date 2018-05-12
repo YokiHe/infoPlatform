@@ -10,41 +10,24 @@
 </head>
 <body>
 	<div id="all-content">
-		<section id="nav-bar" class="layui-header header header-doc">
-			<div class="layui-main">
-				<a class="logo" href="/">
-					<img src="images/globe/logo_head.png" />
-				</a>
-				<ul class="layui-nav" id="navlist-right" lay-filter="">
-				  <li class="layui-nav-item  layui-this"><a href="">首页</a></li>
-				  <li class="layui-nav-item"><a href="templetes/result-list.html">成果</a></li>
-				  <li class="layui-nav-item"><a href="templetes/demand-list.html">需求</a></li>
-				  <li class="layui-nav-item"><a href="templetes/expert-lib-list.html">专家库</a></li>
-				  <li class="layui-nav-item">
-					<a href="templetes/info-list.html">行业资讯</a>
-					<dl class="layui-nav-child"> <!-- 二级菜单 -->
-					  <dd><a href="article-list.html">转化流程</a></dd>
-					  <dd><a href="article-list.html">金融服务</a></dd>
-					  <dd><a href="article-list.html">潜力评估</a></dd>
-					</dl>
-				  </li>
-				  <li class="layui-nav-item"><a href="templetes/login.html">注册/登陆</a></li>
-				  
-				  
-				</ul>
-			</div>
-		</section>
+		<script type="text/javascript" src="./../common/header.js"></script> 
 		<section class="layui-main" id="main-content">
 			<div class="layui-carousel" id="test1">
-			  <div carousel-item>
-				<div><img src="images/carousel/1.png" /><p>这是图文描述啦啦啦</p></div>
-				<div><img src="images/carousel/1.png" /></div>
-				<div><img src="images/carousel/1.png" /></div>
-				<div><img src="images/carousel/1.png" /></div>
-				<div><img src="images/carousel/1.png" /></div>
+			  <div id="carouselWrap" carousel-item>
 			  </div>
 			</div>
 		</section>
+
+
+
+		<script id="carouselTpl" type="text/html">
+		{{#  layui.each(d.data, function(index, item){ }}
+			<img src="{{ item.imageUrl }}" />
+
+		{{#  }); }}
+		</script>
+		
+
 		<section id="body-content">
 			<div id="web-instruction" class="layui-main layui-row layui-col-space10">
 			  <figure class="layui-col-md4">
@@ -83,6 +66,10 @@
 			</div>
 			
 			
+
+
+
+
 			<div class="layui-main layui-row layui-col-space30 column-card">
 				<!-- <h2>成果库</h2>
 				<a href="templetes/article-list.html"><span>MORE>></span></a>
@@ -103,155 +90,45 @@
 					</a>
 				</div>
 				<div id="result-content" class="layui-col-md9  content-wrap">
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">成果名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">>>>查看更多
-										<span class="layui-badge layui-bg-gray pull-right">more</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
 				
 				</div>
-				
-		
 			</div>
+
+			<script id="resultTpl" type="text/html">
+			{{#  layui.each(d.data, function(index, item){ }}
+				<a href="templetes/result-details.html?id={{ item.id }}">
+					<div class="layui-col-xs6 layui-col-lg4">
+						<div class="moudle-card">
+							<div class="anchor-con">
+								<div class="name">
+									<span class="title">{{ item.title }}</span>
+									<span class="layui-badge layui-bg-cyan pull-right">{{ item.field}}</span>
+									<span class="line"></span></div>
+								
+							</div>
+						</div>
+					</div>
+				</a>
+			{{#  }); }}
+			{{# if(d.data.length === 0){ }}
+			   无数据 
+			{{#  } }} 
+			<a href="./templetes/result-list.html">
+				<div class="layui-col-xs6 layui-col-lg4">
+					<div class="moudle-card">
+						<div class="anchor-con">
+							<div class="name">
+								>>>查看更多
+								<span class="layui-badge layui-bg-gray pull-right">more</span>
+								<span class="line"></span>
+								</div>
+						</div>
+					</div>
+				</div>
+			</a>
+			</script>
+
+
 
 			<div id="column-demand" class="layui-main layui-row layui-col-space30 column-card">
 				<!-- <h2>需求库</h2>
@@ -262,151 +139,7 @@
 				</div>
 				<!-- <img class="anchor-img" src="img/img-2.jpg" /> -->
 				
-				<div id="result-content" class="layui-col-md9  content-wrap">
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">需求名称
-										<span class="layui-badge layui-bg-cyan pull-right">土壤</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
-					<a href="templetes/result-details.html">
-						<div class="layui-col-xs6 layui-col-lg4">
-							<div class="moudle-card">
-								<div class="anchor-con">
-									<div class="name">>>>查看更多
-										<span class="layui-badge layui-bg-gray pull-right">more</span>
-										<span class="line"></span></div>
-									
-								</div>
-							</div>
-						</div>
-					</a>
+				<div id="demand-content" class="layui-col-md9  content-wrap">
 				
 				</div>
 				<div id="" class="layui-col-md3 content-wrap column-catalog">
@@ -414,7 +147,7 @@
 						<i class="iconfont icon-ziyuanxuqiu"></i>
 						<div class="card-title">最新需求</div>
 					</div>
-					<a href="templetes/add-result.html" class="card-wrap">
+					<a href="templetes/add-demand.html" class="card-wrap">
 						<i class="layui-icon">&#xe609;</i>
 						<span class="card-title">发布新需求</span>
 						<span class="layui-icon pull-right">&#xe602;</span>
@@ -423,6 +156,45 @@
 				
 		
 			</div>
+
+
+			<script id="demandTpl" type="text/html">
+			{{#  layui.each(d.data, function(index, item){ }}
+				<a href="templetes/demand-details.html?id={{ item.id }}">
+					<div class="layui-col-xs6 layui-col-lg4">
+						<div class="moudle-card">
+							<div class="anchor-con">
+								<div class="name">
+									<span class="title">{{ item.title }}</span>
+									<span class="layui-badge layui-bg-cyan pull-right">{{ item.field}}</span>
+									<span class="line"></span></div>
+								
+							</div>
+						</div>
+					</div>
+				</a>
+			{{#  }); }}
+			  {{# if(d.data.length === 0){ }}
+			    无数据 
+			  {{#  } }} 
+
+			<a href="templetes/demand-list.html">
+				<div class="layui-col-xs6 layui-col-lg4">
+					<div class="moudle-card">
+						<div class="anchor-con">
+							<div class="name">>>>查看更多
+								<span class="layui-badge layui-bg-gray pull-right">more</span>
+								<span class="line"></span></div>
+							
+						</div>
+					</div>
+				</div>
+			</a>
+			{{# if(d.data.length === 0){ }}
+			   无数据 
+			{{#  } }} 
+
+			</script>
 
 			<div id="column-news" class="layui-main layui-row layui-col-space30 column-card">
 				<!-- <h2>需求库</h2>
@@ -453,105 +225,17 @@
 				  </ul>
 				  <div class="layui-tab-content">
 				    <div id="tab-item-1" class="layui-tab-item layui-show">
-						<ul id="newslist">
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-btn">查看详情</button>
-								</a>
-							</li><li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-btn">查看详情</button>
-								</a>
-							</li><li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-btn">查看详情</button>
-								</a>
-							</li><li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-btn">查看详情</button>
-								</a>
-							</li><li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-btn">查看详情</button>
-								</a>
-							</li><li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-btn">查看详情</button>
-								</a>
-							</li><li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-btn">查看详情</button>
-								</a>
-							</li>
+						<ul id="newslist1">
 							
 						</ul>
 				    </div>
 				    <div id="tab-item-2" class="layui-tab-item">
-						<p>国家科技成果转化项目库（简称转化项目库）是由科技部和财政部建立，为国家科技成果转化提供信息支持服务的公益性数据库。充数内容充数内容充数内容充数内容充数内容充数内容充数内容充数内容国家科技成果转化项目库（简称转化项目库）是由科技部和财政部建立，为国家科技成果转化提供信息支持服务的公益性数据库。充数内容充数内容充数内容充数内容充数内容充数内容充数内容充数内容国家科技成果转化项目库（简称转化项目库）是由科技部和财政部建立，为国家科技成果转化提供信息支持服务的公益性数据库。充数内容充数内容充数内容充数内容充数内容充数内容充数内容充数内容</p>
+						<ul id="newslist2">
+
+						</ul>
 				    </div>
 				    <div id="tab-item-3" class="layui-tab-item">
-						<ul id="newslist">
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
-							<li>
-								<a href="templetes/article.html">
-									<span class="news-title">新闻标题新闻标题新闻标题</span>
-									<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
-								</a>
-							</li>
+						<ul id="newslist3">
 							
 						</ul>
 				    </div>
@@ -559,7 +243,42 @@
 				</div>
 				<!-- <img class="anchor-img" src="img/img-2.jpg" /> -->
 				
-		
+		<script id="news1Tpl" type="text/html">
+			{{#  layui.each(d.data, function(index, item){ }}
+				<li>
+					<a href="templetes/article-details.html?id={{ item.id }}">
+						<span class="news-title">{{ item.title }}</span>
+						<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-green">查看详情</button>
+					</a>
+				</li>
+			{{#  }); }}
+			 
+		</script>
+		<script id="news2Tpl" type="text/html">
+			{{#  layui.each(d.data, function(index, item){ }}
+				<li>
+					<a href="templetes/article-details.html?id={{ item.id }}">
+						<span class="news-title">{{ item.title }}</span>
+						<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-blue">查看详情</button>
+					</a>
+				</li>
+			{{#  }); }}
+			 
+		</script>
+		<script id="news3Tpl" type="text/html">
+			{{#  layui.each(d.data, function(index, item){ }}
+				<li>
+					<a href="templetes/article-details.html?id={{ item.id }}">
+						<span class="news-title">{{ item.title }}</span>
+						<button class="layui-btn layui-btn-mini layui-btn-radius layui-bg-orange">查看详情</button>
+					</a>
+				</li>
+			{{#  }); }}
+			 
+		</script>
+
+
+
 			</div>
 
 			
@@ -569,183 +288,71 @@
 				</div>
 				<div class="layui-carousel" id="expert-list" style="margin-top: 15px;">
 				  <div carousel-item="">
-				    <div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
+				  	<div id="expert1List">	
 				    </div>
-				    <div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
-						<div class="tile"> 
-							<a href="templetes/expert-lib-info.html"><img src="images/temp/expertlib.jpg"/>
-							<div class="text">
-							<h2>詹韦</h2>
-							<h3 class="animate-text">  </h3>
-							<p class="animate-text">人物概述</p>
-						  </div></a>
-						</div>
+				    <div id="expert2List">
 				    </div>
 				  </div>
 				</div>
 
 			</div>
+			<script id="expert1Tpl" type="text/html">
+				{{#  layui.each(d.data, function(index, item){ }}
+		  		<div class="tile"> 
+		  			{{# if(item.headPic){ }}
+					<a href="./templetes/expert-info.html?id={{ item.id }}"><img src="{{ item.headPic }}"/>
+					{{# }else{ }}
+					<a href="./templetes/expert-info.html?id={{ item.id }}"><img src="./images/globe/defaultHeadPic.jpg"/>
+					{{# } }}
+					<div class="text">
+					<h2>{{ item.name }}</h2>
+					<h3 class="animate-text">  </h3>
+					<p class="animate-text">{{ item.synopsis }}</p>
+				  </div></a>
+				</div>
+				{{#  }); }}
+			  {{# if(d.data.length === 0){ }}
+			    无数据 
+			  {{#  } }} 
+		  	</script>
+
+
+		  	<script id="expert2Tpl" type="text/html">
+		  		{{#  layui.each(d.data, function(index, item){ }}
+		  		<div class="tile"> 
+					<a href="templetes/expert-info.html"><img src="{{ item.headPic }}"/>
+					<div class="text">
+					<h2>{{ item.name }}</h2>
+					<h3 class="animate-text">{{  }}</h3>
+					<p class="animate-text">{{ item.synopsis }}</p>
+				  </div></a>
+				</div>
+				{{#  }); }}
+			  {{# if(d.data.length === 0){ }}
+			    无数据 
+			  {{#  } }} 
+		  	</script>
 		
 		
 		</section>
-		<section id="footer">
-		  <div id="footer-info" class="layui-main">
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<a class="nav-item footer-qrpic">
-					<img src="images/footericon/qr.png" />
-				</a>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<a class="nav-item footer-qrpic">
-					<img src="images/footericon/qr.png" />
-				</a>
-			</ul>
-		  </div>
-		  <div class="layui-main" id="footer-flink-content">
-			<a class="footer-icon layui-col-sm2" href="/"><img src="images/footericon/wxlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="images/footericon/aqlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="images/footericon/bcplogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="images/footericon/360logo.gif" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="images/footericon/cxlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="images/footericon/rzlogo.png" /></a>
-		  </div>
-		  <div id="footer-content">
-			<p>© 2017 <a href="/">环保科技成果.com</a> 展示平台</p>
-			<p>
-			  <a href="javascript:layer.msg('暂无此页');">关于我们</a>
-			  <a href="mailto:729239213@qq.com">联系</a>
-			</p>
-		  </div>
-		</section>
+		<script type="text/javascript" src="./common/footer.js"></script>
 	</div>
 <!-- 你的HTML代码 -->
  
 <script src="./js/layui.js"></script>
 
 <script>
-layui.use(['carousel','element','util','jquery'], function(){
+	var ins;
+layui.use(['carousel','element','util','jquery','laytpl','layer'], function(){
   var $ = layui.jquery
   ,carousel = layui.carousel
-  ,element = layui.element;
+  ,laytpl = layui.laytpl
+  ,element = layui.element
+  ,layer = layui.layer;
 
+ 
   //建造实例
-  carousel.render({
+ ins = carousel.render({
     elem: '#test1'
     ,width: '100%' //设置容器宽度
 	,height: '380px' //设置容器高度
@@ -753,19 +360,150 @@ layui.use(['carousel','element','util','jquery'], function(){
     //,anim: 'updown' //切换动画方式
   });
 
-  var util = layui.util;
-  util.fixbar();
+//获取轮播
+    $.get("http://101.200.43.10:8080/carousel?page=2&limit=5", function(data){
+    	console.log(data);
+		var getTpl = carouselTpl.innerHTML
+		,listWrap = document.getElementById('carouselWrap');
+		laytpl(getTpl).render(data, function(html){
+		  listWrap.innerHTML = html;
+		//重置
+		ins.reload({
+		    elem: '#test1'
+		    ,width: '100%' //设置容器宽度
+			,height: '380px' //设置容器高度
+		    ,arrow: 'always' //一直显示
+		    ,interval: '5000'
+		    //,anim: 'updown' //切换动画方式
+		  });
+		});
+
+	});
+
+/*用户登录渲染*/
+var userName = "";
+var userId = "";
+hasLogin();
+function hasLogin(){
+  if(window.localStorage.length != 0 ){
+    userName = window.localStorage.userName;
+    userId = window.localStorage.userId;
+    userPic = window.localStorage.userPic;
+    $("#userCenter img").attr("src",userPic);
+    $("#userCenter img").after(userName);
+    $("#userLogin").addClass("hide");
+    $("#userCenter").addClass("show");
+    }else if(window.localStorage == "undefined"){
+      //当前页面未登录用户权限
+    }
+   //退出登录事件
+  $("#logOutBtn").click(function() {
+    localStorage.clear();
+    layer.alert("退出登录！");
+    location.reload();
+  });
+  //登录事件
+  $("#userLogin").click(function(){
+    var index =layer.open({
+      type: 2,
+      title: '用户登录',
+      shadeClose: true,
+      shade: 0.8,
+      area: ['380px', '520px'],
+      content: ['/templetes/login.html','no'],
+      end: function () {
+        location.reload();
+      }
+    }); 
+  });
+
+
+}
+/*用户登录渲染*/
+
+
+
+
+
+
 
 //改变下时间间隔、动画类型、高度
   carousel.render({
     elem: '#expert-list'
     ,interval: 1800
-    ,autoplay: false
     ,anim: 'default'
     ,width:'100%'
     ,height: '228px'
     ,indicator: 'none'
   });
+
+
+	
+  //获取成果
+  $.get("http://101.200.43.10:8080/achievement?status=1&page=&limit=11", function(data){
+		var getTpl = resultTpl.innerHTML
+		,resultWrap = document.getElementById('result-content');
+		laytpl(getTpl).render(data, function(html){
+		  resultWrap.innerHTML = html;
+		});
+	});
+
+  //获取需求
+  $.get("http://101.200.43.10:8080/requirement?page=&limit=11", function(data){
+		var getTpl = demandTpl.innerHTML
+		,demandWrap = document.getElementById('demand-content');
+		laytpl(getTpl).render(data, function(html){
+		  demandWrap.innerHTML = html;
+		});
+	});
+
+
+  //获取文章列表
+  $.get("http://101.200.43.10:8080/rule?type=1&page=&limit=10", function(data){
+		var getTpl = news1Tpl.innerHTML
+		,listWrap = document.getElementById('newslist1');
+		laytpl(getTpl).render(data, function(html){
+		  listWrap.innerHTML = html;
+		});
+	});
+  $.get("http://101.200.43.10:8080/rule?type=2&page=&limit=10", function(data){
+		var getTpl = news2Tpl.innerHTML
+		,listWrap = document.getElementById('newslist2');
+		laytpl(getTpl).render(data, function(html){
+		  listWrap.innerHTML = html;
+		});
+	});
+  $.get("http://101.200.43.10:8080/rule?type=3&page=&limit=10", function(data){
+		var getTpl = news3Tpl.innerHTML
+		,listWrap = document.getElementById('newslist3');
+		laytpl(getTpl).render(data, function(html){
+		  listWrap.innerHTML = html;
+		});
+	});
+
+  //获取专家列表1
+    $.get("http://101.200.43.10:8080/expert?rows=15&limit=5&page=1", function(data){
+		var getTpl = expert1Tpl.innerHTML
+		,listWrap = document.getElementById('expert1List');
+		laytpl(getTpl).render(data, function(html){
+		  listWrap.innerHTML = html;
+		});
+	});
+
+	//获取专家列表2
+    $.get("http://101.200.43.10:8080/expert?rows=15&limit=5&page=2", function(data){
+		var getTpl = expert1Tpl.innerHTML
+		,listWrap = document.getElementById('expert2List');
+		laytpl(getTpl).render(data, function(html){
+		  listWrap.innerHTML = html;
+		});
+	});
+
+
+
+    
+	
+
  
   $("#tab-title-1").mouseover(function(){
   	$(".layui-tab-title > li").removeClass("layui-this");
@@ -786,7 +524,8 @@ layui.use(['carousel','element','util','jquery'], function(){
 	$("#tab-item-3").addClass("layui-show");
   });
 
-
+  var util = layui.util;
+  util.fixbar();
 
 
 });

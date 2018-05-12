@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>成果详情</title>
+  <link rel="stylesheet" href="../css/layui.css">
+  <link rel="stylesheet" href="../css/templates_css.css">
+  <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
+  <script src="./../js/layui.js"></script>
+  <script src="./../node_modules/mockjs/dist/mock.js"></script><!-- 
+  <script type="text/javascript" src="./../js/laytpl.js"></script> -->
+  <script>
+    
+
+  </script>
+</head>
+<body id="article-page" class="publictmp">
+	<div id="all-content">
+		<script type="text/javascript" src="./../common/header.js"></script> 
+
+		<section id="body-content" class="layui-main">
+			<span class="layui-breadcrumb">
+			  <a href="">首页</a>
+			  <a href="">成果展示</a>
+			  <a><cite>成果详情</cite></a>
+			</span>
+			<article id="view">
+			
+				
+			</article>
+		</section>
+			<script id="demo" type="text/html">
+				<!--文章头部-->
+				<header>
+
+					<!-- <h1>文章标题</h1> -->
+					<!--文章属性列表-->
+					<dl class="dl-inline">
+						<dt>发表用户：</dt>
+						<dd>{{ d.data.userName }}</dd>
+						<dt>发布时间：</dt>
+						<dd>{{ d.data.updated }}</dd>
+						<dd class="article-abb pull-right">
+							{{# if(d.data.visitCount > 100){ }}
+							<span class="layui-badge">热门</span>
+							{{#  } }} 
+							{{# if(d.data.stick){ }}
+							<span class="layui-badge layui-bg-cyan">置顶</span>
+							{{#  } }} 
+							<span class="layui-badge layui-bg-blue">{{ d.data.visitCount }}次浏览</span>
+						</dd>
+					</dl>
+					<div class="abstract">
+						<!-- <p><span>摘要信息:</span>ddddddddddddddddddddddddddddddddddd</p> 
+							<span class="layui-badge layui-bg-orange">推荐</span>
+							<span class="layui-badge layui-bg-green">置顶</span>
+							<span class="layui-badge layui-bg-cyan">精品贴</span>
+						-->
+					</div>
+				</header>
+				<!--文章正文部分-->
+				    <section class="content">
+				    <table class="layui-table" lay-size="lg">
+				      <colgroup>
+				        <col width="150">
+				        <col width="200">
+				        <col width="150">
+				        <col width="200">
+				      </colgroup>
+				      <thead>
+				        <tr>
+				          <th colspan="1">成果名称</th>
+				          <td colspan="3">{{ d.data.title }}</td>
+				        </tr> 
+				      </thead>
+				      <tbody>
+				        <tr>
+				          <th colspan="1">专利所有人</th>
+				          <td colspan="3">{{ d.data.patentee }}</td>
+				        </tr>
+				        <tr>
+				          <th>领域</th>
+				          <td>{{ d.data.field }}</td>
+				          <th>成果类型</th>
+				          <td>{{ d.data.type }}</td>
+				        </tr>
+				        <tr>
+				          <th>收益区间</th>
+				          <td>{{ d.data.benefit }}</td>
+				          <th>专利价格</th>
+				          <td>{{ d.data.price }}</td>
+				        </tr>
+				        <tr>
+				          <th>联系方式</th>
+				          <td>{{ d.data.tel }}</td>
+				          <th>区域</th>
+				          <td>{{ d.data.region }}</td>
+				        </tr>
+				      </tbody>
+				    </table>
+				    <blockquote class="layui-elem-quote layui-quote-nm">
+				      {{ d.data.content }}
+				    </blockquote>
+				  </section>
+				  <!--文章底部-->
+				  <footer>
+				  </footer>
+				</script>
+		<div id="view1"></div>
+		<script type="text/javascript" src="./../common/footer.js"></script>
+	</div>
+<!-- 你的HTML代码 -->
+ 
+<script src="./../js/layui.js"></script>
+<script>
+layui.use(['laytpl','element','jquery','layer'],function(){
+	var $ = layui.jquery
+	,element = layui.element
+	,laytpl = layui.laytpl
+	,layer = layui.layer;
+
+	/*用户登录渲染*/
+	var userName = "";
+	var userId = "";
+	hasLogin();
+	function hasLogin(){
+	  if(window.localStorage.length != 0 ){
+	    userName = window.localStorage.userName;
+	    userId = window.localStorage.userId;
+	    userPic = window.localStorage.userPic;
+	    $("#userCenter img").attr("src",userPic);
+	    $("#userCenter img").after(userName);
+	    $("#userLogin").addClass("hide");
+	    $("#userCenter").addClass("show");
+	    }else if(window.localStorage == "undefined"){
+	      //当前页面未登录用户权限
+	    }
+	   //退出登录事件
+	  $("#logOutBtn").click(function() {
+	    localStorage.clear();
+	    layer.alert("退出登录！");
+	    location.reload();
+	  });
+	  //登录事件
+	  $("#userLogin").click(function(){
+	    var index =layer.open({
+	      type: 2,
+	      title: '用户登录',
+	      shadeClose: true,
+	      shade: 0.8,
+	      area: ['380px', '520px'],
+	      content: ['/templetes/login.html','no'],
+	      end: function () {
+	        location.reload();
+	      }
+	    }); 
+	  });
+
+
+	}
+	/*用户登录渲染*/
+
+	//获取携带字段
+	function getUrlParam(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		if (r!=null) return unescape(r[2]); return null; //返回参数值
+	} 
+	$.ajax({
+	    url:'http://101.200.43.10:8080/achievement/'+getUrlParam('id'),
+	    dataType:'json',
+	    success:function(data){
+	        var getTpl = demo.innerHTML
+	        ,view = document.getElementById('view');
+	        laytpl(getTpl).render(data, function(html){
+	          view.innerHTML = html;
+	        });
+	      
+	    }
+	});
+
+
+});
+</script>
+</body>
+</html>

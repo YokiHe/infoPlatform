@@ -1,0 +1,108 @@
+.layui-fluid {
+	padding: 0 !important;
+}
+.layui-fluid>div{
+	height:100vh;
+}
+
+/* sider */
+#sider{
+	position: fixed;
+}
+#sider #logoPic{
+	width: 100%;
+	text-align: center;
+	position: absolute;
+}
+#sider #logoPic img{
+	width:80%;
+}
+#sider #sider-container {
+	height:100%;
+	overflow: hidden;
+}
+#sider #sider-container>img{
+	height: 100%;
+}
+
+#main-container{
+	width: 100%;
+	box-sizing: border-box;
+	position: relative;
+}
+#main-container #right-container{
+	position: absolute;
+	top:0;
+	right: 0;
+	padding:20px 56px;
+	height: 100vh;
+}
+/* 导航 */
+#main-container nav{
+	text-align: right;
+	height:66px;
+	line-height: 66px;
+}
+#main-container nav a{font-size: 18px; padding-right: 28px;  }
+
+/* 表单 */
+#main-container #right-container form{
+	margin-top: 66px;
+}
+#main-container #right-container .layui-form-item{
+	margin-bottom: 21px!important;
+}
+#main-container #right-container .layui-form-item .layui-input-inline{
+	width:210px !important;
+}
+/* 头像 */
+#main-container #right-container .layui-upload-list{width: 166px;height:166px;border-radius: 10px;overflow: hidden;}
+#main-container #right-container .layui-upload-list img{
+	width:166px;
+	height: 166px;
+	border-radius: 100%;
+	overflow: hidden;
+}
+#main-container #right-container #uploadBtn{
+	margin-left: 36px;
+}
+#right-container .layui-form-item .layui-input-block{
+	margin-left: 48px!important;
+	margin-top: 25px;
+}
+/* 用户信息 */
+#right-container form .layui-form-label{
+	height: 44px; line-height: 26px;transition: all .3s;
+}
+#right-container form input{
+	height: 44px;
+}
+
+#right-container form .layui-form-item:hover .layui-form-label {
+	border: 1px solid #9edca1 !important;
+}
+#right-container form .layui-form-item:hover .layui-input {
+	border-top: 1px solid #9edca1 !important;
+	border-bottom: 1px solid #9edca1 !important;
+	border-right: 1px solid #9edca1 !important;
+}
+#right-container form .layui-form-item:focus .layui-form-label {
+	border: 1px solid #000 !important;
+}
+/* 错误显示 */
+#right-container .layui-form-danger{
+	background: #e0eceb;
+}
+#right-container .layui-form-danger:focus{
+	border-color: #8cc38e !important;
+}
+/* 底部版权 */
+.copyright{
+	width: 100%;
+	height:30px;
+	position: absolute;
+	color:#ccc;
+	bottom: 0px;
+	left: 0;
+	text-align: center;
+}

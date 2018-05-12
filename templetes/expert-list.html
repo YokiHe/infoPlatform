@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>专家库</title>
+  <link rel="stylesheet" href="../css/layui.css">
+  <link rel="stylesheet" href="../css/templates_css.css">
+  <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
+</head>
+<body id="expertlib-list-page" class="publictmp">
+	<div id="all-content">
+		<script type="text/javascript" src="./../common/header.js"></script> 
+		<section id="body-content" class="layui-main"> 
+				<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+				  <legend>专家库</legend>
+				</fieldset>
+				<div class="site-demo-flow layui-row" id="LAY_demo3">
+				 
+				 
+				
+
+	
+				</div>
+				<div id="pagelist-bar"></div>
+		</section>
+		<script type="text/javascript" src="./../common/footer.js"></script>
+	</div>
+
+
+
+
+
+<!-- 列表代码 -->
+ <script id="demo" type="text/html">
+	{{#  layui.each(d.data, function(index, item){ }}
+	<div class="tile"> 
+	  <a href="expert-info.html?id={{ item.id }}">
+	  	{{# if(item.headPic){ }}
+	  	  <img src="{{ item.headPic }}"/>
+	  	 {{# }else{ }}
+		  <img src="./../images/globe/defaultHeadPic.jpg"/>
+		{{#  } }}
+	      <div class="text">
+			<h2>{{ item.name }}</h2>
+			<h3 class="animate-text">  </h3>
+			<p class="animate-text">{{ item.synopsis }}</p>
+		  </div>
+	  </a>
+	</div>
+	{{#  }); }}
+    {{# if(d.data.length === 0){ }}
+  	  无数据 
+    {{#  } }} 
+</script>
+	 
+<script src="./../js/layui.js"></script>
+<script>
+layui.use(['element','jquery','laypage','util','laytpl','layer'], function(){
+  var $ = layui.jquery
+  ,element = layui.element
+  ,layer = layui.layer
+  ,laypage = layui.laypage
+  ,util = layui.util
+  ,laytpl = layui.laytpl;
+  var count;
+  var limitNum = 10;
+
+/*用户登录渲染*/
+var userName = "";
+var userId = "";
+hasLogin();
+function hasLogin(){
+  if(window.localStorage.length != 0 ){
+    userName = window.localStorage.userName;
+    userId = window.localStorage.userId;
+    userPic = window.localStorage.userPic;
+    $("#userCenter img").attr("src",userPic);
+    $("#userCenter img").after(userName);
+    $("#userLogin").addClass("hide");
+    $("#userCenter").addClass("show");
+    }else if(window.localStorage == "undefined"){
+      //当前页面未登录用户权限
+    }
+   //退出登录事件
+  $("#logOutBtn").click(function() {
+    localStorage.clear();
+    layer.alert("退出登录！");
+    location.reload();
+  });
+  //登录事件
+  $("#userLogin").click(function(){
+    var index =layer.open({
+      type: 2,
+      title: '用户登录',
+      shadeClose: true,
+      shade: 0.8,
+      area: ['380px', '520px'],
+      content: ['/templetes/login.html','no'],
+      end: function () {
+        location.reload();
+      }
+    }); 
+  });
+
+
+}
+/*用户登录渲染*/
+
+
+
+  //首次进入初始化页面
+  flushPage(1,10);
+  //包装获取数据方法
+  function flushPage(curPage,limitNum){
+  	$.ajax({
+        type: "get",
+        url: "http://101.200.43.10:8080/expert?page="+curPage+"&limit="+limitNum,
+        contentType: 'application/json',
+        async: false,
+        beforeSend: function (XMLHttpRequest) {
+        	layer.load(3,{offset: ['320px','660px']});
+        },
+        success: function (data) {
+            count = data.count;
+            layer.closeAll('loading');
+            console.log(data);
+            var getTpl = demo.innerHTML
+			,view = document.getElementById('LAY_demo3');
+			laytpl(getTpl).render(data, function(html){
+			  LAY_demo3.innerHTML = html;
+			});
+        }
+    });
+  }
+  //执行分页
+  laypage.render({
+    elem: 'pagelist-bar'
+    ,count: count 
+    ,limit:10
+    ,jump: function(obj, first){
+    	//每次执行
+	    //首次不执行
+	    if(!first){
+	      //do something
+	      //获取对应页码数据
+	      flushPage(obj.curr,limitNum);
+	    }
+	  }
+	
+
+  });
+
+   //小工具
+  util.fixbar({
+    bar1:'&#xe642;'
+	,bgcolor:'#5fb878'
+    ,click: function(type){
+      console.log(type);
+      if(type === 'bar1'){
+        window.location.href='add-result.html'
+      }
+    }
+  });
+
+});
+</script>
+</body>
+</html>

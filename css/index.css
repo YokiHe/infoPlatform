@@ -2,13 +2,15 @@
 body{background:#f2f2f2;}
 .pull-right{float: right !important;}
 .pull-left{float:left !important;}
+.show{display: inline-block!important;}
+.hide{display: none!important;}
 
 /*nav*/
 .layui-header{height: 59px; border-bottom: 1px solid #404553;  background-color: #393D49;}
 .logo img{height:55px;}
 #navlist-right{float:right;}
 .layui-nav .layui-nav-item a{padding:0 20px !important;}
-
+#nav-bar #userCenter{display: none;}
 
 /*carousel*/
 .layui-carousel img{height:100%; width:100%;}
@@ -52,11 +54,13 @@ background-color: #eceded !important;}
 .column-card>hr{margin-bottom:6px;}
 
 .column-card .moudle-card{position:relative; margin:6px auto; width:260px; border-radius:2px; transition:all linear 0.1s;}
-.column-card .moudle-card:hover{box-shadow: 1px 1px 5px rgba(0,0,0,.34)}
+.column-card .moudle-card:hover{box-shadow: 1px 1px 5px rgba(0,0,0,.34); width: 299px; z-index: 999; margin-left: 12px;}
+.column-card .moudle-card:hover .title{width: 86%;}
 .column-card .moudle-card:hover .line{width:34px;}
 .column-card .anchor-img{width:100%; border-radius:2px 2px 0px 0px; overflow:hidden;}
-.column-card .anchor-con{padding:20px; background:#fff;}
+.column-card .anchor-con{padding:17px 20px; background:#fff; padding-left: 10px; padding-right: 8px;}
 .column-card .name{position:relative; color:#1d1d1d; font-size:16px; line-height:21px; text-align:left; font-weight:400;}
+.column-card .title{display: inline-block; width: 82%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 14px;}
 .column-card .name .line{bottom:-5px; left:0px; position:absolute; width:0px; height:1px; background: #1e9fff; transition: all 0.3s linear;}
 .column-card .info{margin-top:25px; font-size:12px; min-height:36px; color:#a7a7a7; line-height:18px; text-align:left;
 overflow:hidden; 
@@ -120,11 +124,10 @@ display:-webkit-box;
 #column-news-catalog .layui-tab-content{background: #fff; padding: 26px;}
 #column-news-catalog .layui-tab-content ul{margin:0 0 0 50px; min-height:180px;}
 #column-news-catalog .layui-tab-content ul li{list-style-type:disc; width:50%; float:left; line-height:32px; position:relative;}
-#column-news-catalog .layui-tab-content ul li .news-title{font-size:15px;width:230px;  margin-right:20px; transition:0.3s all linear;}
-#column-news-catalog .layui-tab-content ul li .news-title:hover{color:000；}
+#column-news-catalog .layui-tab-content ul li .news-title{font-size:15px; margin-right:20px; transition:0.3s all linear; display: inline-block; width: 380px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 #column-news-catalog .layui-tab-content ul li .layui-btn{right:40px !important; position:absolute;}
 #column-news-catalog .layui-tab-item p{line-height: 2;letter-spacing: 0.1em;}
-
+#column-news-catalog .layui-tab-content a{display: inline-flex;}
 #column-news-catalog .layui-tab-title .layui-this:after {
     height: 80px;
     border:none;
@@ -140,6 +143,12 @@ display:-webkit-box;
 
 /* expert-lib */
 #expert-lib .column-header h2{font-size:23px;}
+/* #expert-lib .layui-carousel-arrow[lay-type=add]{right:-20px!important;}
+#expert-lib .layui-carousel-arrow[lay-type=sub]{left:-20px!important;} */
+#expert-lib .layui-carousel:hover .layui-carousel-arrow[lay-type=add]{right: -36px;}
+#expert-lib .layui-carousel:hover .layui-carousel-arrow[lay-type=sub]{left: -36px;}
+
+
 
 
 /*list-card*/

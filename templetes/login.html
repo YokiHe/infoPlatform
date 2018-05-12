@@ -1,113 +1,168 @@
 <!DOCTYPE html>
 <html><head>
-<title>登陆/注册</title> 
+<title>用户登录</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="../js/login.js"></script>
-<link href="../css/login2.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="./../css/layui.css"  media="all">
+<link href="../css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h1>用户登陆</h1>
-<div class="login" style="margin-top:30px;">
-    <div class="header">
-        <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">快速登录</a>
-			<a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">快速注册</a><div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
-        </div>
-    </div>    
-  
-    
-    <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">    
-
-            <!--登录-->
-            <div class="web_login" id="web_login">
-               
-               
-               <div class="login-box">
-    
-            
-			<div class="login_form">
-				<form action="" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post"><input type="hidden" name="did" value="0"/>
-               <input type="hidden" name="to" value="log"/>
-                <div class="uinArea" id="uinArea">
-                <label class="input-tips" for="u">帐号：</label>
-                <div class="inputOuter" id="uArea">
-                    
-                    <input type="text" id="u" name="username" class="inputstyle"/>
-                </div>
-                </div>
-                <div class="pwdArea" id="pwdArea">
-               <label class="input-tips" for="p">密码：</label> 
-               <div class="inputOuter" id="pArea">
-                    
-                    <input type="password" id="p" name="p" class="inputstyle"/>
-                </div>
-                </div>
-               
-                <div style="padding-left:50px;margin-top:20px;"><input type="submit" value="登 录" style="width:150px;" class="button_blue"/></div>
-              </form>
-           </div>
-           
-            	</div>
-               
+<div id="loginWrap">
+    <div id="webLogo">
+        <img src="./../images/globe/logo_head.png" />
+    </div>
+    <div id="loginSwitch">
+        <form id="loginForm" name="loginInfo" class="layui-form layui-form-pane" action="">
+            <div class="form-item">
+                <i class="iconfont">&#xe600;</i>
+                <input type="text" name="name" lay-verify="required|name" placeholder="请输入用户名" maxlength="20">
             </div>
-            <!--登录end-->
-  </div>
-
-  <!--注册-->
-    <div class="qlogin" id="qlogin" style="display: none; ">
-   
-    <div class="web_login"><form name="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
-	      <input type="hidden" name="to" value="reg"/>
-		      		       <input type="hidden" name="did" value="0"/>
-        <ul class="reg_form" id="reg-ul">
-        		<div id="userCue" class="cue">快速注册请注意格式</div>
-                <li>
-                	
-                    <label for="user"  class="input-tips2">用户名：</label>
-                    <div class="inputOuter2">
-                        <input type="text" id="user" name="user" maxlength="16" class="inputstyle2"/>
-                    </div>
-                    
-                </li>
-                
-                <li>
-                <label for="passwd" class="input-tips2">密码：</label>
-                    <div class="inputOuter2">
-                        <input type="password" id="passwd"  name="passwd" maxlength="16" class="inputstyle2"/>
-                    </div>
-                    
-                </li>
-                <li>
-                <label for="passwd2" class="input-tips2">确认密码：</label>
-                    <div class="inputOuter2">
-                        <input type="password" id="passwd2" name="" maxlength="16" class="inputstyle2" />
-                    </div>
-                    
-                </li>
-                
-                <li>
-                 <label for="qq" class="input-tips2">QQ：</label>
-                    <div class="inputOuter2">
-                       
-                        <input type="text" id="qq" name="qq" maxlength="10" class="inputstyle2"/>
-                    </div>
-                   
-                </li>
-                
-                <li>
-                    <div class="inputArea">
-                        <input type="button" id="reg"  style="margin-top:10px;margin-left:85px;" class="button_blue" value="确认信息并注册"/>
-                    </div>
-                    
-                </li><div class="cl"></div>
-            </ul></form>
-           
-    
+            <div class="form-item">
+                <i class="iconfont">&#xe654;</i>
+                <input type="password" name="password" lay-verify="required|password" placeholder="请输入密码" maxlength="20">
+            </div>
+                <a id="toFgtBtn">忘记密码</a>
+            <div class="selectOption">
+                <button lay-submit lay-filter="loginBtn">登录</button>
+                <button id="toRegBtn" type="button">注册</button>
+            </div>
+            
+        </form>
     </div>
-   
     
+    <div id="forgetSwitch" class="hide">
+        <form id="registerForm" name="registerInfo">
+            <div class="form-item">
+                <i class="iconfont">&#xe600;</i>
+                <input type="text" name="name" placeholder="请输入用户名" maxlength="20">
+            </div>
+            <div class="form-item">
+                <i class="iconfont">&#xe62a;</i>
+                <input type="password" name="password" placeholder="请输入邮箱" maxlength="20">
+            </div>
+            <div class="form-item">
+                <i class="iconfont">&#xe9a1;</i>
+                <input type="password" name="confirmPassword" placeholder="请输入邮箱验证码" maxlength="20">
+            </div>
+            <div class="selectOption">
+                <button lay-submit lay-filter="alterPwdBtn">修改密码</button>
+                <button id="toLoginBtn" type="button">返回登录</button>
+            </div>
+            
+        </form>
     </div>
-    <!--注册end-->
+    
+    
 </div>
-<div class="jianyi">*推荐使用ie8或以上版本ie浏览器或Chrome内核浏览器访问本站</div>
-</body></html>
+<script src="../js/layui.js" charset="utf-8"></script>
+<script>
+layui.use(['form', 'layedit','element'], function(){
+  var  $ = layui.jquery 
+  ,form = layui.form
+  ,upload = layui.element;
+
+$("#toFgtBtn").click(function () {
+    $("#loginSwitch").addClass("hide"); 
+    $("#forgetSwitch").addClass("show"); 
+});
+$("#toLoginBtn").click(function () {
+    $("#loginSwitch").removeClass("hide"); 
+    $("#forgetSwitch").removeClass("show"); 
+})
+
+//表单验证
+  form.verify({
+  name: function(value, item){ //value：表单的值、item：表单的DOM对象
+    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+      return '用户名不能有特殊字符';
+    }
+    if(/(^\_)|(\__)|(\_+$)/.test(value)){
+      return '用户名首尾不能出现下划线\'_\'';
+    }
+    if(/^\d+\d+\d$/.test(value)){
+      return '用户名不能全为数字';
+    }
+  },
+  password: function(value) {
+    if (value === "") 
+      return "密码不能为空！";
+    var regExpDigital = /\d/; //如果有数字
+    var regExpLetters = /[a-zA-Z]/; //如果有字母
+    if (!(regExpDigital.test(value) && regExpLetters.test(value) && value.length >= 8 && value.length <= 16)) {
+        return '密码必须包含英文和数字！';
+        }
+    }
+});   
+//监听注册表格提交事件
+form.on('submit(loginBtn)', function(data){
+   name = $("[name=name]").val();
+   password = $("[name=password]").val();
+   //提交注册信息
+   $.ajax({
+      type:"POST",
+      url:"http://101.200.43.10:8080/user/login?name="+name+"&password="+password,
+      processData: false,
+      contentType: "application/json;charset=utf-8", //这个是发送信息至服务器时内容编码类型
+      dataType: "json",
+      beforeSend: function (XMLHttpRequest) {
+          layer.load();
+      },
+        success:function(msg){
+            if(msg.code==0){
+              layer.closeAll('loading');
+              layer.open({
+                icon: '1',
+                content: '登录成功',
+                end:function (){
+                  var userName = msg.data.userName;
+                  var userId = msg.data.id;
+                  var userPic = msg.data.headPic;
+                  // Save data to sessionStorage
+                  localStorage.setItem("userName", userName);
+                  localStorage.setItem("userId", userId);
+                  localStorage.setItem("userPic", userPic);
+                  console.log(localStorage.userName);
+                  window.parent.location.reload();
+                  var index = parent.layer.getFrameIndex(window.name);
+                  parent.layer.close(index);
+                }
+              }); 
+              /*layer.alert('登录成功', {icon: 1});
+
+              var userName = msg.data.userName;
+              var userId = msg.data.id;
+              var userPic = msg.data.headPic;
+              // Save data to sessionStorage
+              localStorage.setItem("userName", userName);
+              localStorage.setItem("userId", userId);
+              localStorage.setItem("userPic", userPic);
+              console.log(localStorage.userName);
+              window.parent.location.reload();
+              var index = parent.layer.getFrameIndex(window.name);
+              parent.layer.close(index);*/
+            }else{
+              layer.closeAll('loading');
+              layer.alert(msg.msg, {icon: 2});
+
+            }
+               
+        }
+    
+  });
+return false;
+
+  });
+
+
+$("#toRegBtn").click(function(){
+  var index = parent.layer.getFrameIndex(window.name);
+      parent.location.href="/templetes/register.html";
+});
+
+
+//结尾
+});
+</script>
+</body>
+</html>
