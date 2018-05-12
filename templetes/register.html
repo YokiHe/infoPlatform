@@ -11,17 +11,24 @@
 <body>
 	<!-- <script type="text/javascript" src="./../common/header.js"></script> -->
 	<div class="layui-fluid">
-		<div id="sider" class="layui-col-md4 layui-col-sm0">
+		<div id="sider" class="layui-col-md4">
 			<div id="sider-container">
 				<div id="logoPic">
-					<!-- <img src="./../images/globe/logo_head.png"> -->
+					<img src="./../images/globe/logo_head.png">
 				</div>
-					<img src="./../images/carousel/sider1.jpg">
+				<div id="news-carousel">
+					<div class="layui-carousel" id="test2" style="margin-top: 15px;">
+					  <div carousel-item="">
+					    <div>条目1</div>
+					    <div>条目2</div>
+					  </div>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div id="main-container">
-			<div id="right-container" class="layui-col-md8">
+			<div id="right-container" class="layui-col-md8  layui-col-sm12">
 				<nav>
 					<span class="layui-breadcrumb" lay-separator="|">
 					  <a href="">网站首页</a>
@@ -100,10 +107,11 @@
 <script src="../js/layui.js"></script>
 
 <script>
-layui.use(['upload','element','form'], function(){
+layui.use(['upload','element','form','carousel'], function(){
   var $ = layui.jquery
   ,element = layui.element
   ,form = layui.form
+  ,carousel = layui.carousel
   ,upload = layui.upload;
 
   //清除登录状态

@@ -5,64 +5,80 @@
 	<title>个人中心</title>
 	<link rel="stylesheet" href="../css/layui.css">
 	<link rel="stylesheet" href="../css/userPanel.css">
-	
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css">
 	
 </head>
 <body>
 	<!-- <script type="text/javascript" src="./../common/header.js"></script> -->
 	<div class="layui-fluid">
-		<div id="sider" class="layui-col-md4 layui-col-sm0">
+		<div id="sider" class="layui-col-md4">
 			<div id="sider-container">
 				<div id="logoPic">
-					<!-- <img src="./../images/globe/logo_head.png"> -->
+					<img src="./../images/globe/logo_head.png">
 				</div>
 				<div id="userInfo-Wrap">
 					<div class="layui-form-item">
-					    <div class="layui-input-block">
+					    <div>
 					      <div id="upload" class="layui-upload">
 							  <div class="layui-upload-list">
 							  	
 						   	  <img name="headPic"  lay-verify="headPic" class="layui-upload-img" id="headPic" src="./../images/globe/defaultHeadPic.jpg">
-						  
 							  </div>
-							  <button type="button" class="layui-btn" id="cgPicBtn">更换头像</button>
 							</div>   
 					    </div>
 					</div>
 
 					<div id="userInfo-Detail">
 					  <div class="layui-card">
-					  	<i class="layui-icon layui-icon-face-smile"></i>
-					  	<i class="layui-icon layui-icon-password"></i>
-					  	<i class="layui-icon layui-icon-cellphone"></i>
-					  	<i class="layui-icon layui-icon-notice"></i>
+					  	
+					  	
+					  	
+					  	
+
 						<ul>
 							<li>
-								<i class="layui-icon layui-icon-username"></i><span id="userInfoName">用户名</span>
+								<button class="layui-btn layui-btn-primary layui-btn-radius">
+									<i class="layui-icon">&#xe66f;</i><span id="userInfoName">用户名</span></button>
+								
 							</li>
 							<li>
+								<button class="layui-btn layui-btn-primary layui-btn-radius"><i class="layui-icon">&#xe678;</i>
+								<span id="userInfoTel">手机</span></button>
+							</li>
+							<li>
+								<button class="layui-btn layui-btn-primary layui-btn-radius">
+								<i class="layui-icon">&#xe667;</i>
 								<span id="userInfoEmail">邮箱</span>
+							</button>
 							</li>
-							<li>
-								<span id="userInfoTel">手机</span>
-							</li>
+							
 						</ul>
 					  </div>
-
-
+					</div>
+					<div class="layui-btn-group">
+					  <a href="/templetes/add-demand.html"><button class="layui-btn layui-btn-primary layui-btn-sm">
+					    <i class="layui-icon">&#xe654;</i>发布需求
+					  </button></a>
+					  <a href="/templetes/add-result.html"><button class="layui-btn layui-btn-primary layui-btn-sm">
+					    <i class="layui-icon">&#xe609;</i>发表成果
+					  </button></a>
+					  <a href="/"><button class="layui-btn layui-btn-primary layui-btn-sm">
+					    <i class="layui-icon">&#xe68e;</i>返回首页
+					  </button></a>
 					</div>
 				</div>
+
 			</div>
 		</div>
 
 		<div id="main-container">
-			<div id="right-container" class="layui-col-md8">
+			<div id="right-container" class="layui-col-md8  layui-col-sm12">
 				<nav>
 					<span class="layui-breadcrumb" lay-separator="|">
-					  <a href="/">网站首页</a>
-					  <a href="">成果</a>
-					  <a href="">需求</a>
-					  <a href="">行业资讯</a>
+					  <a href="/">网站首页</span></a>
+					  <a href="/templetes/result-list.html">成果</a>
+					  <a href="/templetes/demand-list.html">需求</a>
+					  <a href="/templetes/article-list.html">行业资讯</a>
 					  <a id="logOutBtn">注销</a>
 					</span>
 				</nav>
@@ -74,7 +90,7 @@
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
 		<form lay-filter="formTest" class="layui-form layui-form-pane" action="">
-			<div class="layui-col-md8">
+			<div class="layui-col-md9">
 		  	  <div class="layui-form-item">
 			    <label class="layui-form-label">邮箱</label>
 			    <div class="layui-input-inline">
@@ -97,7 +113,8 @@
 		</form>
     </div>
     <div class="layui-tab-item">
-		<form lay-filter="formTest" class="layui-form layui-form-pane" action="">	<div class="layui-col-md7">
+		<form lay-filter="formTest" class="layui-form layui-form-pane" action="">
+			<div class="layui-col-md9">
 		  	  <div class="layui-form-item">
 			    <label class="layui-form-label">新密码</label>
 			    <div class="layui-input-inline">
@@ -153,7 +170,7 @@ $(document).ready(function() {
 
 //用户登录判断
 function hasLogin(){
-	if(window.localStorage.length != 0 ){
+	if(window.localStorage.userId){
 	    userName = window.localStorage.userName;
 	    userId = window.localStorage.userId;
 	    userPic = window.localStorage.userPic;
@@ -161,10 +178,10 @@ function hasLogin(){
 	    isLogin = true;
 	    $("#headPic").attr("src",userPic);
    		$("#userInfoName").text(userName);
-    }else if(window.localStorage == "undefined"){
+    }else{
       isLogin = false;
-      console.log("请登录");
-      layer.msg(2,'请先登录');
+      //限制当前页面未登录动作
+      location.href="/";
     }
 
 }
@@ -355,10 +372,7 @@ function flushHeadPic() {
   });
 
 
-  $("#logOutBtn").click(function() {
-    localStorage.clear();
-    alert("退出登录！");
-  });
+
 
 
 });

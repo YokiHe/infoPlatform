@@ -4,11 +4,20 @@
 .layui-fluid>div{
 	height:100vh;
 }
-
+#sider .layui-btn-primary{
+	background: rgba(67, 150, 71, 0.68) !important;
+	color: #fff;
+}
+#sider .layui-btn-primary:hover{
+	border-color:#5bad58!important; 
+}
+#sider span,#sider i,#sider a{
+	color:#fff!important;
+}
 
 #sider{
 	position: fixed;
-	background: url(./../images/carousel/userPanelBg.png);
+	background: url(./../images/carousel/userPanel.gif);
 	z-index: 999;
 }
 #sider #sider-container {
@@ -27,14 +36,15 @@
 #userInfo-Wrap{
 	height: 80%;
 	width: 80%;
-	border:1px solid #000;
 	margin: 0 auto;
+	padding: 20px 0;
 	text-align: center
 }
 /*头像*/
 #upload{
-	width:59%;
-	height:auto;
+	width:200px;
+	height:160px;
+    margin: auto;
 }
 #headPic{
 	width: 126px;
@@ -47,27 +57,30 @@
 #userInfo-Detail{
 	width:100%;
 	height:300px;
-	border:1px dashed #ccc;
 }
 #userInfo-Detail ul{
 	height: 100%;
 	line-height: 14px;
 	color: #fff;
-	font-size: 14px;
-	width: 60%;
-	margin: 0;
-	text-align: left;
+	font-size: 15px;
+	width: 100%;
+	margin-top: 26px;
+	text-align: center;
 }
 #userInfo-Detail ul li{
 	display: block;
-	height:30px;
-	line-height: 30px;
+	height:53px;
+	line-height: 38px;
 }
-
+#userInfo-Detail li button{
+	width: 236px;
+}
 #userInfo-Detail ul i{
 	color:#000;
 }
-
+#userInfo-Wrap .layui-btn-group{
+	margin-top: 44px;
+}
 
 
 
@@ -84,7 +97,8 @@
 	right: 0;
 	padding:20px 56px;
 	height: 100vh;
-	/*z-index: -1;*/
+	z-index: 999;
+	background: #fff;
 }
 /* 导航 */
 #main-container nav{
@@ -96,7 +110,9 @@
 
 /* 表单 */
 #main-container #right-container form{
-	margin-top: 36px;
+	margin-top: 66px;
+    padding-left: 50%;
+    margin-left: -160px;
 }
 #main-container #right-container .layui-form-item{
 	margin-bottom: 21px!important;

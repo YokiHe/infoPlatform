@@ -8,6 +8,7 @@
 /* sider */
 #sider{
 	position: fixed;
+	background: url(./../images/carousel/sider1.png) center center no-repeat;
 }
 #sider #logoPic{
 	width: 100%;
@@ -29,6 +30,7 @@
 	width: 100%;
 	box-sizing: border-box;
 	position: relative;
+
 }
 #main-container #right-container{
 	position: absolute;
@@ -36,6 +38,7 @@
 	right: 0;
 	padding:20px 56px;
 	height: 100vh;
+	background: #fff;
 }
 /* 导航 */
 #main-container nav{
