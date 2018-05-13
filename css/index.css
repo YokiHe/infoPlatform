@@ -143,6 +143,13 @@ display:-webkit-box;
 
 /* expert-lib */
 #expert-lib .column-header h2{font-size:23px;}
+#expert-lib h2 a{
+    display: inline-block;
+    float: right;
+}
+#expert-lib h2 a i{
+    font-size: 30px;
+}
 /* #expert-lib .layui-carousel-arrow[lay-type=add]{right:-20px!important;}
 #expert-lib .layui-carousel-arrow[lay-type=sub]{left:-20px!important;} */
 #expert-lib .layui-carousel:hover .layui-carousel-arrow[lay-type=add]{right: -36px;}

@@ -9,8 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
   <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
   <script src="./../js/layui.js"></script>
-  <script src="./../node_modules/mockjs/dist/mock.js"></script><!-- 
-  <script type="text/javascript" src="./../js/laytpl.js"></script> -->
+
   <script>
     
 
@@ -22,8 +21,8 @@
 
 		<section id="body-content" class="layui-main">
 			<span class="layui-breadcrumb">
-			  <a href="">首页</a>
-			  <a href="">成果展示</a>
+			  <a href="/">首页</a>
+			  <a href="/templetes/result-list.html">成果列表</a>
 			  <a><cite>成果详情</cite></a>
 			</span>
 			<article id="view">
@@ -41,7 +40,7 @@
 						<dt>发表用户：</dt>
 						<dd>{{ d.data.userName }}</dd>
 						<dt>发布时间：</dt>
-						<dd>{{ d.data.updated }}</dd>
+						<dd>{{ d.data.time }}</dd>
 						<dd class="article-abb pull-right">
 							{{# if(d.data.visitCount > 100){ }}
 							<span class="layui-badge">热门</span>
@@ -120,6 +119,11 @@ layui.use(['laytpl','element','jquery','layer'],function(){
 	,element = layui.element
 	,laytpl = layui.laytpl
 	,layer = layui.layer;
+
+  /*导航指针定位*/
+  var navIndex = $(".layui-nav").find("li").get(1);
+  $(navIndex).addClass("layui-this");
+  /*导航指针定位*/
 
 	/*用户登录渲染*/
 	var userName = "";

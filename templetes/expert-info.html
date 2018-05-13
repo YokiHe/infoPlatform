@@ -14,8 +14,8 @@
 		<section id="body-content" class="layui-fluid">
 			<div class="layui-main">
 			    <span class="layui-breadcrumb">
-				  <a href="">首页</a>
-				  <a href="">专家库</a>
+				  <a href="/">首页</a>
+				  <a href="/templetes/expert-list.html">专家库</a>
 				  <a><cite>专家简介</cite></a>
 				</span>
 				<article id="expertInfo" class="layui-row">
@@ -59,6 +59,11 @@ layui.use(['element','jquery','laytpl','layer'], function(){
   ,element = layui.element
   ,layer = layui.layer
   ,laytpl = layui.laytpl;
+
+  /*导航指针定位*/
+  var navIndex = $(".layui-nav").find("li").get(3);
+  $(navIndex).addClass("layui-this");
+  /*导航指针定位*/
 
 /*用户登录渲染*/
 var userName = "";

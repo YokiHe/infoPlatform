@@ -191,6 +191,9 @@ function hasLogin(){
         return '标题控制在50个字符内啊';
       }
     },
+    content: function(value){
+      layedit.sync(editIndex);
+    },
     isLogin: function(value){
       if(!userId){
         return '请先登录后再发布需求！'
@@ -208,7 +211,7 @@ function hasLogin(){
   //监听提交
   form.on('submit(demo1)', function(data){
     var jsonString = {
-            "content": "string",
+            "content": "",
             "fieldId": 0,
             "regionId": 0,
             "reward": 0,
@@ -241,7 +244,13 @@ function hasLogin(){
             success:function(msg){
                 if(msg.code==0){
                   layer.closeAll('loading');
-                  layer.alert('需求发布成功', {icon: 1});
+                  layer.open({
+                    content: '需求发布成功',
+                    icon: '1',
+                    end:function() {
+                      location.href="/templetes/demand-list.html";
+                    }
+                  });
                 }else{
                   layer.closeAll('loading');
                   layer.alert('需求发布失败', {icon: 2});

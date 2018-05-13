@@ -106,7 +106,7 @@
 	height:66px;
 	line-height: 66px;
 }
-#main-container nav a{font-size: 18px; padding-right: 28px;  }
+#main-container nav a{font-size: 18px; padding-right: 28px; color: #84908f!important; }
 
 /* 表单 */
 #main-container #right-container form{

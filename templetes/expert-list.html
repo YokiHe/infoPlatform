@@ -67,6 +67,11 @@ layui.use(['element','jquery','laypage','util','laytpl','layer'], function(){
   var count;
   var limitNum = 10;
 
+  /*导航指针定位*/
+  var navIndex = $(".layui-nav").find("li").get(3);
+  $(navIndex).addClass("layui-this");
+  /*导航指针定位*/
+
 /*用户登录渲染*/
 var userName = "";
 var userId = "";

@@ -22,8 +22,8 @@
 
 		<section id="body-content" class="layui-main">
 			<span class="layui-breadcrumb">
-			  <a href="">首页</a>
-			  <a href="">需求展示</a>
+			  <a href="/">首页</a>
+			  <a href="/templetes/demand-list.html">需求列表</a>
 			  <a><cite>需求详情</cite></a>
 			</span>
 			<article id="view">
@@ -43,7 +43,7 @@
 						<dt>发布时间：</dt>
 						<dd>{{ d.data.time }}</dd>
 						<dd class="article-abb pull-right">
-							{{# if(d.data.reward > 100){ }}
+							{{# if(d.data.reward > 30000){ }}
 							<span class="layui-badge">高赏金需求</span>
 							{{#  } }} 
 							{{# if(d.data.stick){ }}
@@ -84,7 +84,7 @@
 				        </tr>
 				        <tr>
 				          <th>发布用户</th>
-				          <td>{{ d.data.username }}</td>
+				          <td>{{ d.data.userName }}</td>
 				          <th>联系方式</th>
 				          <td>{{ d.data.tel }}</td>
 				        </tr>
@@ -98,72 +98,7 @@
 				  <footer>
 				  </footer>
 				</script>
-		<div id="view1"></div>
-		<section id="footer">
-		  <div id="footer-info" class="layui-main">
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<li class="nav-item">
-					<h2>首页</h2>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-					<a href="/">首页信息</a>
-				</li>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<a class="nav-item footer-qrpic">
-					<img src="../images/footericon/qr.png" />
-				</a>
-			</ul>
-			<ul class="footer-icon layui-col-sm2" href="/">
-				<a class="nav-item footer-qrpic">
-					<img src="../images/footericon/qr.png" />
-				</a>
-			</ul>
-		  </div>
-		  <div class="layui-main" id="footer-flink-content">
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/wxlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/aqlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/bcplogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/360logo.gif" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/cxlogo.png" /></a>
-			<a class="footer-icon layui-col-sm2" href="/"><img src="../images/footericon/rzlogo.png" /></a>
-		  </div>
-		  <div id="footer-content">
-			<p>© 2017 <a href="/">环保科技需求.com</a> 展示平台</p>
-			<p>
-			  <a href="javascript:layer.msg('暂无此页');">关于我们</a>
-			  <a href="mailto:729239213@qq.com">联系</a>
-			</p>
-		  </div>
-		</section>
+		<script type="text/javascript" src="./../common/footer.js"></script>
 	</div>
 <!-- 你的HTML代码 -->
  
@@ -174,6 +109,11 @@ layui.use(['jquery','laytpl','element','layer'],function(){
 	,element = layui.element
 	,layer = layui.layer
 	,laytpl = layui.laytpl;
+
+  /*导航指针定位*/
+  var navIndex = $(".layui-nav").find("li").get(2);
+  $(navIndex).addClass("layui-this");
+  /*导航指针定位*/
 
 	/*用户登录渲染*/
 	var userName = "";

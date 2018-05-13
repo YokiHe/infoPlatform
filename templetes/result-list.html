@@ -44,18 +44,15 @@
 	  {{#  layui.each(d.data, function(index, item){ }}
 		<div class="item">
 		  <div class="item-content">
-			<h3 class="pull-left">{{ item.id }}<a href="result-details.html?id={{ item.id }}">{{ item.title }}</a></h3>
+			<h3 class="pull-left"><a href="result-details.html?id={{ item.id }}">{{ item.title }}</a></h3>
 			<div class="pull-right">
 				<span class="text-muted">{{ item.time }}</span>
 			</div>
 			<div class="pull-right badge-set">
-				
-				{{# if(item.field === "kk"){ }}
-			     <span class="layui-badge layui-bg-blue">土壤</span>
-			    {{#  } }} 
-			    {{# if(item.field !== "kk"){ }}
-			     <span class="layui-badge layui-bg-orange">其它</span>
-			    {{#  } }} 
+				{{# if(item.visitCount >100 ){ }}
+         <span class="layui-badge layui-bg-orange">热门</span>
+        {{#  } }} 
+			   <span class="layui-badge layui-bg-green">{{item.field}}</span>
 				{{# if(item.type === "论文"){ }}
 				<span class="layui-badge layui-bg-gray">论文</span>
 				{{#  } }} 
@@ -86,6 +83,11 @@ layui.use(['element','laypage','util','laytpl','layer','jquery'], function(){
   var count;
   var limitNum = 10;
   var index;
+
+/*导航指针定位*/
+  var navIndex = $(".layui-nav").find("li").get(1);
+  $(navIndex).addClass("layui-this");
+  /*导航指针定位*/
 
 /*用户登录渲染*/
 var userName = "";

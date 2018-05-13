@@ -6,7 +6,7 @@
   <title>首页</title>
   <link rel="stylesheet" href="css/layui.css">
   <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_653615_99txfhytanz8h0k9.css">
+  <link rel="stylesheet" type="text/css" href="font/iconfont/iconfont.css">
 </head>
 <body>
 	<div id="all-content">
@@ -284,7 +284,8 @@
 			
 			<div id="expert-lib" class="layui-main">
 				<div class="site-text layui-elem-quote column-header">
-					<h2>专家库</h2>
+					<h2>专家库<a href="/templetes/expert-list.html"><i class="iconfont icon-gengduo"></i></a></h2>
+					
 				</div>
 				<div class="layui-carousel" id="expert-list" style="margin-top: 15px;">
 				  <div carousel-item="">
@@ -350,7 +351,12 @@ layui.use(['carousel','element','util','jquery','laytpl','layer'], function(){
   ,element = layui.element
   ,layer = layui.layer;
 
- 
+  /*导航指针定位*/
+  var navIndex = $(".layui-nav").find("li").get(0);
+  $(navIndex).addClass("layui-this");
+  /*导航指针定位*/
+
+
   //建造实例
  ins = carousel.render({
     elem: '#test1'
@@ -398,9 +404,16 @@ function hasLogin(){
     }
    //退出登录事件
   $("#logOutBtn").click(function() {
-    localStorage.clear();
-    layer.alert("退出登录！");
-    location.reload();
+  	localStorage.clear();
+    layer.open({
+    	content: '退出登录！',
+    	icon:'1',
+    	end:function() {
+    		location.reload();
+    	}
+    });
+    
+    
   });
   //登录事件
   $("#userLogin").click(function(){
@@ -422,16 +435,11 @@ function hasLogin(){
 /*用户登录渲染*/
 
 
-
-
-
-
-
 //改变下时间间隔、动画类型、高度
   carousel.render({
     elem: '#expert-list'
-    ,interval: 1800
-    ,anim: 'default'
+    ,interval: 8000
+    ,anim: 'fade'
     ,width:'100%'
     ,height: '228px'
     ,indicator: 'none'
@@ -482,7 +490,7 @@ function hasLogin(){
 	});
 
   //获取专家列表1
-    $.get("http://101.200.43.10:8080/expert?rows=15&limit=5&page=1", function(data){
+    $.get("http://101.200.43.10:8080/expert?limit=5&page=1", function(data){
 		var getTpl = expert1Tpl.innerHTML
 		,listWrap = document.getElementById('expert1List');
 		laytpl(getTpl).render(data, function(html){
@@ -491,7 +499,7 @@ function hasLogin(){
 	});
 
 	//获取专家列表2
-    $.get("http://101.200.43.10:8080/expert?rows=15&limit=5&page=2", function(data){
+    $.get("http://101.200.43.10:8080/expert?limit=5&page=2", function(data){
 		var getTpl = expert1Tpl.innerHTML
 		,listWrap = document.getElementById('expert2List');
 		laytpl(getTpl).render(data, function(html){

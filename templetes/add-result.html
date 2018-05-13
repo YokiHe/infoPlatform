@@ -15,7 +15,7 @@
   <div class="layui-main">
     <!-- 内容主体区域 -->
 	
-	<form class="layui-form" id="achievementInfo" style="margin-top:20px" >
+	<form class="layui-form" id="achievementInfo" action="post" style="margin-top:20px" >
   
   <div class="layui-form-item">
     <label class="layui-form-label">所属领域</label>
@@ -127,7 +127,8 @@ layui.use(['element','form', 'layedit', 'layer','laytpl'], function(){
   ,layedit = layui.layedit
   ,laytpl = layui.laytpl
   ,element = layui.element;
-  
+/*导航跟踪*/
+
 /*用户登录渲染*/
 var userName = "";
 var userId = "";
@@ -305,10 +306,16 @@ getList("http://101.200.43.10:8080/region","#regionWrap")
             success:function(msg){
                 if(msg.code==0){
                   layer.closeAll('loading');
-                  layer.alert('成果提交审核成功', {icon: 1});
+                  layer.open({
+                    content: '成果提交审核成功',
+                    icon: '1',
+                    end:function() {
+                      location.href="/templetes/result-list.html";
+                    }
+                  });
                 }else{
                   layer.closeAll('loading');
-                  layer.alert('成果提交审核失败', {icon: 2});
+                  layer.alert('成果提交审核失败，稍后再试', {icon: 2});
                 }
                    
             }

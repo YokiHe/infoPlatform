@@ -16,22 +16,53 @@
 				<div id="logoPic">
 					<img src="./../images/globe/logo_head.png">
 				</div>
-				<div id="news-carousel">
-					<div class="layui-carousel" id="test2" style="margin-top: 15px;">
+				<div id="news-carousel-wrap">
+					<div class="layui-carousel" id="news-carousel" style="margin-top: 15px;">
 					  <div carousel-item="">
-					    <div>条目1</div>
-					    <div>条目2</div>
+					  	<div>
+							<ul class="news-catalog" id="demand-wrap">
+							</ul>
+					    </div>
+					    <div>
+							<ul class="news-catalog" id="result-wrap">
+							</ul>
+					    </div>
+					    <div>
+							<ul class="news-catalog" id="news-wrap">
+							</ul>
+					    </div>
 					  </div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script id="demandTpl" type="text/html">
+			{{#  layui.each(d.data, function(index, item){ }}
+				<li class="news-item">{{ item.title }}</li>
+			{{#  }); }}
+			 
+		</script>
+		<script id="resultTpl" type="text/html">
+			{{#  layui.each(d.data, function(index, item){ }}
+				<li class="news-item">{{ item.title }}</li>
+			{{#  }); }}
+			 
+		</script>
+		<script id="newsTpl" type="text/html">
+			{{#  layui.each(d.data, function(index, item){ }}
+				<li class="news-item">{{ item.title }}</li>
+			{{#  }); }}
+			 
+		</script>
+
+
+
 
 		<div id="main-container">
 			<div id="right-container" class="layui-col-md8  layui-col-sm12">
 				<nav>
 					<span class="layui-breadcrumb" lay-separator="|">
-					  <a href="">网站首页</a>
+					  <a href=""><sapn class="layui-btn layui-btn-radius">网站首页</sapn></a>
 					  <a href="">成果</a>
 					  <a href="">需求</a>
 					  <a href="">行业资讯</a>
@@ -107,11 +138,12 @@
 <script src="../js/layui.js"></script>
 
 <script>
-layui.use(['upload','element','form','carousel'], function(){
+layui.use(['upload','element','form','carousel','laytpl'], function(){
   var $ = layui.jquery
   ,element = layui.element
   ,form = layui.form
   ,carousel = layui.carousel
+  ,laytpl = layui.laytpl
   ,upload = layui.upload;
 
   //清除登录状态
@@ -152,6 +184,42 @@ layui.use(['upload','element','form','carousel'], function(){
     ,size: 1000
     
   });
+
+/*sider侧边栏效果渲染*/
+  //新闻联播
+  carousel.render({
+    elem: '#news-carousel'
+    ,interval: 10800
+    ,anim: 'fade'
+    ,height: '100%'
+    ,width: '100%'
+  });
+
+  //获取成果
+  $.get("http://101.200.43.10:8080/achievement?status=1&page=&limit=12", function(data){
+		var getTpl = resultTpl.innerHTML
+		,resultWrap = document.getElementById('result-wrap');
+		laytpl(getTpl).render(data, function(html){
+		  resultWrap.innerHTML = html;
+		});
+	});
+  //获取需求
+  $.get("http://101.200.43.10:8080/requirement?page=&limit=12", function(data){
+		var getTpl = demandTpl.innerHTML
+		,resultWrap = document.getElementById('demand-wrap');
+		laytpl(getTpl).render(data, function(html){
+		  resultWrap.innerHTML = html;
+		});
+	});
+  //获取新闻
+  $.get("http://101.200.43.10:8080/rule?page=&limit=12", function(data){
+		var getTpl = newsTpl.innerHTML
+		,resultWrap = document.getElementById('news-wrap');
+		laytpl(getTpl).render(data, function(html){
+		  resultWrap.innerHTML = html;
+		});
+	});
+
 
   //注册表单验证
   form.verify({
