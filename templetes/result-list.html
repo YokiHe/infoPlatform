@@ -53,12 +53,7 @@
          <span class="layui-badge layui-bg-orange">热门</span>
         {{#  } }} 
 			   <span class="layui-badge layui-bg-green">{{item.field}}</span>
-				{{# if(item.type === "论文"){ }}
-				<span class="layui-badge layui-bg-gray">论文</span>
-				{{#  } }} 
-				{{# if(item.type !== "论文"){ }}
-				<span class="layui-badge layui-bg-cyan">成果</span>
-				{{#  } }} 
+				<span class="layui-badge layui-bg-cyan">{{ item.type }}</span>
 
 			</div>		  
 			

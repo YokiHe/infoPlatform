@@ -36,7 +36,7 @@
 		  <div class="item-heading">
 			<div class="pull-right">
 				<span class="text-muted">
-					<i class="layui-icon" style="color: #ff5722;">&#xe756;</i>
+					<i class="layui-icon" style="color: #009688;">&#xe756;</i>
 					 热门
 				</span> &nbsp; 
 				<span class="text-muted">
@@ -148,9 +148,15 @@ function hasLogin(){
   flushPage(1,10);
   //包装获取数据方法
   function flushPage(curPage,limitNum){
+    var queryStr = "";
+    if(!getUrlParam('type')){
+      queryStr = "";
+    }else{
+      queryStr = "type=" + getUrlParam('type') +"&";
+    }
   	$.ajax({
         type: "get",
-        url: "http://101.200.43.10:8080/rule?type="+getUrlParam('type')+"&page="+curPage+"&limit="+limitNum,
+        url: "http://101.200.43.10:8080/rule?"+queryStr+"page="+curPage+"&limit="+limitNum,
         contentType: 'application/json',
         async: false,
         success: function (data) {

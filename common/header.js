@@ -9,7 +9,7 @@ document.writeln("          <li class=\'layui-nav-item\'><a href=\'/templetes/re
 document.writeln("          <li class=\'layui-nav-item\'><a href=\'/templetes/demand-list.html\'>需求</a></li>");
 document.writeln("          <li class=\'layui-nav-item\'><a href=\'/templetes/expert-list.html\'>专家库</a></li>");
 document.writeln("          <li class=\'layui-nav-item\'>");
-document.writeln("          <a>行业资讯</a>");
+document.writeln("          <a href=\'/templetes/article-list.html\'>行业资讯</a>");
 document.writeln("          <dl class=\'layui-nav-child\'> <!-- 二级菜单 -->");
 document.writeln("            <dd><a href=\'/templetes/article-list.html?type=1\'>转化流程</a></dd>");
 document.writeln("            <dd><a href=\'/templetes/article-list.html?type=2\'>金融服务</a></dd>");

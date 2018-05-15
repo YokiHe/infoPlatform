@@ -43,11 +43,8 @@
     </div>
      <label class="layui-form-label">成果类型</label>
     <div class="layui-input-inline">
-      <select name="type">
-        <option  disabled="">请选择成果类型</option>
-        <option value="1">论文</option>
-        <option value="2" selected>专利</option>
-        
+      <select name="type" id="typeWrap" lay-verify="required" lay-search>
+        <option disabled="">请选择成果类型</option>
       </select>
     </div>
   </div>
@@ -183,11 +180,9 @@ function hasLogin(){
   /*表单数据动态获取*/
   var html = "",
   html1 = "",
-  listNode = "",
-  listApi = "";
+  html2 = "";
   $.get("http://101.200.43.10:8080/field", function(data){
         list = data.data;
-        console.log(list);
         $.each(list, function(i, item){
         html += '<option value="'+item.id+'">'+item.field+'</option>';
       });
@@ -197,11 +192,18 @@ function hasLogin(){
 
    $.get("http://101.200.43.10:8080/region", function(data){
         list = data.data;
-        console.log(list);
         $.each(list, function(i, item){
         html1 += '<option value="'+item.id+'">'+item.region+'</option>';
       });
       $("#regionWrap").append(html1);
+      form.render('select');
+    });
+   $.get("http://101.200.43.10:8080/achievement/type", function(data){
+        list = data.data;
+        $.each(list, function(i, item){
+        html1 += '<option value="'+item.code+'">'+item.value+'</option>';
+      });
+      $("#typeWrap").append(html1);
       form.render('select');
     });
   /*表单数据动态获取*/
