@@ -116,7 +116,7 @@ function hasLogin(){
 
 
   //首次进入初始化页面
-  flushPage(1,10);
+  flushPage(1,12);
   //包装获取数据方法
   function flushPage(curPage,limitNum){
   	$.ajax({
@@ -143,7 +143,7 @@ function hasLogin(){
   laypage.render({
     elem: 'pagelist-bar'
     ,count: count 
-    ,limit:10
+    ,limit:12
     ,jump: function(obj, first){
     	//每次执行
 	    //首次不执行

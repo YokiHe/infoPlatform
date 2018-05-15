@@ -62,11 +62,8 @@
 			<div id="right-container" class="layui-col-md8  layui-col-sm12">
 				<nav>
 					<span class="layui-breadcrumb" lay-separator="|">
-					  <a href=""><sapn class="layui-btn layui-btn-radius">网站首页</sapn></a>
-					  <a href="">成果</a>
-					  <a href="">需求</a>
-					  <a href="">行业资讯</a>
-					  <a id="userLogin">登陆</a>
+					  <a href="/"><sapn class="layui-btn layui-btn-radius">网站首页</sapn></a>
+					  <a><sapn id="userLogin" class="layui-btn layui-btn-primary layui-btn-radius">登陆</sapn></a>
 					</span>
 				</nav>
 
@@ -80,7 +77,7 @@
 					      <div id="upload" class="layui-upload">
 							  <div class="layui-upload-list">
 							  	
-						   	  <img name="headPic"  lay-verify="headPic" class="layui-upload-img" id="headPic" src="./../images/globe/defaultHeadPic.jpg">
+						   	  <img name="headPic"  lay-verify="headPic" class="layui-upload-img" id="headPic" src="../images/globe/defaultHeadPic.jpg">
 						  
 							  </div>
 							  <button type="button" class="layui-btn" id="uploadBtn">上传图片</button>
@@ -146,8 +143,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
   ,laytpl = layui.laytpl
   ,upload = layui.upload;
 
-  //清除登录状态
-  localStorage.clear();
+
   //头像上传
   var uploadInst = upload.render({
     elem: '#uploadBtn'
@@ -233,6 +229,9 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
     if(/^\d+\d+\d$/.test(value)){
       return '用户名不能全为数字';
     }
+    if(value.length < 6 || value.length > 16){
+      return '用户名只能为6-16个字符';
+    }
     var message = "";
     $.ajax({
 	    async: false, //改为同步请求
@@ -270,12 +269,12 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
 	    var pwd = $('input[name=password').val();
 	    if (pwd !== value) 
 	      return "二次输入的密码不一致！";
-	},
+	}/*,
 	headPic: function(value) {
 	    if (value === "") 
 	      return "请上传头像！";
 	    
-	}
+	}*/
 });   
 
 
@@ -283,11 +282,13 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
 
   //监听注册提交
   form.on('submit(formBtn)', function(data){
-    var jsonString ={"email": "", "headPic": "", "name": "", "password": "", "role": 0, "status": 0, "tel": ""}
-
+    var jsonString ={"email": "", "headPic": "http://101.200.43.10:8080/file/default_head.jpg", "name": "", "password": "", "role": 0, "status": 0, "tel": ""}
+      if($("[id='headPic']").val()){
+      	jsonString.headPic=$("[id='headPic']").val();
+      }
       jsonString.name=$("[name='name']").val();
       jsonString.email=$("[name='email']").val();
-      jsonString.headPic=$("[id='headPic']").val();
+      //jsonString.headPic=$("[id='headPic']").val();
       jsonString.password=$("[name='password']").val();
       jsonString.tel=$("[name='tel']").val();
 
@@ -305,9 +306,12 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
                 if(msg.code==0){
                   layer.closeAll('loading');
                   layer.open({
-                  	content: '注册成功，请登录~', //iframe的url
+                  	content: '注册成功，请登录~', 
                   	icon: '1',
 				    end: function(layero, index) {
+				      localStorage.userId = msg.data.id;
+				      localStorage.userName = msg.data.name;
+				      localStorage.userPic = msg.data.headPic;
 				      window.location.href="/index.html";
 				    },
                   });
@@ -338,10 +342,24 @@ $("#userLogin").click(function(){
       area: ['380px', '520px'],
       content: './login.html', //iframe的url
       end: function () {
-        location.href="/index.html";
+        hasLogin();
       }
     }); 
   }
+
+/*用户登录渲染*/
+var userName = "";
+var userId = "";
+hasLogin();
+function hasLogin(){
+  if(window.localStorage.length != 0 ){
+    location.href="/";
+    }else if(window.localStorage == "undefined"){
+      //当前页面未登录用户权限
+    }
+   }
+
+
 
 //结尾
 });

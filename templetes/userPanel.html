@@ -70,11 +70,8 @@
 			<div id="right-container" class="layui-col-md8  layui-col-sm12">
 				<nav>
 					<span class="layui-breadcrumb" lay-separator="|">
-					  <a href=""><sapn class="layui-btn layui-btn-radius">网站首页</sapn></a>
-					  <a href="">成果</a>
-					  <a href="">需求</a>
-					  <a href="">行业资讯</a>
-					  <a id="userLogin">登陆</a>
+					  <a href="/"><sapn class="layui-btn layui-btn-radius">网站首页</sapn></a>
+					  <a><sapn id="logOutBtn" class="layui-btn layui-btn-primary layui-btn-radius">注销</sapn></a>
 					</span>
 				</nav>
 				<div  class="layui-tab layui-tab-brief">
@@ -190,6 +187,22 @@ function getUserInfo() {
 }
 
 /*页面加载时动作*/
+
+   //退出登录事件
+  $("#logOutBtn").click(function() {
+  	localStorage.clear();
+    layer.open({
+    	content: '退出登录！',
+    	icon:'1',
+    	end:function() {
+    		location.href="/";
+    	}
+    });
+    
+    
+  });
+
+
 
 
   //普通图片上传

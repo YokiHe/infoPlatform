@@ -22,7 +22,9 @@
 
 		<script id="carouselTpl" type="text/html">
 		{{#  layui.each(d.data, function(index, item){ }}
-			<img src="{{ item.imageUrl }}" />
+			<a href="{{ item.url }}">
+				<img src="{{ item.imageUrl }}" />
+			</a>
 
 		{{#  }); }}
 		</script>
@@ -367,7 +369,7 @@ layui.use(['carousel','element','util','jquery','laytpl','layer'], function(){
   });
 
 //获取轮播
-    $.get("http://101.200.43.10:8080/carousel?page=2&limit=5", function(data){
+    $.get("http://101.200.43.10:8080/carousel?page=1&limit=5", function(data){
     	console.log(data);
 		var getTpl = carouselTpl.innerHTML
 		,listWrap = document.getElementById('carouselWrap');

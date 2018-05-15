@@ -115,7 +115,7 @@ form.on('submit(loginBtn)', function(data){
                 icon: '1',
                 content: '登录成功',
                 end:function (){
-                  var userName = msg.data.userName;
+                  var userName = msg.data.name;
                   var userId = msg.data.id;
                   var userPic = msg.data.headPic;
                   // Save data to sessionStorage
@@ -130,7 +130,7 @@ form.on('submit(loginBtn)', function(data){
               }); 
               /*layer.alert('登录成功', {icon: 1});
 
-              var userName = msg.data.userName;
+              var userName = msg.data.name;
               var userId = msg.data.id;
               var userPic = msg.data.headPic;
               // Save data to sessionStorage

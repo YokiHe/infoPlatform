@@ -209,6 +209,11 @@ display:-webkit-box;
   line-height: 25px;
   transform: translateX(-200px);
   transition-delay: 0.2s;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .animate-text{
   opacity:0;

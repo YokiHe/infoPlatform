@@ -19,7 +19,7 @@ document.writeln("          </li>");
 document.writeln("          <li id=\'userLogin\' class=\'layui-nav-item\'><a>注册/登陆</a></li>");
 document.writeln("          <li id=\'userCenter\' class=\'layui-nav-item\'>");
 document.writeln("              <a href=\'javascript:;\'>");
-document.writeln("                <img class=\'layui-nav-img\'>");
+document.writeln("                <img class=\'layui-nav-img\' src=\'../images/globe/defaultHeadPic.jpg\'>");
 document.writeln("              </a>");
 document.writeln("              <dl class=\'layui-nav-child\'>");
 document.writeln("                <dd><a href=\'/templetes/userPanel.html\'>基本资料</a></dd>");
