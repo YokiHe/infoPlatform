@@ -23,12 +23,7 @@
 			</fieldset>
 			<div class="list">
 			  <div class="items items-hover" id="artlist">
-				
-				
-				
-				
-			
-				
+								
 			  </div>
 			  <div id="pagelist-bar"></div>
 			</div>
@@ -37,7 +32,9 @@
 	</div>
 
 	
-
+<!-- {{# if(item.visitCount >100 ){ }}
+         <span class="layui-badge layui-bg-orange">热门</span>
+        {{#  } }} -->
 	
 <!-- 列表 -->
  <script id="demo" type="text/html">
@@ -49,9 +46,7 @@
 				<span class="text-muted">{{ item.time }}</span>
 			</div>
 			<div class="pull-right badge-set">
-				{{# if(item.visitCount >100 ){ }}
-         <span class="layui-badge layui-bg-orange">热门</span>
-        {{#  } }} 
+				 
 			   <span class="layui-badge layui-bg-green">{{item.field}}</span>
 				<span class="layui-badge layui-bg-cyan">{{ item.type }}</span>
 

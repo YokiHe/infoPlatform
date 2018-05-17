@@ -39,7 +39,11 @@
 					<!--文章属性列表-->
 					<dl class="dl-inline">
 						<dt>发表用户：</dt>
+						{{# if(d.msg == '查询失败' ){ }}
+ 						{{# location.href="/404.html"; }}
+ 						{{#  }else{  }} 
 						<dd>{{ d.data.userName }}</dd>
+						{{#  }  }} 
 						<dt>发布时间：</dt>
 						<dd>{{ d.data.time }}</dd>
 						<dd class="article-abb pull-right">
@@ -146,7 +150,7 @@ layui.use(['jquery','laytpl','element','layer'],function(){
 	      shade: 0.8,
 	      area: ['380px', '520px'],
 	      content: ['/templetes/login.html','no'],
-	      end: function () {
+	      yes: function () {
 	        location.reload();
 	      }
 	    }); 

@@ -126,6 +126,12 @@ layui.use(['element','form', 'layedit', 'layer','laytpl'], function(){
   ,element = layui.element;
 /*导航跟踪*/
 
+  /*导航指针定位*/
+  var navIndex = $(".layui-nav").find("li").get(1);
+  $(navIndex).addClass("layui-this");
+  /*导航指针定位*/
+
+
 /*用户登录渲染*/
 var userName = "";
 var userId = "";
@@ -168,7 +174,7 @@ function hasLogin(){
       shadeClose: true,
       shade: 0.8,
       area: ['380px', '520px'],
-      content: './login.html', //iframe的url
+      content: ['./login.html','no'], //iframe的url
       end: function () {
         location.reload();
       }
@@ -201,9 +207,9 @@ function hasLogin(){
    $.get("http://101.200.43.10:8080/achievement/type", function(data){
         list = data.data;
         $.each(list, function(i, item){
-        html1 += '<option value="'+item.code+'">'+item.value+'</option>';
+        html2 += '<option value="'+item.code+'">'+item.value+'</option>';
       });
-      $("#typeWrap").append(html1);
+      $("#typeWrap").append(html2);
       form.render('select');
     });
   /*表单数据动态获取*/

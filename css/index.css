@@ -11,6 +11,7 @@ body{background:#f2f2f2;}
 #navlist-right{float:right;}
 .layui-nav .layui-nav-item a{padding:0 20px !important;}
 #nav-bar #userCenter{display: none;}
+#nav-bar #userLogin>a{cursor: pointer;}
 
 /*carousel*/
 .layui-carousel img{height:100%; width:100%;}

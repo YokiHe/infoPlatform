@@ -69,18 +69,37 @@
 		<div id="main-container">
 			<div id="right-container" class="layui-col-md8  layui-col-sm12">
 				<nav>
+					<sapn id="expandPanel" class="layui-btn  layui-btn-primary layui-btn-radius pull-left"><i class="layui-icon">&#xe66b;</i></sapn>
 					<span class="layui-breadcrumb" lay-separator="|">
 					  <a href="/"><sapn class="layui-btn layui-btn-radius">网站首页</sapn></a>
 					  <a><sapn id="logOutBtn" class="layui-btn layui-btn-primary layui-btn-radius">注销</sapn></a>
 					</span>
 				</nav>
-				<div  class="layui-tab layui-tab-brief">
+				<div class="layui-tab layui-tab-brief"  lay-filter="demandInfo">
   <ul class="layui-tab-title">
-    <li class="layui-this">更改个人信息</li>
+  	<li class="layui-this">发布过的成果</li>
+  	<li lay-id="demandTab">发布过的需求</li>
+    <li>更改个人信息</li>
     <li>修改密码</li>
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
+    	<script type="text/html" id="resultTpl">
+		  <a href="http://localhost:3000/templetes/result-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
+		</script>
+    	<table id="resultList" class="layui-table" lay-skin="line">
+
+		</table>
+    </div>
+    <div class="layui-tab-item">
+    	<script type="text/html" id="demandTpl">
+		  <a href="http://localhost:3000/templetes/result-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
+		</script>
+    	<table id="demandList" class="layui-table" lay-skin="line">
+
+		</table>
+    </div>
+    <div class="layui-tab-item">
 		<form lay-filter="formTest" class="layui-form layui-form-pane" action="">
 			<div class="layui-col-md9">
 		  	  <div class="layui-form-item">
@@ -142,10 +161,11 @@
 <script src="../js/layui.js"></script>
 
 <script>
-layui.use(['upload','element','form'], function(){
+layui.use(['upload','element','form','table'], function(){
   var $ = layui.jquery
   ,element = layui.element
   ,form = layui.form
+  ,table = layui.table
   ,upload = layui.upload;
 
 /*页面加载时动作*/
@@ -380,8 +400,70 @@ function flushHeadPic() {
   });
 
 
+  //获取发布过的成果
+  table.render({
+    elem: '#resultList'
+    ,id:'resultList'
+    ,url:'http://101.200.43.10:8080/achievement/self?userId='+userId
+    ,height: 'full-220'
+    ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+      layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+      //,curr: 5 //设定初始在第 5 页
+      ,groups: 1 //只显示 1 个连续页码
+      ,first: false //不显示首页
+      ,last: false //不显示尾页
+      
+    }
+    ,cols: [[
+      {title: '标题', templet: '#demandTpl'}
+      ,{field:'field', width:100, title: '领域', align:'center', sort: true}
+      ,{field:'type', width:80, title: '类型', align:'center', sort: true}
+      ,{field:'region', width:80, title: '地区', align:'center', sort: true}
+      ,{field:'time', width:180, title: '发布时间', align:'center', sort: true}
+      ,{field:'status', width:80, title: '状态', align:'center', sort: true}
+    ]]
+    
+  });
+
+ //包装第二个表格获取数据的方法
+ function reload() {
+  //获取发布过的需求
+  table.render({
+    elem: '#demandList'
+    ,id: 'demandList'
+    ,url:'http://101.200.43.10:8080/requirement/self?userId='+userId
+    ,height: 'full-220'
+    ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+      layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+      //,curr: 5 //设定初始在第 5 页
+      ,groups: 1 //只显示 1 个连续页码
+      ,first: false //不显示首页
+      ,last: false //不显示尾页
+      
+    }
+    ,cols: [[
+      {title: '标题', templet: '#resultTpl'}
+      ,{field:'field', width:100, title: '领域', align:'center', sort: true}
+      ,{field:'region', width:80, title: '地区', align:'center', sort: true}
+      ,{field:'time', width:180, title: '发布时间', align:'center', sort: true}
+    ]]
+    
+  });
+    }
 
 
+element.on('tab(demandInfo)',function(elem) {
+	if(this.getAttribute('lay-id')=='demandTab'){
+		reload();
+	}
+});
+
+$("#expandPanel").click(
+	function () {
+		$("#sider").toggleClass("layui-col-md4");
+		$("#right-container").toggleClass("layui-col-md8");
+		$("#right-container").toggleClass("layui-col-md12");
+});
 
 });
 </script>

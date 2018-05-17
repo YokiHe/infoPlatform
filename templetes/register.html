@@ -308,11 +308,15 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
                   layer.open({
                   	content: '注册成功，请登录~', 
                   	icon: '1',
-				    end: function(layero, index) {
-				      localStorage.userId = msg.data.id;
-				      localStorage.userName = msg.data.name;
-				      localStorage.userPic = msg.data.headPic;
-				      window.location.href="/index.html";
+				    yes: function(layero, index) {
+				      $.post("http://101.200.43.10:8080/user/login?name="+jsonString.name+"&password="+jsonString.password,function(msg) {
+				      	localStorage.userId = msg.data.id;
+					    localStorage.userName = msg.data.name;
+					    localStorage.userPic = msg.data.headPic;
+					    localStorage.userPwd = jsonString.password;
+					    window.location.href="/index.html";
+				      });
+				      
 				    },
                   });
                 }else{

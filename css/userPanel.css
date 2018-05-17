@@ -107,6 +107,20 @@
 	line-height: 66px;
 }
 #main-container nav a{font-size: 18px; padding-right: 28px; color: #84908f!important; }
+#main-container nav #expandPanel {
+	background: none;
+	color: #1c1f1c;
+	float: left;
+	border: none;
+	height: 100%;
+    line-height: 3;
+
+}
+#main-container nav #expandPanel:hover{
+	border:none!important;
+}
+
+
 
 /* 表单 */
 #main-container #right-container form{
@@ -154,6 +168,20 @@
 #right-container .layui-form-danger:focus{
 	border-color: #8cc38e !important;
 }
+
+/* 发表过的信息 */
+.layui-tab-content .infoList{
+	width: 90%;
+	border: 1px solid #ccc;
+}
+.layui-table-page {
+    height: 42px;
+    text-align: center;}
+.layui-table-cell .layui-table-link{
+	color:#009688;
+}
+
+
 /* 底部版权 */
 .copyright{
 	width: 100%;
