@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
   <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
 </head>
 <body class="layui-layout-body" id="publish-page">
@@ -153,9 +154,8 @@ function hasLogin(){
   html1 = "",
   listNode = "",
   listApi = "";
-  $.get("http://101.200.43.10:8080/field", function(data){
+  $.get(apiUrlStr+"/field", function(data){
         list = data.data;
-        console.log(list);
         $.each(list, function(i, item){
         html += '<option value="'+item.id+'">'+item.field+'</option>';
       });
@@ -163,9 +163,8 @@ function hasLogin(){
       form.render('select');
     });
 
-   $.get("http://101.200.43.10:8080/region", function(data){
+   $.get(apiUrlStr+"/region", function(data){
         list = data.data;
-        console.log(list);
         $.each(list, function(i, item){
         html1 += '<option value="'+item.id+'">'+item.region+'</option>';
       });
@@ -177,7 +176,7 @@ function hasLogin(){
 
    layedit.set({  
       uploadImage: {  
-          url: 'http://101.200.43.10:8080/file' //接口url  
+          url: apiUrlStr+'/file' //接口url  
         , type: 'post' //默认post  
         ,function (info) {
           
@@ -239,7 +238,7 @@ function hasLogin(){
 
     $.ajax({
             type:"post",
-            url:"http://101.200.43.10:8080/requirement",
+            url:apiUrlStr+"/requirement",
             processData: false,
             contentType: "application/json;charset=utf-8",
             dataType: "json",

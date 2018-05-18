@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="../css/layui.css">
 	<link rel="stylesheet" href="../css/userPanel.css">
 	<link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
 </head>
 <body>
 	<!-- <script type="text/javascript" src="./../common/header.js"></script> -->
@@ -85,7 +86,7 @@
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
     	<script type="text/html" id="resultTpl">
-		  <a href="http://localhost:3000/templetes/result-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
+		  <a href="/templetes/result-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
 		</script>
     	<table id="resultList" class="layui-table" lay-skin="line">
 
@@ -93,7 +94,7 @@
     </div>
     <div class="layui-tab-item">
     	<script type="text/html" id="demandTpl">
-		  <a href="http://localhost:3000/templetes/result-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
+		  <a href="/templetes/demand-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
 		</script>
     	<table id="demandList" class="layui-table" lay-skin="line">
 
@@ -199,7 +200,7 @@ function hasLogin(){
 }
 //渲染用户信息
 function getUserInfo() {
-	$.get("http://101.200.43.10:8080/user/"+userId, function(result){
+	$.get(apiUrlStr+"/user/"+userId, function(result){
 	  console.log(result.data);
   	  $("#userInfoEmail").text(result.data.email);
   	  $("#userInfoTel").text(result.data.tel);
@@ -236,7 +237,7 @@ function getUserInfo() {
   //普通图片上传
   var uploadInst = upload.render({
     elem: '#headPic'
-    ,url: 'http://101.200.43.10:8080/file'
+    ,url: apiUrlStr+'/file'
    // ,auto: false //选择文件后不自动上传
     ,before: function(obj){
       //预读本地文件示例，不支持ie8
@@ -278,7 +279,7 @@ function flushHeadPic() {
 	userInfo.headPic=$("[id='headPic']").val();
 	userInfo.id = userId;
 	$.ajax({
-	   url: 'http://101.200.43.10:8080/user/',
+	   url: apiUrlStr+'/user/',
 	   type: 'PUT',
 	   contentType: "application/json;charset=utf-8",
 	   data:JSON.stringify(userInfo),
@@ -336,7 +337,7 @@ function flushHeadPic() {
       jsonString.tel=$("[name='tel']").val();
           $.ajax({
             type:"put",
-            url:"http://101.200.43.10:8080/user",
+            url:apiUrlStr+"/user",
             processData: false,
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -374,7 +375,7 @@ function flushHeadPic() {
       jsonString.password=$("[name='password']").val();
           $.ajax({
             type:"put",
-            url:"http://101.200.43.10:8080/user",
+            url:apiUrlStr+"/user",
             processData: false,
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -412,7 +413,7 @@ function flushHeadPic() {
   table.render({
     elem: '#resultList'
     ,id:'resultList'
-    ,url:'http://101.200.43.10:8080/achievement/self?userId='+userId
+    ,url:apiUrlStr+'/achievement/self?userId='+userId
     ,height: 'full-220'
     ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
       layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
@@ -423,7 +424,7 @@ function flushHeadPic() {
       
     }
     ,cols: [[
-      {title: '标题', templet: '#demandTpl'}
+      {title: '标题', templet: '#resultTpl'}
       ,{field:'field', width:100, title: '领域', align:'center', sort: true}
       ,{field:'type', width:80, title: '类型', align:'center', sort: true}
       ,{field:'time', width:180, title: '发布时间', align:'center', sort: true}
@@ -438,7 +439,7 @@ function flushHeadPic() {
   table.render({
     elem: '#demandList'
     ,id: 'demandList'
-    ,url:'http://101.200.43.10:8080/requirement/self?userId='+userId
+    ,url:apiUrlStr+'/requirement/self?userId='+userId
     ,height: 'full-220'
     ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
       layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
@@ -449,7 +450,7 @@ function flushHeadPic() {
       
     }
     ,cols: [[
-      {title: '标题', templet: '#resultTpl'}
+      {title: '标题', templet: '#demandTpl'}
       ,{field:'field', width:100, title: '领域', align:'center', sort: true}
       ,{field:'region', width:80, title: '地区', align:'center', sort: true}
       ,{field:'time', width:180, title: '发布时间', align:'center', sort: true}

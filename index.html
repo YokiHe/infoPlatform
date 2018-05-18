@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/layui.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" type="text/css" href="font/iconfont/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
 </head>
 <body>
 	<div id="all-content">
@@ -370,7 +371,7 @@ layui.use(['carousel','element','util','jquery','laytpl','layer'], function(){
   });
 
 //获取轮播
-    $.get("http://101.200.43.10:8080/carousel?page=2&limit=5", function(data){
+    $.get(apiUrlStr+"/carousel?page=2&limit=5", function(data){
     	console.log(data);
 		var getTpl = carouselTpl.innerHTML
 		,listWrap = document.getElementById('carouselWrap');
@@ -451,7 +452,7 @@ function hasLogin(){
 
 	
   //获取成果
-  $.get("http://101.200.43.10:8080/achievement?status=1&page=&limit=11", function(data){
+  $.get(apiUrlStr+"/achievement?status=1&page=&limit=11", function(data){
 		var getTpl = resultTpl.innerHTML
 		,resultWrap = document.getElementById('result-content');
 		laytpl(getTpl).render(data, function(html){
@@ -460,7 +461,7 @@ function hasLogin(){
 	});
 
   //获取需求
-  $.get("http://101.200.43.10:8080/requirement?page=&limit=11", function(data){
+  $.get(apiUrlStr+"/requirement?page=&limit=11", function(data){
 		var getTpl = demandTpl.innerHTML
 		,demandWrap = document.getElementById('demand-content');
 		laytpl(getTpl).render(data, function(html){
@@ -470,21 +471,21 @@ function hasLogin(){
 
 
   //获取文章列表
-  $.get("http://101.200.43.10:8080/rule?type=1&page=&limit=10", function(data){
+  $.get(apiUrlStr+"/rule?type=1&page=&limit=10", function(data){
 		var getTpl = news1Tpl.innerHTML
 		,listWrap = document.getElementById('newslist1');
 		laytpl(getTpl).render(data, function(html){
 		  listWrap.innerHTML = html;
 		});
 	});
-  $.get("http://101.200.43.10:8080/rule?type=2&page=&limit=10", function(data){
+  $.get(apiUrlStr+"/rule?type=2&page=&limit=10", function(data){
 		var getTpl = news2Tpl.innerHTML
 		,listWrap = document.getElementById('newslist2');
 		laytpl(getTpl).render(data, function(html){
 		  listWrap.innerHTML = html;
 		});
 	});
-  $.get("http://101.200.43.10:8080/rule?type=3&page=&limit=10", function(data){
+  $.get(apiUrlStr+"/rule?type=3&page=&limit=10", function(data){
 		var getTpl = news3Tpl.innerHTML
 		,listWrap = document.getElementById('newslist3');
 		laytpl(getTpl).render(data, function(html){
@@ -493,7 +494,7 @@ function hasLogin(){
 	});
 
   //获取专家列表1
-    $.get("http://101.200.43.10:8080/expert?limit=5&page=1", function(data){
+    $.get(apiUrlStr+"/expert?limit=5&page=1", function(data){
 		var getTpl = expert1Tpl.innerHTML
 		,listWrap = document.getElementById('expert1List');
 		laytpl(getTpl).render(data, function(html){
@@ -502,7 +503,7 @@ function hasLogin(){
 	});
 
 	//获取专家列表2
-    $.get("http://101.200.43.10:8080/expert?limit=5&page=2", function(data){
+    $.get(apiUrlStr+"/expert?limit=5&page=2", function(data){
 		var getTpl = expert1Tpl.innerHTML
 		,listWrap = document.getElementById('expert2List');
 		laytpl(getTpl).render(data, function(html){

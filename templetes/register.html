@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="../css/layui.css">
 	<link rel="stylesheet" href="../css/register.css">
 	<link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+	<script type="text/javascript" src="/common/globeDefi.js"></script>
 </head>
 <body>
 	<!-- <script type="text/javascript" src="./../common/header.js"></script> -->
@@ -147,7 +148,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
   //头像上传
   var uploadInst = upload.render({
     elem: '#uploadBtn'
-    ,url: 'http://101.200.43.10:8080/file'
+    ,url: apiUrlStr+'/file'
    // ,auto: false //选择文件后不自动上传
     ,before: function(obj){
       //预读本地文件示例，不支持ie8
@@ -192,7 +193,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
   });
 
   //获取成果
-  $.get("http://101.200.43.10:8080/achievement?status=1&page=&limit=12", function(data){
+  $.get(apiUrlStr+"/achievement?status=1&page=&limit=12", function(data){
 		var getTpl = resultTpl.innerHTML
 		,resultWrap = document.getElementById('result-wrap');
 		laytpl(getTpl).render(data, function(html){
@@ -200,7 +201,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
 		});
 	});
   //获取需求
-  $.get("http://101.200.43.10:8080/requirement?page=&limit=12", function(data){
+  $.get(apiUrlStr+"/requirement?page=&limit=12", function(data){
 		var getTpl = demandTpl.innerHTML
 		,resultWrap = document.getElementById('demand-wrap');
 		laytpl(getTpl).render(data, function(html){
@@ -208,7 +209,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
 		});
 	});
   //获取新闻
-  $.get("http://101.200.43.10:8080/rule?page=&limit=12", function(data){
+  $.get(apiUrlStr+"/rule?page=&limit=12", function(data){
 		var getTpl = newsTpl.innerHTML
 		,resultWrap = document.getElementById('news-wrap');
 		laytpl(getTpl).render(data, function(html){
@@ -235,7 +236,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
     var message = "";
     $.ajax({
 	    async: false, //改为同步请求
-	    url: 'http://101.200.43.10:8080/user/exist',
+	    url: apiUrlStr+'/user/exist',
 	    data: {
 	        name: value
 	    },
@@ -282,7 +283,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
 
   //监听注册提交
   form.on('submit(formBtn)', function(data){
-    var jsonString ={"email": "", "headPic": "http://101.200.43.10:8080/file/default_head.jpg", "name": "", "password": "", "role": 0, "status": 0, "tel": ""}
+    var jsonString ={"email": "", "headPic": apiUrlStr+"/file/default_head.jpg", "name": "", "password": "", "role": 0, "status": 0, "tel": ""}
       if($("[id='headPic']").val()){
       	jsonString.headPic=$("[id='headPic']").val();
       }
@@ -294,7 +295,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
 
           $.ajax({
             type:"post",
-            url:"http://101.200.43.10:8080/user",
+            url:apiUrlStr+"/user",
             processData: false,
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -309,7 +310,7 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
                   	content: '注册成功，已自动登录~', 
                   	icon: '1',
 				    end: function(layero, index) {
-				      $.post("http://101.200.43.10:8080/user/login?name="+jsonString.name+"&password="+jsonString.password,function(msg) {
+				      $.post(apiUrlStr+"/user/login?name="+jsonString.name+"&password="+jsonString.password,function(msg) {
 				      	localStorage.userId = msg.data.id;
 					    localStorage.userName = msg.data.name;
 					    localStorage.userPic = msg.data.headPic;

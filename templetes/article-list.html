@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
 </head>
 <body class="publictmp list-page">
 	<div id="all-content">
@@ -144,9 +145,8 @@ function hasLogin(){
 		if (r!=null) return unescape(r[2]); return null; //返回参数值
 	} 
   var count;
-  var limitNum = 10;
   //首次进入初始化页面
-  flushPage(1,10);
+  flushPage(1,limitNum);
   //包装获取数据方法
   function flushPage(curPage,limitNum){
     var queryStr = "";
@@ -157,7 +157,7 @@ function hasLogin(){
     }
   	$.ajax({
         type: "get",
-        url: "http://101.200.43.10:8080/rule?"+queryStr+"page="+curPage+"&limit="+limitNum,
+        url: apiUrlStr+"/rule?"+queryStr+"page="+curPage+"&limit="+limitNum,
         contentType: 'application/json',
         async: false,
         success: function (data) {
@@ -174,7 +174,7 @@ function hasLogin(){
   laypage.render({
     elem: 'pagelist-bar'
     ,count: count 
-    ,limit:10
+    ,limit:limitNum
     ,jump: function(obj, first){
     	//每次执行
 	    //首次不执行

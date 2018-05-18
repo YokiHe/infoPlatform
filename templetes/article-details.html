@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
 </head>
 <body id="article-page" class="publictmp">
 	<div id="all-content">
@@ -129,7 +130,7 @@ function hasLogin(){
 	} 
 
 	$.ajax({
-            url:'http://101.200.43.10:8080/rule/'+getUrlParam('id'),
+            url:apiUrlStr+'/rule/'+getUrlParam('id'),
             dataType:'json',
             success:function(data){
             	console.log(data);

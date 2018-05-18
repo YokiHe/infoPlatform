@@ -17,6 +17,9 @@ body{background:#f2f2f2;}
 .layui-breadcrumb{
   font-size: 14px!important;
 }
+.layui-breadcrumb a{
+  padding-right: 12px!important;
+}
 
 /*fix nav*/
 .layui-header{height: 59px; border-bottom: 1px solid #404553;  background-color: #393D49;}

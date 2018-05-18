@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
   <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
   <script src="./../js/layui.js"></script>
 
@@ -174,7 +175,7 @@ layui.use(['laytpl','element','jquery','layer'],function(){
 		if (r!=null) return unescape(r[2]); return null; //返回参数值
 	} 
 	$.ajax({
-	    url:'http://101.200.43.10:8080/achievement/'+getUrlParam('id'),
+	    url:apiUrlStr+'/achievement/'+getUrlParam('id'),
 	    dataType:'json',
 	    success:function(data){
 	        var getTpl = demo.innerHTML

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
   <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
   <script src="./../js/layui.js"></script>
 </head>
@@ -74,7 +75,6 @@ layui.use(['element','laypage','util','laytpl','layer','jquery'], function(){
   ,util = layui.util
   ,laytpl = layui.laytpl;
   var count;
-  var limitNum = 10;
   var index;
 
 /*导航指针定位*/
@@ -126,12 +126,12 @@ function hasLogin(){
 
 
   //首次进入初始化页面
-  flushPage(1,10);
+  flushPage(1,limitNum);
   //包装获取数据方法
   function flushPage(curPage,limitNum){
   	$.ajax({
         type: "get",
-        url: "http://101.200.43.10:8080/achievement?status=1&page="+curPage+"&limit="+limitNum,
+        url: apiUrlStr+"/achievement?status=1&page="+curPage+"&limit="+limitNum,
         contentType: 'application/json',
         async: false,
         beforeSend: function (XMLHttpRequest) {
@@ -153,7 +153,7 @@ function hasLogin(){
   laypage.render({
     elem: 'pagelist-bar'
     ,count: count 
-    ,limit:10
+    ,limit:limitNum
     ,jump: function(obj, first){
     	//每次执行
 	    //首次不执行

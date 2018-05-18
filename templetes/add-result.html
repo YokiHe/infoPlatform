@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
 </head>
 <body class="layui-layout-body" id="publish-page">
 <div class="layui-layout layui-layout-admin">
@@ -188,7 +189,7 @@ function hasLogin(){
   var html = "",
   html1 = "",
   html2 = "";
-  $.get("http://101.200.43.10:8080/field", function(data){
+  $.get(apiUrlStr+"/field", function(data){
         list = data.data;
         $.each(list, function(i, item){
         html += '<option value="'+item.id+'">'+item.field+'</option>';
@@ -197,7 +198,7 @@ function hasLogin(){
       form.render('select');
     });
 
-   $.get("http://101.200.43.10:8080/region", function(data){
+   $.get(apiUrlStr+"/region", function(data){
         list = data.data;
         $.each(list, function(i, item){
         html1 += '<option value="'+item.id+'">'+item.region+'</option>';
@@ -205,7 +206,7 @@ function hasLogin(){
       $("#regionWrap").append(html1);
       form.render('select');
     });
-   $.get("http://101.200.43.10:8080/achievement/type", function(data){
+   $.get(apiUrlStr+"/achievement/type", function(data){
         list = data.data;
         $.each(list, function(i, item){
         html2 += '<option value="'+item.code+'">'+item.value+'</option>';
@@ -230,7 +231,7 @@ getList("http://101.200.43.10:8080/region","#regionWrap")
  
   layedit.set({  
       uploadImage: {  
-          url: 'http://101.200.43.10:8080/file' //接口url  
+          url: apiUrlStr+'/file' //接口url  
         , type: 'post' //默认post  
         ,function (info) {
           
@@ -304,7 +305,7 @@ getList("http://101.200.43.10:8080/region","#regionWrap")
 
     $.ajax({
             type:"post",
-            url:"http://101.200.43.10:8080/achievement",
+            url:apiUrlStr+"/achievement",
             processData: false,
             contentType: "application/json;charset=utf-8",
             dataType: "json",

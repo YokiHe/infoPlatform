@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
+  <script type="text/javascript" src="/common/globeDefi.js"></script>
 </head>
 <body id="expertlib-info-page" class="publictmp">
 	<div id="all-content">
@@ -115,7 +116,7 @@ function hasLogin(){
 	} 
 
   $.ajax({
-    url:'http://101.200.43.10:8080/expert/'+getUrlParam('id'),
+    url:apiUrlStr+'/expert/'+getUrlParam('id'),
     dataType:'json',
     beforeSend: function (XMLHttpRequest) {
     	layer.load(3,{offset: ['320px','660px']});
