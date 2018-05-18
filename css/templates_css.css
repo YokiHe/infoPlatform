@@ -85,7 +85,7 @@ margin: 5px 0;}
 #result-list-page .items .item{padding:14px 10px;}
 #result-list-page .item a{color:#2f3339; transition: all 0.2s linear;}
 #result-list-page .item a:hover{color:#18a093;}
-#result-list-page .badge-set{width:142px !important;text-align: right; padding-right: 10px;}
+#result-list-page .badge-set{width:182px !important;text-align: right; padding-right: 10px;}
 /*article-list-page*/
 
 
@@ -188,6 +188,7 @@ margin: 5px 0;}
   -webkit-line-clamp:6;
   text-overflow: ellipsis;
   overflow: hidden;
+  max-height: 70%;
 }
 .animate-text{
   opacity:0;

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+<head>
 <title>用户登录</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="../js/login.js"></script>
 <link rel="stylesheet" href="./../css/layui.css"  media="all">
 <link href="../css/login.css" rel="stylesheet" type="text/css" />
 </head>
@@ -82,6 +82,9 @@ $("#toLoginBtn").click(function () {
     }
     if(/^\d+\d+\d$/.test(value)){
       return '用户名不能全为数字';
+    }
+    if(value.length < 5 || value.length > 20){
+      return '用户名只能为5-20个字符';
     }
   },
   password: function(value) {

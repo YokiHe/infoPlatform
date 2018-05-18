@@ -3,10 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>个人中心</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="../css/layui.css">
 	<link rel="stylesheet" href="../css/userPanel.css">
 	<link rel="stylesheet" type="text/css" href="../css/iconfont.css">
-	
 </head>
 <body>
 	<!-- <script type="text/javascript" src="./../common/header.js"></script> -->
@@ -71,16 +71,16 @@
 				<nav>
 					<sapn id="expandPanel" class="layui-btn  layui-btn-primary layui-btn-radius pull-left"><i class="layui-icon">&#xe66b;</i></sapn>
 					<span class="layui-breadcrumb" lay-separator="|">
-					  <a href="/"><sapn class="layui-btn layui-btn-radius">网站首页</sapn></a>
+					  <a href="/"><sapn class="layui-btn layui-btn-radius">返回首页</sapn></a>
 					  <a><sapn id="logOutBtn" class="layui-btn layui-btn-primary layui-btn-radius">注销</sapn></a>
 					</span>
 				</nav>
-				<div class="layui-tab layui-tab-brief"  lay-filter="demandInfo">
+				<div class="layui-tab layui-tab-brief"  lay-filter="utab">
   <ul class="layui-tab-title">
-  	<li class="layui-this">发布过的成果</li>
-  	<li lay-id="demandTab">发布过的需求</li>
-    <li>更改个人信息</li>
-    <li>修改密码</li>
+  	<li lay-id="pushedResult" class="layui-this">发布过的成果</li>
+  	<li lay-id="pushedDemand">发布过的需求</li>
+    <li lay-id="cgInfo">更改个人信息</li>
+    <li lay-id="cgPwd">修改密码</li>
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
@@ -207,6 +207,14 @@ function getUserInfo() {
 }
 
 /*页面加载时动作*/
+
+
+ //获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
+  var layid = location.hash.replace(/^#utab=/, '');
+  element.tabChange('utab', layid); //假设当前地址为：http://a.com#test1=222，那么选项卡会自动切换到“发送消息”这一项
+  
+  
+
 
    //退出登录事件
   $("#logOutBtn").click(function() {
@@ -418,7 +426,6 @@ function flushHeadPic() {
       {title: '标题', templet: '#demandTpl'}
       ,{field:'field', width:100, title: '领域', align:'center', sort: true}
       ,{field:'type', width:80, title: '类型', align:'center', sort: true}
-      ,{field:'region', width:80, title: '地区', align:'center', sort: true}
       ,{field:'time', width:180, title: '发布时间', align:'center', sort: true}
       ,{field:'status', width:80, title: '状态', align:'center', sort: true}
     ]]
@@ -452,11 +459,17 @@ function flushHeadPic() {
     }
 
 
-element.on('tab(demandInfo)',function(elem) {
-	if(this.getAttribute('lay-id')=='demandTab'){
+
+
+element.on('tab(utab)',function(elem) {
+	//监听Tab切换，以改变地址hash值
+ 	location.hash = 'utab='+ this.getAttribute('lay-id');
+	if(this.getAttribute('lay-id')=='pushedDemand'){
 		reload();
 	}
 });
+
+
 
 $("#expandPanel").click(
 	function () {

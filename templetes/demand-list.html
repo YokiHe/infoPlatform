@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>需求展示</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../css/layui.css">
   <link rel="stylesheet" href="../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
@@ -38,12 +39,15 @@
 	  {{#  layui.each(d.data, function(index, item){ }}
 		<div class="item">
 		  <div class="item-content">
-			<h3 class="pull-left"><a href="demand-details.html?id={{ item.id }}">{{ item.title }}</a></h3>
+			<h3 class="pull-left"><a target="_blank" href="demand-details.html?id={{ item.id }}">{{ item.title }}</a></h3>
 			<div class="pull-right">
 				<span class="text-muted">{{ item.time }}</span>
 			</div>
 			<div class="pull-right badge-set">
-			  <span class="layui-badge layui-bg-orange">{{ item.field}}</span>				
+        {{# if(item.stick){ }}
+        <span class="layui-badge layui-bg-orange">置顶</span>
+        {{#  } }} 
+			  <span class="layui-badge layui-bg-green">{{ item.field}}</span>				
 				<span class="layui-badge layui-bg-cyan">{{ item.region }}</span> 
 			</div>		  
 		  </div>

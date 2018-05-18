@@ -55,13 +55,13 @@ background-color: #eceded !important;}
 .column-card>hr{margin-bottom:6px;}
 
 .column-card .moudle-card{position:relative; margin:6px auto; width:260px; border-radius:2px; transition:all linear 0.1s;}
-.column-card .moudle-card:hover{box-shadow: 1px 1px 5px rgba(0,0,0,.34); width: 299px; z-index: 999; margin-left: 12px;}
-.column-card .moudle-card:hover .title{width: 86%;}
+.column-card .moudle-card:hover{box-shadow: 1px 1px 5px rgba(0,0,0,.34); width: 319px; z-index: 999; margin-left: 12px;}
 .column-card .moudle-card:hover .line{width:34px;}
 .column-card .anchor-img{width:100%; border-radius:2px 2px 0px 0px; overflow:hidden;}
 .column-card .anchor-con{padding:17px 20px; background:#fff; padding-left: 10px; padding-right: 8px;}
 .column-card .name{position:relative; color:#1d1d1d; font-size:16px; line-height:21px; text-align:left; font-weight:400;}
 .column-card .title{display: inline-block; width: 82%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 14px;}
+.column-card .name .layui-badge{max-width: 13%;}
 .column-card .name .line{bottom:-5px; left:0px; position:absolute; width:0px; height:1px; background: #1e9fff; transition: all 0.3s linear;}
 .column-card .info{margin-top:25px; font-size:12px; min-height:36px; color:#a7a7a7; line-height:18px; text-align:left;
 overflow:hidden; 
@@ -215,6 +215,7 @@ display:-webkit-box;
   -webkit-line-clamp: 4;
   text-overflow: ellipsis;
   overflow: hidden;
+  max-height: 70%;
 }
 .animate-text{
   opacity:0;
