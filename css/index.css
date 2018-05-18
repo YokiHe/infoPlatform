@@ -246,10 +246,11 @@ box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
 #footer-content p{display:block; line-height:23px;}
 #footer .nav-item h2{color:#fff; font-size:15px;}
 #footer .nav-item a{display:block; line-height:22px; margin-top:6px;}
+#footer .nav-item a:hover{transform:translateX(12px);transition: all .3s linear;}
 #footer .footer-qrpic{display:block; text-align:center; line-height:140px;}
 #footer .footer-qrpic img{height:120px;}
 #footer .footer-icon{border-radius:2px; margin-bottom:30px;}
-#footer #footer-flink-content .footer-icon img{height:48px;}
+#footer #footer-flink-content .footer-icon img{height:48px;width:156px; border-radius: 2px;}
 #footer a{color:rgba(255,255,255,.7);}
 
 
