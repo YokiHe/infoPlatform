@@ -131,7 +131,7 @@ function hasLogin(){
   function flushPage(curPage,limitNum){
   	$.ajax({
         type: "get",
-        url: apiUrlStr+"/achievement?status=1&page="+curPage+"&limit="+limitNum,
+        url: apiUrlStr+"/achievement?status=3&page="+curPage+"&limit="+limitNum,
         contentType: 'application/json',
         async: false,
         beforeSend: function (XMLHttpRequest) {
