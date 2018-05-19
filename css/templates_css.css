@@ -39,7 +39,7 @@ body{background:#f2f2f2;}
 .publictmp #footer .footer-qrpic{display:block; text-align:center; line-height:140px;}
 .publictmp #footer .footer-qrpic img{height:120px;}
 .publictmp #footer .footer-icon{border-radius:2px; margin-bottom:30px;}
-.publictmp #footer #footer-flink-content .footer-icon img{height:48px;}
+.publictmp #footer #footer-flink-content .footer-icon img{height: 48px; width: 156px; border-radius: 2px;}
 .publictmp #footer a{color:rgba(255,255,255,.7);}
 
 
