@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>需求发布</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../css/layui.css">
-  <link rel="stylesheet" href="../css/templates_css.css">
-  <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
-  <script type="text/javascript" src="/common/globeDefi.js"></script>
+  <link rel="shortcut icon" href="./../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./../css/layui.css">
+  <link rel="stylesheet" href="./../css/templates_css.css">
+  <link rel="stylesheet" type="text/css" href="./../css/iconfont.css">
+  <script type="text/javascript" src="./../common/globeDefi.js"></script>
   <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
 </head>
 <body class="layui-layout-body" id="publish-page">
@@ -107,7 +107,6 @@ function hasLogin(){
     userName = window.localStorage.userName;
     userId = window.localStorage.userId;
     userPic = window.localStorage.userPic;
-    console.log("用户已登录"+userName+userId);
     $("#userCenter img").attr("src",userPic);
     $("#userCenter img").after(userName);
     $("#userLogin").addClass("hide");
@@ -253,7 +252,7 @@ function hasLogin(){
                     content: '需求发布成功',
                     icon: '1',
                     end:function() {
-                      location.href="/templetes/demand-list.html";
+                      location.href="./demand-list.html";
                     }
                   });
                 }else{

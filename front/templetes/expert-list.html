@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>专家库</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../css/layui.css">
-  <link rel="stylesheet" href="../css/templates_css.css">
-  <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
-  <script type="text/javascript" src="/common/globeDefi.js"></script>
+  <link rel="shortcut icon" href="./../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./../css/layui.css">
+  <link rel="stylesheet" href="./../css/templates_css.css">
+  <link rel="stylesheet" type="text/css" href="./../css/iconfont.css">
+  <script type="text/javascript" src="./../common/globeDefi.js"></script>
   <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
 </head>
 <body id="expertlib-list-page" class="publictmp">
@@ -67,7 +67,7 @@ layui.use(['element','jquery','laypage','util','laytpl','layer'], function(){
   ,util = layui.util
   ,laytpl = layui.laytpl;
   var count;
-  var limitNum = 10;
+  var limitNum = 12;
 
   /*导航指针定位*/
   var navIndex = $(".layui-nav").find("li").get(3);
@@ -104,7 +104,7 @@ function hasLogin(){
       shadeClose: true,
       shade: 0.8,
       area: ['380px', '520px'],
-      content: ['/templetes/login.html','no'],
+      content: ['./login.html','no'],
       yes: function () {
         location.reload();
       }
@@ -132,7 +132,6 @@ function hasLogin(){
         success: function (data) {
             count = data.count;
             layer.closeAll('loading');
-            console.log(data);
             var getTpl = demo.innerHTML
 			,view = document.getElementById('LAY_demo3');
 			laytpl(getTpl).render(data, function(html){

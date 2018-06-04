@@ -3,11 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>个人中心</title>
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../css/layui.css">
-	<link rel="stylesheet" href="../css/userPanel.css">
-	<link rel="stylesheet" type="text/css" href="../css/iconfont.css">
-  <script type="text/javascript" src="/common/globeDefi.js"></script>
+	<link rel="shortcut icon" href="./../favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="./../css/layui.css">
+	<link rel="stylesheet" href="./../css/userPanel.css">
+	<link rel="stylesheet" type="text/css" href="./../css/iconfont.css">
+  <script type="text/javascript" src="./../common/globeDefi.js"></script>
 </head>
 <body>
 	<!-- <script type="text/javascript" src="./../common/header.js"></script> -->
@@ -52,13 +52,13 @@
 					  </div>
 					</div>
 					<div class="layui-btn-group">
-					  <a href="/templetes/add-demand.html"><button class="layui-btn layui-btn-primary layui-btn-sm">
+					  <a href="./add-demand.html"><button class="layui-btn layui-btn-primary layui-btn-sm">
 					    <i class="layui-icon">&#xe654;</i>发布需求
 					  </button></a>
-					  <a href="/templetes/add-result.html"><button class="layui-btn layui-btn-primary layui-btn-sm">
+					  <a href="./add-result.html"><button class="layui-btn layui-btn-primary layui-btn-sm">
 					    <i class="layui-icon">&#xe609;</i>发表成果
 					  </button></a>
-					  <a href="/"><button class="layui-btn layui-btn-primary layui-btn-sm">
+					  <a href="../"><button class="layui-btn layui-btn-primary layui-btn-sm">
 					    <i class="layui-icon">&#xe68e;</i>返回首页
 					  </button></a>
 					</div>
@@ -72,7 +72,7 @@
 				<nav>
 					<sapn id="expandPanel" class="layui-btn  layui-btn-primary layui-btn-radius pull-left"><i class="layui-icon">&#xe66b;</i></sapn>
 					<span class="layui-breadcrumb" lay-separator="|">
-					  <a href="/"><sapn class="layui-btn layui-btn-radius">返回首页</sapn></a>
+					  <a href="../"><sapn class="layui-btn layui-btn-radius">返回首页</sapn></a>
 					  <a><sapn id="logOutBtn" class="layui-btn layui-btn-primary layui-btn-radius">注销</sapn></a>
 					</span>
 				</nav>
@@ -86,7 +86,7 @@
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">
     	<script type="text/html" id="resultTpl">
-		  <a href="/templetes/result-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
+		  <a href="./result-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
 		</script>
     	<table id="resultList" class="layui-table" lay-skin="line">
 
@@ -94,7 +94,7 @@
     </div>
     <div class="layui-tab-item">
     	<script type="text/html" id="demandTpl">
-		  <a href="/templetes/demand-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
+		  <a href="./demand-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
 		</script>
     	<table id="demandList" class="layui-table" lay-skin="line">
 
@@ -187,7 +187,6 @@ function hasLogin(){
 	    userName = window.localStorage.userName;
 	    userId = window.localStorage.userId;
 	    userPic = window.localStorage.userPic;
-	    console.log("用户已登录"+userName+userId);
 	    isLogin = true;
 	    $("#headPic").attr("src",userPic);
    		$("#userInfoName").text(userName);
@@ -201,7 +200,6 @@ function hasLogin(){
 //渲染用户信息
 function getUserInfo() {
 	$.get(apiUrlStr+"/user/"+userId, function(result){
-	  console.log(result.data);
   	  $("#userInfoEmail").text(result.data.email);
   	  $("#userInfoTel").text(result.data.tel);
   });
@@ -224,7 +222,7 @@ function getUserInfo() {
     	content: '退出登录！',
     	icon:'1',
     	end:function() {
-    		location.href="/";
+    		location.href=fRoot;
     	}
     });
     
@@ -383,6 +381,7 @@ function flushHeadPic() {
             beforeSend: function (XMLHttpRequest) {
               layer.load();
             },
+            
             success:function(msg){
                 if(msg.code==0){
                   layer.closeAll('loading');
@@ -393,7 +392,7 @@ function flushHeadPic() {
 					  icon: '1',
 					  yes: function(index, layero){
 					    localStorage.clear();
-                  window.location.href="/index.html";
+                  window.location.href=fRoot+"index.html";
 					    layer.close(index); //如果设定了yes回调，需进行手工关闭
 					  }
 					});        

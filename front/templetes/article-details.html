@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>资讯详情</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../css/layui.css">
-  <link rel="stylesheet" href="../css/templates_css.css">
-  <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
-  <script type="text/javascript" src="/common/globeDefi.js"></script>
+  <link rel="shortcut icon" href="./../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./../css/layui.css">
+  <link rel="stylesheet" href="./../css/templates_css.css">
+  <link rel="stylesheet" type="text/css" href="./../css/iconfont.css">
+  <script type="text/javascript" src="./../common/globeDefi.js"></script>
 </head>
 <body id="article-page" class="publictmp">
 	<div id="all-content">
@@ -16,7 +16,7 @@
 		<section id="body-content" class="layui-main">
 			<span class="layui-breadcrumb">
 			  <a href="">首页</a>
-			  <a href="">行业资讯</a>
+			  <a href="./article-list.html">行业资讯</a>
 			  <a><cite>正文</cite></a>
 			</span>
 			<article id="view">
@@ -27,7 +27,7 @@
 	<script id="demo" type="text/html">
 		<header>
      {{# if(!d.data){ }}
-     {{# location.href="/404.html"; } }}
+     {{# location.href=fRoot+"404.html"; } }}
 			<h1>{{ d.data.title }}</h1>
 			<!--文章属性列表-->
 			<dl class="dl-inline">
@@ -111,7 +111,7 @@ function hasLogin(){
       shadeClose: true,
       shade: 0.8,
       area: ['380px', '520px'],
-      content: ['/templetes/login.html','no'],
+      content: ['./login.html','no'],
       yes: function () {
         location.reload();
       }

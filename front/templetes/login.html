@@ -3,10 +3,10 @@
 <head>
 <title>用户登录</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" href="./../css/layui.css"  media="all">
-<link href="../css/login.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/common/globeDefi.js"></script>
+<link rel="stylesheet" type="text/css" href="./../css/login.css" />
+<script type="text/javascript" src="./../common/globeDefi.js"></script>
 </head>
 <body>
 <div id="loginWrap">
@@ -23,7 +23,7 @@
                 <i class="iconfont">&#xe654;</i>
                 <input type="password" name="password" lay-verify="required|password" placeholder="请输入密码" maxlength="20">
             </div>
-                <a id="toFgtBtn">忘记密码</a>
+                <!--<a id="toFgtBtn">忘记密码</a>-->
             <div class="selectOption">
                 <button lay-submit lay-filter="loginBtn">登录</button>
                 <button id="toRegBtn" type="button">注册</button>
@@ -161,7 +161,7 @@ return false;
 
 $("#toRegBtn").click(function(){
   var index = parent.layer.getFrameIndex(window.name);
-      parent.location.href="/templetes/register.html";
+      parent.location.href=fRoot+"templetes/register.html";
 });
 
 

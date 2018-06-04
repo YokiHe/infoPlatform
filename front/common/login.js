@@ -7,7 +7,6 @@ function hasLogin(){
     userName = window.localStorage.userName;
     userId = window.localStorage.userId;
     userPic = window.localStorage.userPic;
-    console.log("用户已登录"+userName+userId);
     $("#userCenter img").attr("src",userPic);
     $("#userCenter img").after(userName);
     $("#userLogin").addClass("hide");
@@ -29,7 +28,7 @@ function hasLogin(){
       shadeClose: true,
       shade: 0.8,
       area: ['380px', '520px'],
-      content: './templetes/login.html', //iframe的url
+      content: './login.html', //iframe的url
       success: function(layero, index) {
         console.log(layero,index);
       },

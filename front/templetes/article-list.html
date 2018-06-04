@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>文章列表</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../css/layui.css">
-  <link rel="stylesheet" href="../css/templates_css.css">
-  <link rel="stylesheet" type="text/css" href="../css/iconfont.css">
-  <script type="text/javascript" src="/common/globeDefi.js"></script>
+  <link rel="shortcut icon" href="./../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./../css/layui.css">
+  <link rel="stylesheet" href="./../css/templates_css.css">
+  <link rel="stylesheet" type="text/css" href="./../css/iconfont.css">
+  <script type="text/javascript" src="./../common/globeDefi.js"></script>
 </head>
 <body class="publictmp list-page">
 	<div id="all-content">
@@ -25,7 +25,7 @@
  <script id="demo" type="text/html">
  	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 5px;">
  	{{# if(d.count ==0 ){ }}
- 	{{# location.href="/404.html"; }}
+ 	{{# location.href=fRoot+"404.html"; }}
 	  {{#  }else{  }} 
 	   <legend>{{ d.data[0].typeName }}</legend> 
 	  {{#  }  }} 
@@ -78,7 +78,7 @@
 	
 <!-- 你的HTML代码 -->
  
-<script src="../js/layui.js"></script>
+<script src="./../js/layui.js"></script>
 
 
 <script>
@@ -125,7 +125,7 @@ function hasLogin(){
       shadeClose: true,
       shade: 0.8,
       area: ['380px', '520px'],
-      content: ['/templetes/login.html','no'],
+      content: ['./login.html','no'],
       yes: function () {
         location.reload();
       }

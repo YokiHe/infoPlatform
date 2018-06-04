@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>首页</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/layui.css">
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" type="text/css" href="font/iconfont/iconfont.css">
-  <script type="text/javascript" src="/common/globeDefi.js"></script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/layui.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" type="text/css" href="./font/iconfont/iconfont.css">
+  <script type="text/javascript" src="./common/globeDefi.js"></script>
 </head>
 <body>
 	<div id="all-content">
-		<script type="text/javascript" src="./../common/header.js"></script> 
+		<script type="text/javascript" src="./common/header.js"></script> 
 		<section class="layui-main" id="main-content">
 			<div class="layui-carousel" id="test1">
 			  <div id="carouselWrap" carousel-item>
@@ -372,7 +372,6 @@ layui.use(['carousel','element','util','jquery','laytpl','layer'], function(){
 
 //获取轮播
     $.get(apiUrlStr+"/carousel?page=2&limit=5", function(data){
-    	console.log(data);
 		var getTpl = carouselTpl.innerHTML
 		,listWrap = document.getElementById('carouselWrap');
 		laytpl(getTpl).render(data, function(html){
@@ -427,7 +426,7 @@ function hasLogin(){
       shadeClose: true,
       shade: 0.8,
       area: ['380px', '520px'],
-      content: ['/templetes/login.html','no'],
+      content: ['./templetes/login.html','no'],
       yes: function () {
         location.reload();
       }
