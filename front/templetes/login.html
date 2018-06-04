@@ -93,9 +93,12 @@ $("#toLoginBtn").click(function () {
       return "密码不能为空！";
     var regExpDigital = /\d/; //如果有数字
     var regExpLetters = /[a-zA-Z]/; //如果有字母
-    if (!(regExpDigital.test(value) && regExpLetters.test(value) && value.length >= 8 && value.length <= 16)) {
+    if (!(regExpDigital.test(value) && regExpLetters.test(value))) {
         return '密码必须包含英文和数字！';
-        }
+	    }
+	if (!(value.length >= 8 && value.length <= 16)) {
+        return '密码长度要求8位到16位！';
+	    }
     }
 });   
 //监听注册表格提交事件

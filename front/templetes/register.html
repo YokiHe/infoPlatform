@@ -243,7 +243,6 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
 	    dataType: 'json',
 	    type: 'get',
 	    success: function(result) {
-	    	console.log(result);
 	        //result的数据结构 ：   {"success":true,"message":"用户名已存在！"}
 	        if (result.data) {
 	          	message = result.msg;
@@ -260,8 +259,11 @@ layui.use(['upload','element','form','carousel','laytpl'], function(){
       return "密码不能为空！";
     var regExpDigital = /\d/; //如果有数字
     var regExpLetters = /[a-zA-Z]/; //如果有字母
-    if (!(regExpDigital.test(value) && regExpLetters.test(value) && value.length >= 8 && value.length <= 16)) {
+    if (!(regExpDigital.test(value) && regExpLetters.test(value))) {
         return '密码必须包含英文和数字！';
+	    }
+	if (!(value.length >= 8 && value.length <= 16)) {
+        return '密码长度要求8位到16位！';
 	    }
 	},
 	rePassword: function(value) {
