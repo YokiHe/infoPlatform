@@ -4,6 +4,9 @@
 .layui-fluid>div{
 	height:100vh;
 }
+.layui-table-view .layui-table{
+	width:100%!important;
+}
 #sider .layui-btn-primary{
 	background: rgba(67, 150, 71, 0.68) !important;
 	color: #fff;

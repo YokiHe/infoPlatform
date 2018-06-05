@@ -58,7 +58,7 @@
 					  <a href="./add-result.html"><button class="layui-btn layui-btn-primary layui-btn-sm">
 					    <i class="layui-icon">&#xe609;</i>发表成果
 					  </button></a>
-					  <a href="../"><button class="layui-btn layui-btn-primary layui-btn-sm">
+					  <a href="./../index.html"><button class="layui-btn layui-btn-primary layui-btn-sm">
 					    <i class="layui-icon">&#xe68e;</i>返回首页
 					  </button></a>
 					</div>
@@ -72,7 +72,7 @@
 				<nav>
 					<sapn id="expandPanel" class="layui-btn  layui-btn-primary layui-btn-radius pull-left"><i class="layui-icon">&#xe66b;</i></sapn>
 					<span class="layui-breadcrumb" lay-separator="|">
-					  <a href="../"><sapn class="layui-btn layui-btn-radius">返回首页</sapn></a>
+					  <a href="./../index.html"><sapn class="layui-btn layui-btn-radius">返回首页</sapn></a>
 					  <a><sapn id="logOutBtn" class="layui-btn layui-btn-primary layui-btn-radius">注销</sapn></a>
 					</span>
 				</nav>
@@ -193,7 +193,7 @@ function hasLogin(){
     }else{
       isLogin = false;
       //限制当前页面未登录动作
-      location.href="/";
+      location.href="./../index.html";
     }
 
 }
@@ -424,16 +424,16 @@ function flushHeadPic() {
     }
     ,cols: [[
       {title: '标题', templet: '#resultTpl'}
-      ,{field:'field', width:100, title: '领域', align:'center', sort: true}
-      ,{field:'type', width:80, title: '类型', align:'center', sort: true}
-      ,{field:'time', width:180, title: '发布时间', align:'center', sort: true}
-      ,{field:'status', title: '状态', align:'center', sort: true}
+      ,{field:'field', width:'13%', title: '领域', align:'center', sort: true}
+      ,{field:'type', width:'10%', title: '类型', align:'center', sort: true}
+      ,{field:'time', width:'20%',title: '发布时间', align:'center', sort: true}
+      ,{field:'status', width:'10%', title: '状态', align:'center', sort: true}
     ]]
     
   });
 
  //包装第二个表格获取数据的方法
- function reload() {
+ function reload2() {
   //获取发布过的需求
   table.render({
     elem: '#demandList'
@@ -450,9 +450,9 @@ function flushHeadPic() {
     }
     ,cols: [[
       {title: '标题', templet: '#demandTpl'}
-      ,{field:'field', width:100, title: '领域', align:'center', sort: true}
-      ,{field:'region', width:80, title: '地区', align:'center', sort: true}
-      ,{field:'time', width:180, title: '发布时间', align:'center', sort: true}
+      ,{field:'field', width:'13%', title: '领域', align:'center', sort: true}
+      ,{field:'region', width:'13%', title: '地区', align:'center', sort: true}
+      ,{field:'time', width:'20%', title: '发布时间', align:'center', sort: true}
     ]]
     
   });
@@ -465,7 +465,7 @@ element.on('tab(utab)',function(elem) {
 	//监听Tab切换，以改变地址hash值
  	location.hash = 'utab='+ this.getAttribute('lay-id');
 	if(this.getAttribute('lay-id')=='pushedDemand'){
-		reload();
+		reload2();
 	}
 });
 
@@ -476,6 +476,7 @@ $("#expandPanel").click(
 		$("#sider").toggleClass("layui-col-md4");
 		$("#right-container").toggleClass("layui-col-md8");
 		$("#right-container").toggleClass("layui-col-md12");
+		
 });
 
 });

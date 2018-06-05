@@ -63,7 +63,7 @@
 			<div id="right-container" class="layui-col-md8  layui-col-sm12">
 				<nav>
 					<span class="layui-breadcrumb" lay-separator="|">
-					  <a href=./../><sapn class="layui-btn layui-btn-radius">返回首页</sapn></a>
+					  <a href=./../index.html><sapn class="layui-btn layui-btn-radius">返回首页</sapn></a>
 					  <a><sapn id="userLogin" class="layui-btn layui-btn-primary layui-btn-radius">登陆</sapn></a>
 					</span>
 				</nav>
@@ -354,17 +354,7 @@ $("#userLogin").click(function(){
     }); 
   }
 
-/*用户登录渲染*/
-var userName = "";
-var userId = "";
-hasLogin();
-function hasLogin(){
-  if(window.localStorage.length != 0 ){
-    location.href="/";
-    }else if(window.localStorage == "undefined"){
-      //当前页面未登录用户权限
-    }
-   }
+
 
 
 

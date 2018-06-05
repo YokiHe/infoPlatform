@@ -30,12 +30,13 @@ body{background:#f2f2f2;}
 
 /*footer*/
 .publictmp #footer{height:329px; background:#393D49; border-top:1px solid #404553; color:rgba(255,255,255,.7);}
-.publictmp #footer-info{margin:0 auto; padding:40px 40px 0 40px;}
+.publictmp #footer-info{margin:0 auto; padding:40px 40px 0 40px; height: 112px;}
 .publictmp #footer-flink-content{text-align:center; padding:40px 40px 0 10px;}
 .publictmp #footer-content{text-align:center; padding-top:5px; margin-top:-10px; width:100%; height:48px; float:left; background:#424758; border-top:2px solid #4d515f;}
 .publictmp #footer-content p{display:block; line-height:23px;}
 .publictmp #footer .nav-item h2{color:#fff; font-size:15px;}
-.publictmp #footer .nav-item a{display:block; line-height:22px; margin-top:6px;}
+#footer .nav-item a{display:block; line-height:22px; margin-top:6px; box-sizing: border-box;}
+#footer .nav-item a:hover{transform:translateX(12px);transition: all .3s linear;}
 .publictmp #footer .footer-qrpic{display:block; text-align:center; line-height:140px;}
 .publictmp #footer .footer-qrpic img{height:120px;}
 .publictmp #footer .footer-icon{border-radius:2px; margin-bottom:30px;}
