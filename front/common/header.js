@@ -1,10 +1,10 @@
 document.writeln("<section id=\'nav-bar\' class=\'layui-header header header-doc\'>");
 document.writeln("      <div class=\'layui-main\'>");
-document.writeln("        <a class=\'logo\' href=\'/\'>");
-document.writeln("          <img src="+fRoot+ "images/globe/logo_head.png\ />");
+document.writeln("        <a class=\'logo\' href="+fRoot+"index.html>");
+document.writeln("          <img src="+fRoot+"images/globe/logo_head.png\ />");
 document.writeln("        </a>");
 document.writeln("        <ul class=\'layui-nav\' id=\'navlist-right\' lay-filter=\'\'>");
-document.writeln("          <li class=\'layui-nav-item\'><a href="+fRoot+">首页</a></li>");
+document.writeln("          <li class=\'layui-nav-item\'><a href="+fRoot+"index.html>首页</a></li>");
 document.writeln("          <li class=\'layui-nav-item\'><a href="+fRoot+"templetes/result-list.html\>成果</a></li>");
 document.writeln("          <li class=\'layui-nav-item\'><a href="+fRoot+"templetes/demand-list.html\>需求</a></li>");
 document.writeln("          <li class=\'layui-nav-item\'><a href="+fRoot+"templetes/expert-list.html\>专家库</a></li>");
