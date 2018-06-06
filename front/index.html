@@ -288,7 +288,7 @@
 			
 			<div id="expert-lib" class="layui-main">
 				<div class="site-text layui-elem-quote column-header">
-					<h2>专家库<a href="/templetes/expert-list.html"><i class="iconfont icon-gengduo"></i></a></h2>
+					<h2>专家库<a href="./templetes/expert-list.html"><i class="iconfont icon-gengduo"></i></a></h2>
 					
 				</div>
 				<div class="layui-carousel" id="expert-list" style="margin-top: 15px;">
@@ -512,9 +512,9 @@ function hasLogin(){
 		  listWrap.innerHTML = html;
 		});
 	});
-		
+	
 	//获取友情链接
-    $.get(apiUrlStr+"/link?page=1&limit=6", function(data){
+	$.get(apiUrlStr+"/link?page=1&limit=6", function(data){
 		if(data.code == 0){
 			var data = data.data;
 			var flinkHtml = '';
