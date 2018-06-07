@@ -84,13 +84,15 @@
 				<!-- <img class="anchor-img" src="img/img-2.jpg" /> -->
 				<div id="" class="layui-col-md3 content-wrap column-catalog">
 					<div class="card-wrap">
-						<i class="iconfont icon-ziyuanku"></i>
-						<div class="card-title">最新成果</div>
+						<a class="quote-link" href="templetes/result-list.html">
+							<i class="iconfont icon-ziyuanku"></i>
+							<div class="card-title">最新成果</div>
+						</a>
 					</div>
 					<a href="templetes/add-result.html" class="card-wrap">
 						<i class="layui-icon">&#xe609;</i>
 						<span class="card-title">发布新成果</span>
-						<span class="layui-icon pull-right">&#xe602;</span>
+						<!-- <span class="layui-icon pull-right">&#xe602;</span> -->
 					</a>
 				</div>
 				<div id="result-content" class="layui-col-md9  content-wrap">
@@ -148,13 +150,15 @@
 				</div>
 				<div id="" class="layui-col-md3 content-wrap column-catalog">
 					<div class="card-wrap">
-						<i class="iconfont icon-ziyuanxuqiu"></i>
-						<div class="card-title">最新需求</div>
+						<a class="quote-link" href="templetes/demand-list.html">
+							<i class="iconfont icon-ziyuanxuqiu"></i>
+							<div class="card-title">最新需求</div>
+						</a>
 					</div>
 					<a href="templetes/add-demand.html" class="card-wrap">
 						<i class="layui-icon">&#xe609;</i>
 						<span class="card-title">发布新需求</span>
-						<span class="layui-icon pull-right">&#xe602;</span>
+						<!-- <span class="layui-icon pull-right">&#xe602;</span> -->
 					</a>
 				</div>
 				
@@ -209,22 +213,28 @@
 				<div id="column-news-catalog" class="layui-tab" lay-filter="test1">
 				  <ul class="layui-tab-title">
 				    <li id="tab-title-1" class="layui-this layui-col-md4" lay-id="111">
-				      <div class="card-wrap">
-						<i class="iconfont icon-liucheng"></i>
-						<div class="card-title">转化流程</div>
-					  </div>
+						<a class="quote-link" href="templetes/article-list.html?type=1">
+						  <div class="card-wrap">
+							<i class="iconfont icon-liucheng"></i>
+							<div class="card-title">转化流程</div>
+						  </div>
+						 </a>
 					</li>
 				    <li id="tab-title-2" class="layui-col-md4" lay-id="222">
-				      <div class="card-wrap">
-						<i class="iconfont icon-navicon-kcfltj"></i>
-						<div class="card-title">潜力评估</div>
-					  </div>
+						<a class="quote-link" href="templetes/article-list.html?type=3">
+						  <div class="card-wrap">
+							<i class="iconfont icon-navicon-kcfltj"></i>
+							<div class="card-title">潜力评估</div>
+						  </div>
+						</a>
 					</li>
 				    <li id="tab-title-3" class="layui-col-md4" lay-id="333">
-				      <div class="card-wrap">
-						<i class="iconfont icon-asset"></i>
-						<div class="card-title">金融服务</div>
-					  </div>
+						<a class="quote-link" href="templetes/article-list.html?type=2">
+						  <div class="card-wrap">
+							<i class="iconfont icon-asset"></i>
+							<div class="card-title">金融服务</div>
+						  </div>
+						</a>
 					</li>
 				  </ul>
 				  <div class="layui-tab-content">
@@ -297,6 +307,8 @@
 				    </div>
 				    <div id="expert2List">
 				    </div>
+					<div id="expert3List">
+				    </div>
 				  </div>
 				</div>
 
@@ -350,7 +362,7 @@
 
 
 <script>
-	var ins;
+var ins;
 layui.use(['carousel','element','util','jquery','laytpl','layer'], function(){
   var $ = layui.jquery
   ,carousel = layui.carousel
@@ -513,14 +525,22 @@ function hasLogin(){
 		});
 	});
 	
+	//获取专家列表3
+    $.get(apiUrlStr+"/expert?limit=5&page=3", function(data){
+		var getTpl = expert1Tpl.innerHTML
+		,listWrap = document.getElementById('expert3List');
+		laytpl(getTpl).render(data, function(html){
+		  listWrap.innerHTML = html;
+		});
+	});
+	
 	//获取友情链接
-	$.get(apiUrlStr+"/link?page=1&limit=6", function(data){
+	$.get(apiUrlStr+"/link?page=1&limit=50", function(data){
 		if(data.code == 0){
 			var data = data.data;
 			var flinkHtml = '';
 			for(var i in data){
-			console.log(data[i].url);
-			flinkHtml += "<a target='_blank' class='footer-icon layui-col-sm2' href='"+data[i].url+"'><img src='"+data[i].headPic+"'></a>"; 
+			flinkHtml += "<a target='_blank' href='"+data[i].url+"'>"+data[i].name+"</a>"; 
 			}
 			var flinkC = $("#footer-flink-content");
 			flinkC.html(flinkHtml);
@@ -528,6 +548,8 @@ function hasLogin(){
 			alert("获取失败!");
 		}
 	});
+	
+	
  
   $("#tab-title-1").mouseover(function(){
   	$(".layui-tab-title > li").removeClass("layui-this");

@@ -43,7 +43,7 @@
       time --;
       timeOut.innerHTML = time;
       if(time == 0){
-        location.href="/";
+        location.href="./index.html";
       }
     }
     setInterval('showTime()',1000);
@@ -90,13 +90,13 @@ function getUserInfo() {
 }
 
 //获取友情链接
-	$.get(apiUrlStr+"/link?page=1&limit=6", function(data){
+	$.get(apiUrlStr+"/link?page=1&limit=50", function(data){
 		if(data.code == 0){
 			var data = data.data;
 			var flinkHtml = '';
 			for(var i in data){
 			console.log(data[i].url);
-			flinkHtml += "<a target='_blank' class='footer-icon layui-col-sm2' href='"+data[i].url+"'><img src='"+data[i].headPic+"'></a>"; 
+			flinkHtml += "<a target='_blank' href='"+data[i].url+"'>"+data[i].name+"</a>"; 
 			}
 			var flinkC = $("#footer-flink-content");
 			flinkC.html(flinkHtml);

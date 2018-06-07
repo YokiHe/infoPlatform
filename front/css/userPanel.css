@@ -183,6 +183,7 @@
 .layui-table-cell .layui-table-link{
 	color:#009688;
 }
+.layui-table-cell .layui-btn {height: 28px; line-height: 28px; padding: 0 8px;}
 
 
 /* 底部版权 */

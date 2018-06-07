@@ -13,7 +13,7 @@ document.writeln("				<li class=\'nav-item\'>");
 document.writeln("					<h2>信息平台</h2>");
 document.writeln("					<a href="+fRoot+"templetes/register.html\>用户注册</a>");
 document.writeln("					<a href="+fRoot+"templetes/add-demand.html\>需求发布</a>");
-document.writeln("					<a href="+fRoot+"empletes/add-result.html\>成果发表</a>");
+document.writeln("					<a href="+fRoot+"templetes/add-result.html\>成果发表</a>");
 document.writeln("				</li>");
 document.writeln("			</ul>");
 document.writeln("			<ul class=\'footer-icon layui-col-sm2\'>");

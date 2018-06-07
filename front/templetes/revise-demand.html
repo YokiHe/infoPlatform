@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>成果发布</title>
+  <title>需求发布</title>
   <link rel="shortcut icon" href="./../favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./../css/layui.css">
   <link rel="stylesheet" href="./../css/templates_css.css">
   <link rel="stylesheet" type="text/css" href="./../css/iconfont.css">
   <script type="text/javascript" src="./../common/globeDefi.js"></script>
+  <script type="text/javascript" src="./../js/jquery-1.11.0.min.js"></script>
 </head>
 <body class="layui-layout-body" id="publish-page">
 <div class="layui-layout layui-layout-admin">
-  <script type="text/javascript" src="./../common/header.js"></script> 
   
   <div class="layui-main">
     <!-- 内容主体区域 -->
-	
-	<form class="layui-form" id="achievementInfo" style="margin-top:20px" >
-  
+	<form class="layui-form" id="demandInfo" style="margin-top:20px">
+  <input name="id" id="aid" required lay-verify="required|number" class="hide" value="">
+
+
   <div class="layui-form-item">
     <label class="layui-form-label">所属领域</label>
     <div class="layui-input-inline">
@@ -34,78 +35,42 @@
     </div>
   </div>
 
+   <div class="layui-form-item">
+    <div class="layui-inline">
+       <label class="layui-form-label">联系方式</label>
+       <div class="layui-input-block">
+        <input name="tel" lay-verify="required|phone|isLogin" placeholder="请输入手机号码" autocomplete="off" class="layui-input" type="text">
+       </div>
+    </div> 
+    <div class="layui-inline">
+      <label class="layui-form-label">赏金</label>
+      <div class="layui-input-block">
+    <input name="reward" lay-verify="required|number" placeholder="请输入赏金" autocomplete="off" class="layui-input" type="text">
+      </div>
+    </div>
+  </div> 
+  
 
+
+
+  
   <div class="layui-form-item">
-    
-    <div class="layui-inline">
-      <label class="layui-form-label">专利价格</label>
-      <div class="layui-input-inline">
-        <input name="price" required lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
-      </div>
-    </div>
-     <label class="layui-form-label">成果类型</label>
-    <div class="layui-input-inline">
-      <select name="type" id="typeWrap" lay-verify="required" lay-search>
-        <option disabled="">请选择成果类型</option>
-      </select>
-    </div>
-  </div>
-  
-
-
-<div class="layui-form-item">
-    <div class="layui-inline">
-      <label class="layui-form-label">收益区间</label>
-      <div class="layui-input-inline" style="width: 100px;">
-        <input name="benefitStart" lay-verify="required|number" placeholder="￥" autocomplete="off" class="layui-input" type="text">
-      </div>
-      <div class="layui-form-mid">-</div>
-      <div class="layui-input-inline" style="width: 100px;">
-        <input name="benefitEnd" lay-verify="required|number" placeholder="￥" autocomplete="off" class="layui-input" type="text">
-      </div>
-    </div>
-    </div>
-  
-
-  
-
-  <div class="layui-form-item">
-    <div class="layui-inline">
-     <label class="layui-form-label">联系方式</label>
-     <div class="layui-input-block">
-      <input name="tel" lay-verify="required|phone" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
-     </div>
-    </div>
-   
-   <div class="layui-inline">
-    <label class="layui-form-label">专利所有人</label>
+    <label class="layui-form-label">需求标题</label>
     <div class="layui-input-block">
-      <input name="patentee" lay-verify="required|isLogin|name" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
-    </div>
-    
-    </div>
-    
-    
-  </div>
-  
- 
-  <div class="layui-form-item">
-    <label class="layui-form-label">成果标题</label>
-    <div class="layui-input-block">
-      <input name="title" required lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text">
+      <input name="title" lay-verify="required|title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text">
     </div>
   </div>
   
   <div class="layui-form-item layui-form-text">
-    <label class="layui-form-label">成果内容</label>
+    <label class="layui-form-label">需求内容</label>
     <div class="layui-input-block">
       <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
     </div>
   </div>
   <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit="" lay-filter="demo1">提交成果</button>
-      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+      <button class="layui-btn" lay-submit lay-filter="demo1">发布需求</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重填</button>
     </div>
   </div>
  
@@ -116,9 +81,9 @@
 
 </div>
 
-<script src="../js/layui.js"></script>
+<script src="./../js/layui.js"></script>
+
 <script>
-//JavaScript代码区域
 layui.use(['element','form', 'layedit', 'layer','laytpl'], function(){
   var $ = layui.jquery
   ,form = layui.form
@@ -126,14 +91,12 @@ layui.use(['element','form', 'layedit', 'layer','laytpl'], function(){
   ,layedit = layui.layedit
   ,laytpl = layui.laytpl
   ,element = layui.element;
-/*导航跟踪*/
 
   /*导航指针定位*/
-  var navIndex = $(".layui-nav").find("li").get(1);
+  var navIndex = $(".layui-nav").find("li").get(2);
   $(navIndex).addClass("layui-this");
   /*导航指针定位*/
-
-
+  
 /*用户登录渲染*/
 var userName = "";
 var userId = "";
@@ -184,10 +147,11 @@ function hasLogin(){
 
 }
 
-  /*表单数据动态获取*/
+ /*表单数据动态获取*/
   var html = "",
   html1 = "",
-  html2 = "";
+  listNode = "",
+  listApi = "";
   $.get(apiUrlStr+"/field", function(data){
         list = data.data;
         $.each(list, function(i, item){
@@ -205,17 +169,10 @@ function hasLogin(){
       $("#regionWrap").append(html1);
       form.render('select');
     });
-   $.get(apiUrlStr+"/achievement/type", function(data){
-        list = data.data;
-        $.each(list, function(i, item){
-        html2 += '<option value="'+item.code+'">'+item.value+'</option>';
-      });
-      $("#typeWrap").append(html2);
-      form.render('select');
-    });
+  /*表单数据动态获取*/
 
- 
-  layedit.set({  
+
+   layedit.set({  
       uploadImage: {  
           url: apiUrlStr+'/file' //接口url  
         , type: 'post' //默认post  
@@ -226,24 +183,11 @@ function hasLogin(){
   });  
   //创建一个编辑器
   var editIndex = layedit.build('LAY_demo_editor');
-
-
-
-
-
+ 
+ 
+ 
   //自定义验证规则
   form.verify({
-    name: function(value, item){ //value：表单的值、item：表单的DOM对象
-    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
-      return '名字不能有特殊字符';
-    }
-    if(/(^\_)|(\__)|(\_+$)/.test(value)){
-      return '名字不能出现下划线\'_\'';
-    }
-    if(/^\d+\d+\d$/.test(value)){
-      return '名字不能为数字';
-    }
-  },
     title: function(value){
       if(value.length < 5){
         return '标题至少得5个字符啊';
@@ -251,47 +195,59 @@ function hasLogin(){
       if(value.length >50){
         return '标题控制在50个字符内啊';
       }
-    }
-    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-    ,content: function(value){
+    },
+    content: function(value){
       layedit.sync(editIndex);
     },
     isLogin: function(value){
       if(!userId){
-        return '请先登录后再发表成果！'
+        return '请先登录后再发布需求！'
       }
     }
   });
 
-  $('.layedit-tool-image').on('mouseover', function(){
-    layer.tips('上传的图片大小仅限2MB', '.layedit-tool-image',{
-      tips: [1, '#7fce95'],
-      time: 3000
+  
+  
+  //当前数据回显
+$.get(apiUrlStr+"/requirement/"+$("[name='id']").val(), function(data){
+		console.log(data);
+        $("[name='fieldId']").val(data.data.fieldId);
+		$("[name='regionId']").val(data.data.regionId);
+		$('input[name="tel"]').val(data.data.tel);
+		$('input[name="reward"]').val(data.data.reward);
+		$('#LAY_demo_editor').text(data.data.content);
+        editIndex = layedit.build('LAY_demo_editor'); //重新建立编辑器
+		form.render();
     });
-  });
 
-
-
+  
   //监听提交
   form.on('submit(demo1)', function(data){
-    var jsonString ={"benefitEnd":0,"benefitStart":0,"content":"","fieldId":0,"patentee":"","price":0,"regionId":0,"status":1,"tel":"","title":"","type":1,"userId":0,"visitCount":0};
-      
-      jsonString.benefitEnd=$("[name='benefitEnd']").val();
-      jsonString.benefitStart=$("[name='benefitStart']").val();
-      jsonString.content=$("[name='content']").val();
-      jsonString.fieldId=$("[name='fieldId']").val();
-      jsonString.patentee=$("[name='patentee']").val();
-      jsonString.price=$("[name='price']").val();
-      jsonString.regionId=$("[name='regionId']").val();
-      jsonString.tel=$("[name='tel']").val();
+    var textContent= layedit.getContent(editIndex); // 获取文本内容
+    var jsonString = {
+            "content": "",
+            "fieldId": 0,
+            "regionId": 0,
+            "reward": 0,
+            "sortOrder": 0,
+            "tel": "string",
+            "title": "string",
+            "userId": 0
+          };
+
+      jsonString.id=$("[name='id']").val();
       jsonString.title=$("[name='title']").val();
-      jsonString.type=$("[name='type']").val();
+      jsonString.content = textContent;
+      jsonString.fieldId=$("[name='fieldId']").val();
+      jsonString.regionId=$("[name='regionId']").val();
+      jsonString.reward=$("[name='reward']").val();
+      jsonString.tel=$("[name='tel']").val();
       jsonString.userId=userId;
 
 
     $.ajax({
-            type:"post",
-            url:apiUrlStr+"/achievement",
+            type:"PUT",
+            url:apiUrlStr+"/requirement",
             processData: false,
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -299,19 +255,20 @@ function hasLogin(){
             beforeSend: function (XMLHttpRequest) {
               layer.load();
             },
-            success:function(msg){
+            success:function(msg){                
                 if(msg.code==0){
                   layer.closeAll('loading');
                   layer.open({
-                    content: '成果提交审核成功',
+                    content: '需求修改成功',
                     icon: '1',
                     end:function() {
-                      location.href="./result-list.html";
+                      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					  parent.layer.close(index); //再执行关闭		  
                     }
                   });
                 }else{
                   layer.closeAll('loading');
-                  layer.alert('成果提交审核失败，稍后再试', {icon: 2});
+                  layer.alert('需求发布失败', {icon: 2});
                 }
                    
             }
@@ -320,22 +277,8 @@ function hasLogin(){
     return false;
   });
   
-	$.get(apiUrlStr+"/link?page=1&limit=6", function(data){
-		if(data.code == 0){
-			var data = data.data;
-			var flinkHtml = '';
-			for(var i in data){
-			console.log(data[i].url);
-			flinkHtml += "<a target='_blank' class='footer-icon layui-col-sm2' href='"+data[i].url+"'><img src='"+data[i].headPic+"'></a>"; 
-			}
-			var flinkC = $("#footer-flink-content");
-			flinkC.html(flinkHtml);
-		}else{
-			alert("获取失败!");
-		}
-	});
+  
 	
-
 });
 </script>
 </body>

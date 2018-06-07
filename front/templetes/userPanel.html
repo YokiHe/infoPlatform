@@ -88,7 +88,7 @@
     	<script type="text/html" id="resultTpl">
 		  <a href="./result-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
 		</script>
-    	<table id="resultList" class="layui-table" lay-skin="line">
+    	<table id="resultList" lay-filter="demo" class="layui-table" lay-skin="line">
 
 		</table>
     </div>
@@ -96,7 +96,7 @@
     	<script type="text/html" id="demandTpl">
 		  <a href="./demand-details.html?id={{ d.id }}" class="layui-table-link" target="_blank">{{ d.title }}</a>
 		</script>
-    	<table id="demandList" class="layui-table" lay-skin="line">
+    	<table id="demandList" lay-filter="demandList" class="layui-table" lay-skin="line">
 
 		</table>
     </div>
@@ -150,7 +150,16 @@
     </div>
   </div>
 </div>
-		     
+
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>  
+
+<script type="text/html" id="demandBar">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script> 
 				
 
 	<p class="copyright">Copyright © 2018 湖南省环保科技成果转换平台</p>
@@ -228,6 +237,125 @@ function getUserInfo() {
     
     
   });
+
+//监听工具条成果
+table.on('tool(demo)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+  var data = obj.data; //获得当前行数据
+  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+  var tr = obj.tr; //获得当前行 tr 的DOM对象
+ 
+  if(layEvent === 'detail'){ //查看
+    //do somehing
+  } else if(layEvent === 'del'){ //删除
+	layer.confirm('真的删除该条数据吗？', function(index){
+	  //向服务端发送删除指令
+	  $.ajax({
+            type:"DELETE",
+            url:apiUrlStr+"/achievement/"+obj.data.id,
+            processData: false,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success:function(msg){
+				obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                if(msg.code==0){
+                  layer.msg({
+                    content: '数据删除成功',
+                    icon: '1',
+                    end:function() {
+					  layer.close(index);
+                    }
+                  });
+                }else{
+                  layer.alert('删除失败，稍后再试', {icon: 2});
+                }
+                   
+            }
+        });
+		});
+	  } else if(layEvent === 'edit'){ //编辑
+	    console.log(obj.data);
+		layer.open({
+		type: 2,
+		content: './revise-result.html',
+		area:['1222px','586px'],
+		success: function(layero, index){
+		var body = layer.getChildFrame('body', index);
+		var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+		var benefit = obj.data.benefit;
+		var strs = benefit.split("-");
+		var benefitStart = strs[0];
+		var benefitEnd = strs[1];
+		body.find('input[name="benefitStart"]').val(benefitStart);
+		body.find('input[name="benefitEnd"]').val(benefitEnd);
+		body.find('input[name="id"]').val(obj.data.id);
+		body.find('input[name="patentee"]').val(obj.data.patentee);
+		body.find('input[name="price"]').val(obj.data.price);
+		body.find('input[name="tel"]').val(obj.data.tel);
+		body.find('input[name="title"]').val(obj.data.title);
+	  },
+		end: function(layero, index){
+			reload1();
+		}
+	});	
+
+  }
+});
+
+
+//监听工具条需求
+table.on('tool(demandList)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+  var data = obj.data; //获得当前行数据
+  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+  var tr = obj.tr; //获得当前行 tr 的DOM对象
+ 
+  if(layEvent === 'detail'){ //查看
+    
+  } else if(layEvent === 'del'){ 
+	layer.confirm('真的删除该条数据吗？', function(index){
+	  //向服务端发送删除指令
+	  $.ajax({
+            type:"DELETE",
+            url:apiUrlStr+"/requirement/"+obj.data.id,
+            processData: false,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success:function(msg){
+                if(msg.code==0){
+				  obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                  layer.msg({
+                    content: '数据删除成功',
+                    icon: '1',
+                    end:function() {
+					  layer.close(index);
+                    }
+                  });
+                }else{
+                  layer.alert('删除失败，稍后再试', {icon: 2});
+                }
+                   
+            }
+        });
+		});
+	  } else if(layEvent === 'edit'){ //编辑
+		layer.open({
+		type: 2,
+		content: './revise-demand.html',
+		area:['1222px','586px'],
+		success: function(layero, index){
+		var body = layer.getChildFrame('body', index);
+		var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+		body.find('input[name="id"]').val(obj.data.id);
+		body.find('input[name="title"]').val(obj.data.title);
+		body.find('input[name="tel"]').val(obj.data.tel);
+	  },
+		end: function(layero, index){
+			reload2();
+		}
+	});	
+
+  }
+});
+
 
 
 
@@ -409,6 +537,7 @@ function flushHeadPic() {
 
 
   //获取发布过的成果
+function reload1(){
   table.render({
     elem: '#resultList'
     ,id:'resultList'
@@ -428,9 +557,13 @@ function flushHeadPic() {
       ,{field:'type', unresize:'ture', unresize:'ture', width:'10%', title: '类型', align:'center', sort: true}
       ,{field:'time', unresize:'ture', width:'20%',title: '发布时间', align:'center', sort: true}
       ,{field:'status', unresize:'ture', width:'15%', title: '状态', align:'center', sort: true}
+	  ,{fixed: 'right', title: '操作', width:150, align:'center', toolbar: '#barDemo'}
     ]]
     
   });
+  }
+  
+  reload1();
 
  //包装第二个表格获取数据的方法
  function reload2() {
@@ -453,12 +586,14 @@ function flushHeadPic() {
       ,{field:'field', unresize:'ture', width:'13%', title: '领域', align:'center', sort: true}
       ,{field:'region', unresize:'ture', width:'13%', title: '地区', align:'center', sort: true}
       ,{field:'time', unresize:'ture', width:'20%', title: '发布时间', align:'center', sort: true}
+	  ,{fixed: 'right', title: '操作',  width:150, align:'center', toolbar: '#demandBar'}
     ]]
     
   });
     }
 
 
+	
 
 
 element.on('tab(utab)',function(elem) {

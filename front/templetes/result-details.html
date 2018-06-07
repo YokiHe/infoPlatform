@@ -37,7 +37,7 @@
 					<dl class="dl-inline">
 						<dt>发表用户：</dt>
 						{{# if(d.msg == '查询失败' ){ }}
- 						{{# location.href="/404.html"; }}
+ 						{{# location.href="./../404.html"; }}
  						{{#  }else{  }} 
 						<dd>{{ d.data.userName }}</dd>
 						{{#  }  }} 
@@ -188,13 +188,13 @@ layui.use(['laytpl','element','jquery','layer'],function(){
 	});
 	
 	//获取友情链接
-	$.get(apiUrlStr+"/link?page=1&limit=6", function(data){
+	$.get(apiUrlStr+"/link?page=1&limit=50", function(data){
 		if(data.code == 0){
 			var data = data.data;
 			var flinkHtml = '';
 			for(var i in data){
 			console.log(data[i].url);
-			flinkHtml += "<a target='_blank' class='footer-icon layui-col-sm2' href='"+data[i].url+"'><img src='"+data[i].headPic+"'></a>"; 
+			flinkHtml += "<a target='_blank' href='"+data[i].url+"'>"+data[i].name+"</a>"; 
 			}
 			var flinkC = $("#footer-flink-content");
 			flinkC.html(flinkHtml);

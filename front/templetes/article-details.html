@@ -27,7 +27,7 @@
 	<script id="demo" type="text/html">
 		<header>
      {{# if(!d.data){ }}
-     {{# location.href=fRoot+"404.html"; } }}
+     {{# location.href="./../404.html"; } }}
 			<h1>{{ d.data.title }}</h1>
 			<!--文章属性列表-->
 			<dl class="dl-inline">
@@ -133,7 +133,6 @@ function hasLogin(){
 		url:apiUrlStr+'/rule/'+getUrlParam('id'),
 		dataType:'json',
 		success:function(data){
-			console.log(data);
 			var getTpl = demo.innerHTML
 			,view = document.getElementById('view');
 			laytpl(getTpl).render(data, function(html){
@@ -144,13 +143,13 @@ function hasLogin(){
 	});
 	
 	//获取友情链接
-	$.get(apiUrlStr+"/link?page=1&limit=6", function(data){
+	$.get(apiUrlStr+"/link?page=1&limit=50", function(data){
 		if(data.code == 0){
 			var data = data.data;
 			var flinkHtml = '';
 			for(var i in data){
 			console.log(data[i].url);
-			flinkHtml += "<a target='_blank' class='footer-icon layui-col-sm2' href='"+data[i].url+"'><img src='"+data[i].headPic+"'></a>"; 
+			flinkHtml += "<a target='_blank' href='"+data[i].url+"'>"+data[i].name+"</a>"; 
 			}
 			var flinkC = $("#footer-flink-content");
 			flinkC.html(flinkHtml);

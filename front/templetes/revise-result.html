@@ -12,13 +12,12 @@
 </head>
 <body class="layui-layout-body" id="publish-page">
 <div class="layui-layout layui-layout-admin">
-  <script type="text/javascript" src="./../common/header.js"></script> 
   
   <div class="layui-main">
     <!-- 内容主体区域 -->
 	
 	<form class="layui-form" id="achievementInfo" style="margin-top:20px" >
-  
+  <input name="id" id="aid" required lay-verify="required|number" class="hide" value="">
   <div class="layui-form-item">
     <label class="layui-form-label">所属领域</label>
     <div class="layui-input-inline">
@@ -215,19 +214,28 @@ function hasLogin(){
     });
 
  
-  layedit.set({  
-      uploadImage: {  
-          url: apiUrlStr+'/file' //接口url  
-        , type: 'post' //默认post  
-        ,function (info) {
-          
-        }
-      }  
-  });  
-  //创建一个编辑器
-  var editIndex = layedit.build('LAY_demo_editor');
+	layedit.set({  
+	  uploadImage: {  
+		  url: apiUrlStr+'/file' //接口url  
+		, type: 'post' //默认post  
+		,function (info) {	  
+		  }
+	    }  
+	});  
+	  
+	//创建一个编辑器
+	var editIndex = layedit.build('LAY_demo_editor');
 
-
+	//当前数据回显
+	$.get(apiUrlStr+"/achievement/"+$("[name='id']").val(), function(data){
+		console.log(data);
+        $("[name='fieldId']").val(data.data.fieldId);
+		$("[name='regionId']").val(data.data.regionId);
+		$("[name='type']").val(data.data.typeId);
+		$('#LAY_demo_editor').text(data.data.content);
+        editIndex = layedit.build('LAY_demo_editor'); //重新建立编辑器
+		form.render();
+    });
 
 
 
@@ -274,11 +282,12 @@ function hasLogin(){
 
   //监听提交
   form.on('submit(demo1)', function(data){
+    var textContent= layedit.getContent(editIndex); // 获取文本内容
     var jsonString ={"benefitEnd":0,"benefitStart":0,"content":"","fieldId":0,"patentee":"","price":0,"regionId":0,"status":1,"tel":"","title":"","type":1,"userId":0,"visitCount":0};
-      
+      jsonString.id=$("[name='id']").val();
       jsonString.benefitEnd=$("[name='benefitEnd']").val();
       jsonString.benefitStart=$("[name='benefitStart']").val();
-      jsonString.content=$("[name='content']").val();
+      jsonString.content = textContent;
       jsonString.fieldId=$("[name='fieldId']").val();
       jsonString.patentee=$("[name='patentee']").val();
       jsonString.price=$("[name='price']").val();
@@ -289,8 +298,9 @@ function hasLogin(){
       jsonString.userId=userId;
 
 
+
     $.ajax({
-            type:"post",
+            type:"put",
             url:apiUrlStr+"/achievement",
             processData: false,
             contentType: "application/json;charset=utf-8",
@@ -306,7 +316,8 @@ function hasLogin(){
                     content: '成果提交审核成功',
                     icon: '1',
                     end:function() {
-                      location.href="./result-list.html";
+                      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					  parent.layer.close(index); //再执行关闭   
                     }
                   });
                 }else{
@@ -320,20 +331,8 @@ function hasLogin(){
     return false;
   });
   
-	$.get(apiUrlStr+"/link?page=1&limit=6", function(data){
-		if(data.code == 0){
-			var data = data.data;
-			var flinkHtml = '';
-			for(var i in data){
-			console.log(data[i].url);
-			flinkHtml += "<a target='_blank' class='footer-icon layui-col-sm2' href='"+data[i].url+"'><img src='"+data[i].headPic+"'></a>"; 
-			}
-			var flinkC = $("#footer-flink-content");
-			flinkC.html(flinkHtml);
-		}else{
-			alert("获取失败!");
-		}
-	});
+	
+	
 	
 
 });
